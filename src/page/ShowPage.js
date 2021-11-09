@@ -31,31 +31,51 @@ const Div_area = styled.div`
 `
 
 function ShowPage() {
+    const { kakao } = window
     const getLocation= useLocation()
     const [location, setLocation] = useState({
                 latitude: 0,
                 longitude: 0
-    })
-    console.log("first",typeof(location.latitude))
-
-   
+    });
     //현재 위치 로케 정보
     const currentLocation = getLocation.state
-    const  { kakao } = window
+    console.log("current",location)
+
 
     useEffect(() => {
-        setLocation(getLocation.state)
-        console.log("getloca",getLocation)
-        console.log("second",location.latitude)
+        setLocation(getLocation.state);
+    },[])
 
+    const loadMap = (lat, long) => {
         kakao.maps.load(() => {
         let el = document.getElementById('map');
         let map = new kakao.maps.Map(el, {
-            center: new kakao.maps.LatLng(getLocation.state.longitude, getLocation.state.latitude),
+            center: new kakao.maps.LatLng(lat, long),
             level : 1
             })
         })
-    }, [location.latitude]);
+        console.log("here",location.latitude, location.longtitude)
+    }
+
+    console.log("final",location.latitude, location.longtitude)
+
+    if(location.latitude >= 1 && location.longtitude >= 1){
+        loadMap(location.latitude, location.longtitude);
+    }
+
+     
+
+
+    // useEffect(() => {
+    //     setLocation(getLocation.state);
+    //     kakao.maps.load((locaiton.latitude, location.longtitude) => {
+    //     let el = document.getElementById('map');
+    //     let map = new kakao.maps.Map(el, {
+    //         center: new kakao.maps.LatLng(lat, long),
+    //         level : 1
+    //         })
+    //     })
+    // }, []);
 
 
     const setCurrent = () => {

@@ -22,10 +22,10 @@ function Landing(props) {
             setCLongtitude(position.coords.longitude);
         })
     }
-        
+
     useEffect(()=>{getCheck()},[Clongtitude])
     console.log(Clatitude, Clongtitude)
-
+  
     const getLocation = () => {
         if (Clongtitude >=1 && Clatitude >=1) {
             history.push({
