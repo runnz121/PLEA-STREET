@@ -14,25 +14,25 @@ const ImgCon = styled.div`
 function Landing(props) {
     const history = useHistory();
     const [Clatitude, setCLatitude] = useState()
-    const [Clongtitude, setCLongtitude] = useState()
+    const [Clongitude, setCLongitude] = useState()
 
     const getCheck = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             setCLatitude(position.coords.latitude);
-            setCLongtitude(position.coords.longitude);
+            setCLongitude(position.coords.longitude);
         })
     }
 
-    useEffect(()=>{getCheck()},[Clongtitude])
-    console.log(Clatitude, Clongtitude)
+    useEffect(()=>{getCheck()},[Clongitude])
+    console.log(Clatitude, Clongitude)
   
-    const getLocation = () => {
-        if (Clongtitude >=1 && Clatitude >=1) {
+    const getLocation = (props) => {
+        if (Clongitude >=1 && Clatitude >=1) {
             history.push({
                 pathname: "/map",
                 state: {
                     latitude: Clatitude,
-                    longtitude : Clongtitude
+                    longitude : Clongitude
                 }
             })
         }else{
