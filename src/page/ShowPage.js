@@ -1,19 +1,37 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect, useState, useRef} from 'react'
 import ContainerMap from "../component/Map.js"
+import Container from '../component/Contanier.js';
+import Menu from "../component/Menu.js"
+
+
+
+
+
 
 function ShowPage() {
-    // const  { kakao } = window
+    const  { kakao } = window
+    // const [latitude, setLatitude] = useState()
+    // const [longtitude, setLongtitude] = useState()
 
-    // useEffect(() => {
-    //     const container = document.getElementById('map')
-    //     const options = {
-    //         center : new kakao.maps.Map(container, options);
-    //     }
-    // },[]);
+
+    useEffect(() => {
+        kakao.maps.load(() => {
+            let el = document.getElementById('map');
+            let map = new kakao.maps.Map(el, {
+                center: new kakao.maps.Coords(523951.25, 1085073.75)
+            })
+        })
+
+    }, []);
+
 
 
     return (
-        <ContainerMap/>
+        <Container>
+                <Menu/>
+                <ContainerMap id = 'map'/>
+        </Container>
+
     )
 }
 

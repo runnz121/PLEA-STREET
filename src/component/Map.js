@@ -1,9 +1,9 @@
 import styled from "styled-components"
 
-const Container = styled.div`
-    width : 500px;
-    height : 500px;
-    border : 1px solid black;
+const showMap = styled.div`
+    width : 100%;
+    height : 90vh;
+    border : 1px solid blue;
 `
 
-export default Container
+export default showMap
