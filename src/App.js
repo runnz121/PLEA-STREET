@@ -7,6 +7,7 @@ import ShowPage from "./page/ShowPage.js"
 
 //test
 import TestPage from "./page/TestPage.js"
+import TestPage2 from "./page/TestPage2.js"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
             <Route exact path = "/" component={LandingPage}/>
             <Route exact path = "/map" component={ShowPage}/>
             <Route exact path = "/test" component={TestPage}/>
+            <Route exact path = "/test2" component={TestPage2}/>
           </Switch>
       </BrowserRouter>
     </HelmetProvider>
