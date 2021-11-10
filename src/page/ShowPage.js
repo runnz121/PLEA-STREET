@@ -14,7 +14,6 @@ import data from "../util/loca"
 import { Button } from 'semantic-ui-react'
 
 
-
 const Menu_wrapper = styled.div`
     width : 100%;
     height : 8vh;
@@ -44,27 +43,30 @@ function ShowPage() {
     console.log("바뀐구", gu)
 
 
-
-
 //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
 useEffect(()=> {
     setLocation(getLocation.state)
+
+
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
-        level: 7 // 지도의 확대 레벨
+        level: 5 // 지도의 확대 레벨
     }; 
-
+    
     let map = new kakao.maps.Map(mapContainer, mapOption); 
     let bounds = new kakao.maps.LatLngBounds();
 
- 
+
+
     const displayMarker = (place) => {
         let marker = new kakao.maps.Marker({
                 map: map,
                 position: new kakao.maps.LatLng(parseFloat(place.위도), parseFloat(place.경도)) 
         });
     }
+
+
 
     //현재 위치 마커 표시
     const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
@@ -89,10 +91,17 @@ useEffect(()=> {
         console.log("onclick")
     }
 
+    
+
+    //구 변경값을 state로 전달 
     const handleGu = (data) => {
-        setGu(data);
+        if (gu !== data){
+            setGu(data)
+        }
         console.log("showpage",data)
     }
+
+
 
 
 
@@ -100,7 +109,7 @@ useEffect(()=> {
         <Container>
             <Menu_wrapper>
                 <Div_area>
-                    <Button basic color='grey' onClick = {setCurrent}>
+                    <Button basic color='blue' onClick = {setCurrent}>
                     <span>현재위치조회</span>
                     </Button>
                 </Div_area>

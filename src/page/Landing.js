@@ -2,14 +2,29 @@ import React, {useState,useEffect} from 'react'
 import MainImage from '../component/Img_container'
 import Btn from "../component/B_GetCurrentNext"
 import styled from 'styled-components'
-import ShowPage from './ShowPage'
 import { useHistory } from 'react-router'
+
+
+
+const Wrap = styled.div`
+    width : 100%;
+    height : 100%;
+    margin-top : 10vh;
+`
 
 const ImgCon = styled.div`
     width: 100%;
-    height : 20px;
-    text-align:center;
+    height : 100%;
+    text-align:left;
 `
+
+const Header = styled.span`
+    margin-left: 35vh;
+    text-align: right;
+    font-size: 50px;
+`
+
+
 
 function Landing(props) {
     const history = useHistory();
@@ -41,11 +56,14 @@ function Landing(props) {
     }
 
     return (
-        <ImgCon>
-            <p>쓰레기는 쓰레기통에</p>
-            <MainImage/>
-            <Btn onClick = {getLocation}/>
-        </ImgCon>
+        <Wrap>
+          <Header> 가장 가까운 쓰레기통은 어디일까요?</Header>
+            <ImgCon>
+                <Btn onClick = {getLocation}>
+                    <MainImage/>
+                </Btn>
+            </ImgCon>
+        </Wrap>
     )
 }
 

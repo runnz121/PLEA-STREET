@@ -2,9 +2,7 @@ import React, { useState} from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
 function D_filter({setting}) {
-
 const [gu, setGu] = useState("")
-
 const gus = [
     {text: "강동구", value: "강동구", key : 1}, 
     {text: "강남구", value: "강남구", key : 2},
@@ -43,7 +41,7 @@ const gus = [
     const {currentValue} = gu
 
     return (
-        <Dropdown
+        <Dropdown basic color='blue'
         options={gus}
         placeholder='Choose Gu'
         selection
