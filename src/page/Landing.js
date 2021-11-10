@@ -29,7 +29,7 @@ function Landing(props) {
     const getLocation = (props) => {
         if (Clongitude >=1 && Clatitude >=1) {
             history.push({
-                pathname: "/map",
+                pathname: "/PLEA-STREET/map",
                 state: {
                     latitude: Clatitude,
                     longitude : Clongitude
