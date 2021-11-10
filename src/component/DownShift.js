@@ -36,7 +36,7 @@ const DropDownListItem = styled.li`
 `;
 
 
-function DownShift({items}){
+function DownShift({items,onCreate}){
 
 
   const [gu, setGu] = useState({
@@ -44,6 +44,7 @@ function DownShift({items}){
       })
 
       console.log(gu)
+
 
   const {
     isOpen,
@@ -55,30 +56,31 @@ function DownShift({items}){
   } = useSelect({items
     ,onSelectedItemChange:({selectedItem}) => {
       setGu(selectedItem.value);
+      onCreate(selectedItem.value)
     }
   });
 
 
   return (
-    <DropDownContainer>
-      <DropDownHeader {...getToggleButtonProps()}>
-        {(selectedItem && selectedItem.value) || "구로 조회"}
-      </DropDownHeader>
+      <DropDownContainer>
+        <DropDownHeader {...getToggleButtonProps()}>
+          {(selectedItem && selectedItem.value) || "구로 조회"}
+        </DropDownHeader>
 
-      <DropDownList {...getMenuProps()}>
-        {isOpen &&
-          items.map((item, index) => (
-            <DropDownListItem
-              ishighlighted={highlightedIndex === index}
-              key={`${item.id}${index}`}
-              {...getItemProps({ item, index })}
-            >
-              {item.value}
-            </DropDownListItem>
-          ))}
-      </DropDownList>
-      <div tabIndex="0" />
-    </DropDownContainer>
+        <DropDownList {...getMenuProps()}>
+          {isOpen &&
+            items.map((item, index) => (
+              <DropDownListItem
+                ishighlighted={highlightedIndex === index}
+                key={`${item.id}${index}`}
+                {...getItemProps({ item, index })}
+              >
+                {item.value}
+              </DropDownListItem>
+            ))}
+        </DropDownList>
+        <div tabIndex="0" />
+      </DropDownContainer>
   );
 };
 

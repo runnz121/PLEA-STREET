@@ -3,7 +3,10 @@ import styled from "styled-components"
 import DownShift from "./DownShift";
 
 
-function D_filter() {
+function D_filter({setGu}) {
+
+    const [selectedGu, setSelectedGu] = useState("");
+    console.log("selected",selectedGu)
 
     const gu = [
         {value: "강동구"}, 
@@ -33,8 +36,15 @@ function D_filter() {
         {value: "중랑구"}
         ]
 
+    const handleCreate = (data) => {
+        setSelectedGu(data);
+        
+        setGu(selectedGu)
+        console.log("filter", data)
+    }
+
     return (
-        <DownShift items={gu} onChange={selection => alert(`You selected ${selection.value}`)}/>
+        <DownShift items={gu} onCreate={handleCreate}/>
     )
 }
 
