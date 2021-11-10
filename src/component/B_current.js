@@ -7,14 +7,4 @@ const Btn = styled.button`
     height: 5vh;
 `
 
-function B_current() {
-
-
-    return (
-        <div>
-            <Btn/>
-        </div>
-    )
-}
-
-export default B_current
+export default Btn

@@ -1,24 +1,17 @@
-import React, {useEffect, useRef} from 'react';
+import data from "../util/loca"
+import data1 from "../util/Locationdata"
 
-const {kakao} = window;
+import React from 'react'
 
-function Content() {
-   
-    useEffect(() => {
-        kakao.maps.load(() => {
-            let el = document.getElementById('map');
-            let map = new kakao.maps.Map(el, {
-                center: new kakao.maps.LatLng(37.509811827944354, 126.95647741926624)
-            })
-        })
+function TestPage() {
 
-    }, []);
+    console.log(parseFloat(data[1].위도))
+    console.log(typeof(data1[1].x))
     return (
-     <div id='map' style={{
-      width: '800px', 
-      height: '800px'
-     }}></div>
+        <div>
+            
+        </div>
     )
 }
 
-export default Content;
+export default TestPage
