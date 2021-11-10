@@ -1,7 +1,7 @@
 import React, { useState} from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
-function D_filter() {
+function D_filter({setting}) {
 
 const [gu, setGu] = useState("")
 
@@ -36,8 +36,9 @@ const gus = [
     const handleChange = (e, {value}) => {
         let name = e.target.textContent;
         setGu(name)
+        setting(name)
     }
-    console.log(gu)
+    console.log("indfilter",gu)
 
     const {currentValue} = gu
 

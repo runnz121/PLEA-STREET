@@ -46,7 +46,6 @@ const gus = [
         options={gus}
         placeholder='Choose Gu'
         selection
-        fluid
         value={currentValue}
         onChange={handleChange}
       />

@@ -1,20 +1,16 @@
-import React,{ useEffect, useState, useRef} from 'react'
+import React,{ useEffect, useState} from 'react'
 import ContainerMap from "../component/Map.js"
 import Container from '../component/Contanier.js';
 import styled from "styled-components"
-
-import Menu from "../component/Menu.js"
-import {useHistory, useLocation} from "react-router-dom"
+import {useLocation} from "react-router-dom"
 
 
 //버튼 차례데로 현재 로케, 필터링 구, 목록
-import CurrentBtn from "../component/B_current.js"
 import FilterBtn from "../component/D_filter.js"
 import ListBtn from "../component/B_list.js"
 
 //local data
 import data from "../util/loca"
-
 import { Button } from 'semantic-ui-react'
 
 
@@ -31,9 +27,9 @@ const Menu_wrapper = styled.div`
 const Div_area = styled.div`
     padding-top : 1.3vh;
     border: 2px solid black;
-    height : 100%;
+    height : 8vh;
     width : 100%;
-    z-index: 2;
+    z-index: 4;
 `
 
 function ShowPage() {
@@ -45,9 +41,9 @@ function ShowPage() {
         longitude : 0   
 })
     const[gu, setGu] = useState("")
+    console.log("바뀐구", gu)
 
 
-console.log(location.latitude)
 
 
 //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
@@ -95,7 +91,7 @@ useEffect(()=> {
 
     const handleGu = (data) => {
         setGu(data);
-        console.log("d_filter",data)
+        console.log("showpage",data)
     }
 
 
@@ -110,7 +106,7 @@ useEffect(()=> {
                 </Div_area>
 
                 <Div_area>
-                    <FilterBtn setGu = {handleGu}/>
+                    <FilterBtn setting = {handleGu}/>
                 </Div_area>
 
             <Div_area/>
