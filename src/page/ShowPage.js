@@ -89,6 +89,10 @@ useEffect(()=> {
         console.log("onclick")
     }
 
+    const setGu = () => {
+        
+    }
+
 
 
     return (

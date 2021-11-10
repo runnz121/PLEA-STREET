@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useState} from "react";
 import { useSelect } from "downshift";
 import styled from "styled-components";
+import ShowPage from "../page/ShowPage"
 
 
 const DropDownContainer = styled.div`
@@ -11,7 +12,7 @@ const DropDownHeader = styled.button`
   padding: 10px;
   display: flex;
   border-radius: 6px;
-  border: 1px solid grey;
+  border: 1px solid red;
 `;
 
 const DropDownHeaderItemIcon = styled.div``;
@@ -35,7 +36,14 @@ const DropDownListItem = styled.li`
 `;
 
 
-function DownShift({label, placeholder, items}){
+function DownShift({items}){
+
+
+  const [gu, setGu] = useState({
+        value: null
+      })
+
+      console.log(gu)
 
   const {
     isOpen,
@@ -44,14 +52,17 @@ function DownShift({label, placeholder, items}){
     getMenuProps,
     highlightedIndex,
     getItemProps
-  } = useSelect({ items });
+  } = useSelect({items
+    ,onSelectedItemChange:({selectedItem}) => {
+      setGu(selectedItem.value);
+    }
+  });
 
-  console.log("check selected",)
 
   return (
     <DropDownContainer>
       <DropDownHeader {...getToggleButtonProps()}>
-        {(selectedItem && selectedItem.value) || "Choose an Element"}
+        {(selectedItem && selectedItem.value) || "구로 조회"}
       </DropDownHeader>
 
       <DropDownList {...getMenuProps()}>

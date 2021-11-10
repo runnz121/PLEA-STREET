@@ -4,7 +4,6 @@ import DownShift from "./DownShift";
 
 
 function D_filter() {
-    const [selectedGu, setSelectedGu] = useState("")
 
     const gu = [
         {value: "강동구"}, 
@@ -34,16 +33,8 @@ function D_filter() {
         {value: "중랑구"}
         ]
 
-    const setting = (e) => {
-        setSelectedGu(e.value);
-        console.log("its clicked!")
-    }
-
-    console.log("gu",selectedGu)
-
     return (
-        <DownShift label="구로 조회" placeholder = "선택한 구로 조회" items={gu} onChange = {setting}/>
-
+        <DownShift items={gu} onChange={selection => alert(`You selected ${selection.value}`)}/>
     )
 }
 
