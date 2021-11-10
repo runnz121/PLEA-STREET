@@ -15,6 +15,8 @@ import ListBtn from "../component/B_list.js"
 //local data
 import data from "../util/loca"
 
+import { Button } from 'semantic-ui-react'
+
 
 
 const Menu_wrapper = styled.div`
@@ -102,9 +104,9 @@ useEffect(()=> {
         <Container>
             <Menu_wrapper>
                 <Div_area>
-                    <CurrentBtn onClick = {setCurrent}>
+                    <Button basic color='grey' onClick = {setCurrent}>
                     <span>현재위치조회</span>
-                    </CurrentBtn>
+                    </Button>
                 </Div_area>
 
                 <Div_area>

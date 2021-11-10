@@ -1,10 +1,11 @@
-import styled from 'styled-components'
+import { Button } from 'semantic-ui-react'
 import React from 'react'
 
-const Btn = styled.button`
-    border : 1px solid black;
-    width : 50%;
-    height: 5vh;
-`
+function B_current() {
+    return (
+        <Button basic color='grey'>현재 위치 조회</Button>
+    )
+}
 
-export default Btn
+export default B_current
+
