@@ -46,13 +46,6 @@ function ShowPage() {
     console.log("바뀐구", gu)
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 1e8616e6078901149c34feeaba83477938367d72
 //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
 useEffect(()=> {
     setLocation(getLocation.state)
@@ -63,13 +56,12 @@ useEffect(()=> {
         center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     }; 
-<<<<<<< HEAD
-    
+
     let map = new kakao.maps.Map(mapContainer, mapOption); 
-=======
+
 
     map = new kakao.maps.Map(mapContainer, mapOption); 
->>>>>>> 1e8616e6078901149c34feeaba83477938367d72
+
     let bounds = new kakao.maps.LatLngBounds();
 
 
