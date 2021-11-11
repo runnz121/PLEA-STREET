@@ -61,11 +61,11 @@ function Landing(props) {
     return (
         <Wrap>
           <Header> 가장 가까운 쓰레기통은 어디일까요?</Header>
-            <ImgCon>
-                <Btn onClick = {getLocation}>
-                    <MainImage/>
-                </Btn>
-            </ImgCon>
+          <ImgCon>
+              <Btn onClick = {getLocation}>
+                  <MainImage/>
+              </Btn>
+          </ImgCon>
         </Wrap>
     )
 }
