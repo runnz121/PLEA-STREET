@@ -31,6 +31,7 @@ const Header = styled.span`
     font-family: 'NanumBarunGothic';
     font-weight: bold;
     font-size: 2rem;
+    line-height: 1.6;
 
     @media ${props => props.theme.mobile} {
       display: flex;
@@ -38,8 +39,7 @@ const Header = styled.span`
       align-items: center;
       font-family: 'NanumBarunGothic';
       font-weight: bold;
-      font-size: 2em;
-      padding: 2rem;
+      text-align: center;
     }
 
 `
