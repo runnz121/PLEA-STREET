@@ -9,7 +9,13 @@ import { useHistory } from 'react-router'
 const Wrap = styled.div`
     width : 100%;
     height : 100%;
-    margin-top : 10vh;    
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 3rem;
+    background-color: beige;
 `
 
 const ImgCon = styled.div`

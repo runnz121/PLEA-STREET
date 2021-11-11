@@ -14,6 +14,7 @@ const Img = styled.div`
 const ImgStyle1 = styled.img`
     width : 30vh;
     height : 40vh;
+    cursor: pointer;
 
 `
 
@@ -21,7 +22,7 @@ const ImgStyle2 = styled.img`
     width : 30vh;
     height : 40vh;
     display: none;
-
+    cursor: pointer;
 `
 
 const ControlMap = styled.div`
