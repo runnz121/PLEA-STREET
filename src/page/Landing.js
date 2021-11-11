@@ -30,8 +30,8 @@ const Header = styled.span`
     align-items: center;
     font-family: 'BinggraeMelona-Bold';
     font-weight: bold;
-    font-size: 2rem;
-    line-height: 1.6;
+    font-size: 5rem;
+    line-height: 0.8;
     color: white;
 
     @media ${props => props.theme.mobile} {
@@ -49,7 +49,7 @@ const Span = styled.span`
 
     @media ${props => props.theme.mobile} {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       font-family: 'BinggraeMelona-Bold';
       font-weight: bold;

@@ -27,7 +27,6 @@ const Menu_wrapper = styled.div`
 
     @media ${props => props.theme.mobile} {
       display: flex;
-      margin-top: 2vh;
       justify-content: center;
       align-items: center;
       /* display: grid;
