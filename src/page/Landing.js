@@ -10,18 +10,21 @@ const Wrap = styled.div`
     width : 100%;
     height : 100%;
     margin-top : 10vh;
+    font-family: 'NanumBarunGothic';
 `
 
 const ImgCon = styled.div`
     width: 100%;
     height : 100%;
     text-align:left;
+    font-family: 'NanumBarunGothic';
 `
 
 const Header = styled.span`
     margin-left: 35vh;
     text-align: right;
     font-size: 50px;
+    font-family: 'NanumBarunGothic';
 `
 
 

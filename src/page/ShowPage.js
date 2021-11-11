@@ -21,6 +21,7 @@ const Menu_wrapper = styled.div`
     display: grid;
     grid-template-columns: 0.4fr 0.5fr 1fr 0.6fr;
     text-align: center;
+    font-family: 'NanumBarunGothic';
 `
 
 const Div_area = styled.div`
@@ -29,6 +30,7 @@ const Div_area = styled.div`
     height : 8vh;
     width : 100%;
     z-index: 4;
+    font-family: 'NanumBarunGothic';
 `
 let prevGu;
 let map;

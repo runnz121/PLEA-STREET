@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import LandingPage from "./page/Landing.js"
 import ShowPage from "./page/ShowPage.js"
+import './App.css'
 
 //test
 import TestPage from "./page/TestPage.js"
-import TestPage2 from "./page/TestPage2.js"
 
 function App() {
 
