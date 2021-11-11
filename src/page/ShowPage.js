@@ -17,9 +17,10 @@ import { Button } from 'semantic-ui-react'
 const Menu_wrapper = styled.div`
     width : 100%;
     height : 8vh;
-    border : 1px solid red;
+    /* border : 1px solid red;
     display: grid;
-    grid-template-columns: 0.4fr 0.5fr 1fr 0.6fr;
+    grid-template-columns: 0.4fr 0.5fr 1fr 0.6fr; */
+    display: flex;
     text-align: center;
     font-family: 'NanumBarunGothic';
 `
@@ -183,7 +184,7 @@ useEffect(()=> {
             <Menu_wrapper>
                 <Div_area>
                     <Button basic color='blue' onClick = {setCurrent}>
-                    <span>현재위치조회</span>
+                    <span>현위치</span>
                     </Button>
                 </Div_area>
 
@@ -191,12 +192,10 @@ useEffect(()=> {
                     <FilterBtn setting = {handleGu}/>
                 </Div_area>
 
-            <Div_area/>
-
                 <Div_area>
                     <ListBtn setting = {handleAll}/>
                 </Div_area>
-        </Menu_wrapper>
+            </Menu_wrapper>
         {/* {location.longitude >=1 ? <ContainerMap id = 'map'/> : null} */}
             <ContainerMap id = 'map'/>
         </Container>
