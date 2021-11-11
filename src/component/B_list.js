@@ -29,7 +29,7 @@ function B_list({setting}) {
   return (
     <Dropdown basic color='blue'
       options={locas}
-      placeholder='List'
+      placeholder='전체'
       selection
       fluid
       value={currentValue}

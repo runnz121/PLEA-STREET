@@ -43,7 +43,7 @@ const gus = [
     return (
         <Dropdown basic color='blue'
         options={gus}
-        placeholder='Choose Gu'
+        placeholder='구 선택'
         selection
         fluid
         value={currentValue}
