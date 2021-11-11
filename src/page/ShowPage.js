@@ -11,15 +11,17 @@ import ListBtn from "../component/B_list.js"
 
 //local data
 import data from "../util/loca"
-import { Button } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 
 
 const Menu_wrapper = styled.div`
     width : 100%;
-    height : 8vh;
+    height : 10vh;
     border : 1px solid red;
     display: grid;
-    grid-template-columns: 0.4fr 0.5fr 1fr 0.6fr;
+    grid-template-columns: 0.3fr 0.5fr 1fr 0.7fr;
+    /* display: flex;
+    justify-content: space-evenly; */
     text-align: center;
     font-family: 'NanumBarunGothic';
 
@@ -33,7 +35,8 @@ const Menu_wrapper = styled.div`
 `
 
 const Div_area = styled.div`
-    padding-top : 1.3vh;
+    /* padding-top : 1.3vh; */
+    margin: auto;
     border: 2px solid black;
     height : 8vh;
     width : 100%;
@@ -190,7 +193,8 @@ useEffect(()=> {
         <Container>
             <Menu_wrapper>
                 <Div_area>
-                    <Button basic color='blue' onClick = {setCurrent}>
+                    <Button fluid color='blue' onClick = {setCurrent}>
+                    <Icon name='location arrow' />
                     <span>현위치</span>
                     </Button>
                 </Div_area>
