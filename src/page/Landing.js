@@ -15,7 +15,7 @@ const Wrap = styled.div`
     align-items: center;
     margin: auto;
     padding: 3rem;
-    background-color: beige;
+    background-color: #34558b;
 `
 
 const ImgCon = styled.div`
@@ -28,16 +28,30 @@ const Header = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'NanumBarunGothic';
+    font-family: 'BinggraeMelona-Bold';
     font-weight: bold;
     font-size: 2rem;
     line-height: 1.6;
+    color: white;
+
+    @media ${props => props.theme.mobile} {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'BinggraeMelona-Bold';
+      font-weight: bold;
+      text-align: center;
+    }
+`
+
+const Span = styled.span`
 
     @media ${props => props.theme.mobile} {
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'NanumBarunGothic';
+      font-family: 'BinggraeMelona-Bold';
       font-weight: bold;
       text-align: center;
     }
@@ -78,7 +92,11 @@ function Landing(props) {
 
     return (
         <Wrap>
-          <Header> 가장 가까운 쓰레기통은 어디일까요?</Header>
+          <Header>
+            <Span>PLEA</Span>
+            <Span>-</Span>
+            <Span>STREET</Span>
+          </Header>
           <ImgCon onClick = {getLocation}>
             <MainImage />
               {/* <Btn onClick = {getLocation}>

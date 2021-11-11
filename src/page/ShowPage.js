@@ -16,19 +16,22 @@ import { Button, Icon } from 'semantic-ui-react'
 
 const Menu_wrapper = styled.div`
     width : 100%;
-    height : 10vh;
-    border : 1px solid red;
-    display: grid;
-    grid-template-columns: 0.3fr 0.5fr 1fr 0.7fr;
-    /* display: flex;
-    justify-content: space-evenly; */
+    height : 6vh;
+    /* border : 1px solid red; */
+    /* display: grid;
+    grid-template-columns: 0.3fr 0.05fr 0.5fr 1fr 0.7fr; */
+    display: flex;
+    justify-content: space-around;
     text-align: center;
     font-family: 'NanumBarunGothic';
 
     @media ${props => props.theme.mobile} {
       display: flex;
+      margin-top: 2vh;
       justify-content: center;
       align-items: center;
+      /* display: grid;
+      grid-template-columns: 0.3fr 0.05fr 0.5fr 1fr 0.7fr; */
       font-family: 'NanumBarunGothic';
       text-align: center;
     }
@@ -37,7 +40,7 @@ const Menu_wrapper = styled.div`
 const Div_area = styled.div`
     /* padding-top : 1.3vh; */
     margin: auto;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     height : 8vh;
     width : 100%;
     z-index: 4;
@@ -199,11 +202,13 @@ useEffect(()=> {
                     </Button>
                 </Div_area>
 
+                {/* <Div_area /> */}
+
                 <Div_area>
                     <FilterBtn setting = {handleGu}/>
                 </Div_area>
 
-                <Div_area />
+                {/* <Div_area /> */}
 
                 <Div_area>
                     <ListBtn setting = {handleAll}/>

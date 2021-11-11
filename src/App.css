@@ -1,4 +1,9 @@
 @font-face {
-  font-family: NanumBarunGothic;
+  font-family: 'NanumBarunGothic';
   src: url('./styles/fonts/NanumBarunGothic.woff');
+}
+
+@font-face {
+  font-family: "BinggraeMelona-Bold";
+  src: url('./styles/fonts/BinggraeMelona-Bold.woff') format("woff");
 }
