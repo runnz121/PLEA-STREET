@@ -1,68 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import Comment from './Comment'
-import Loading from './Loading'
-import EndMsg from './EndMsg'
+import React, { useState } from 'react'
+import loca from "../util/loca.json"
+import { Dropdown } from 'semantic-ui-react';
 
 
-function B_list() {
+function B_list({setting}) {
 
-  const [items, setItems] = useState([])
+  const [all, setAll] = useState("")
 
-  const [hasMore, setHasMore] = useState(true)
+  // const locas = [{text:loca[1].자치구명+loca[1].설치위치, value:loca[1].자치구명+loca[1].설치위치, key:1}]
 
-  const [page, setPage] = useState(2)
+  const locas = new Array()
 
-  useEffect(() => {
-    const getComments = async () => {
-
-      const res = await fetch(
-        // 'http://localhost:3004/comments?_page=1&_limit=20'
-        'https://jsonplaceholder.typicode.com/comments?_page=1&_limit=20'
-      )
-      const data = await res.json()
-      setItems(data)
-    }
-
-    getComments()
-  }, [])
-
-  console.log(items)
-
-  const fetchComments = async () => {
-    const res = await fetch(
-      // `http://localhost:3004/comments?_page=${page}&_limit=20`
-      `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=20`
-    )
-    const data = await res.json()
-    return data
+  for(var i=0; i<loca.length; i++) {
+    
+    locas.push({text:loca[i].자치구명 + ' ' + loca[i].도로명 + ' ' + loca[i].설치위치, value:loca[i].자치구명 + ' ' + loca[i].도로명 + ' ' + loca[i].설치위치, key:i})
+    // console.log(value)
   }
 
-  const fetchData = async () => {
-    const commentsFormServer = await fetchComments()
-
-    setItems([...items, ...commentsFormServer])
-
-    if (commentsFormServer.length === 0 || commentsFormServer.length < 20) {
-      setHasMore(false)
-    }
-
-    setPage(page + 1)
-
+  const handleChange = (e, {value}) => {
+    let name = e.target.textContent;
+    setAll(name)
+    setting(name)
   }
+  console.log("location",all)
+
+  const {currentValue} = all
 
   return (
-    <InfiniteScroll
-      dataLength={items.length} //This is important field to render the next data
-      next={fetchData}
-      hasMore={hasMore}
-      loader={<Loading />}
-      endMessage={<EndMsg />}
-    >
-    {items.map((item) => {
-      return <Comment key={item.id} item={item} />
-           })}
-  </InfiniteScroll>
+    <Dropdown basic color='blue'
+      options={locas}
+      placeholder=''
+      selection
+      fluid
+      value={currentValue}
+      onChange={handleChange}
+    />
+   
   )
 }
 

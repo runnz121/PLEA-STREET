@@ -45,6 +45,9 @@ function ShowPage() {
     const[gu, setGu] = useState("")
     console.log("바뀐구", gu)
 
+    const [all, setAll] = useState("")
+    console.log("all", all);
+
 
 //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
 useEffect(()=> {
@@ -114,7 +117,7 @@ useEffect(()=> {
     }
     prevGu = gu; 
 
-},[location, gu])
+},[location, gu, all])
 
 // useEffect(() => {
 //        //let prevGu = gu;
@@ -162,6 +165,13 @@ useEffect(()=> {
         console.log("showpage",data)
     }
 
+    const handleAll = (data) => {
+      if (all !== data){
+          setAll(data)
+      }
+      console.log("showpage",data)
+  }
+
 
 
 
@@ -182,7 +192,7 @@ useEffect(()=> {
             <Div_area/>
 
                 <Div_area>
-                    <ListBtn/>
+                    <ListBtn setting = {handleAll}/>
                 </Div_area>
         </Menu_wrapper>
         {/* {location.longitude >=1 ? <ContainerMap id = 'map'/> : null} */}
