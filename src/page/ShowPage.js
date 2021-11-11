@@ -17,6 +17,8 @@ import { Button, Icon } from 'semantic-ui-react'
 const Menu_wrapper = styled.div`
     width : 100%;
     height : 6vh;
+    padding-top: 1.5vh;
+    margin-bottom: 1.5vh;
     /* border : 1px solid red; */
     /* display: grid;
     grid-template-columns: 0.3fr 0.05fr 0.5fr 1fr 0.7fr; */
