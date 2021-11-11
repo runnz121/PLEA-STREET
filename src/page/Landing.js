@@ -9,23 +9,35 @@ import { useHistory } from 'react-router'
 const Wrap = styled.div`
     width : 100%;
     height : 100%;
-    margin-top : 10vh;
-    font-family: 'NanumBarunGothic';
+    margin-top : 10vh;    
 `
 
 const ImgCon = styled.div`
     width: 100%;
     height : 100%;
-    text-align:left;
     font-family: 'NanumBarunGothic';
 `
 
 const Header = styled.span`
-    margin-left: 35vh;
-    text-align: right;
-    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'NanumBarunGothic';
+    font-weight: bold;
+    font-size: 2rem;
+
+    @media ${props => props.theme.mobile} {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'NanumBarunGothic';
+      font-weight: bold;
+      font-size: 2em;
+      padding: 2rem;
+    }
+
 `
+
 
 
 
@@ -61,10 +73,11 @@ function Landing(props) {
     return (
         <Wrap>
           <Header> 가장 가까운 쓰레기통은 어디일까요?</Header>
-          <ImgCon>
-              <Btn onClick = {getLocation}>
+          <ImgCon onClick = {getLocation}>
+            <MainImage />
+              {/* <Btn onClick = {getLocation}>
                   <MainImage/>
-              </Btn>
+              </Btn> */}
           </ImgCon>
         </Wrap>
     )
