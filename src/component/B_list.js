@@ -9,7 +9,7 @@ function B_list({setting}) {
 
   // const locas = [{text:loca[1].자치구명+loca[1].설치위치, value:loca[1].자치구명+loca[1].설치위치, key:1}]
 
-  const locas = new Array()
+  const locas = []
 
   for(var i=0; i<loca.length; i++) {
     
