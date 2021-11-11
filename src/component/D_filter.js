@@ -27,7 +27,7 @@ const gus = [
     {text: "양천구", value: "양천구", key : 21},
     {text: "은평구", value: "은평구", key : 22},
     {text: "종로구", value: "종로구", key : 23},
-    {text: "종구", value: "중구", key : 24},
+    {text: "중구", value: "중구", key : 24},
     {text: "중랑구", value: "중랑구", key : 25}
     ]
 
