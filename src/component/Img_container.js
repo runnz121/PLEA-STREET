@@ -48,7 +48,7 @@ function MainImage() {
             <Img>
                 <ControlMap>
                     <ImgStyle1 src = 'img/2.png' alt ="can_close"/>
-                    <ImgStyle2 src = 'https://github.com/cleaner00/PLEA-STREET/blob/main/public/img/1.png' alt ="can_open"/> 
+                    <ImgStyle2 src = 'img/1.png' alt ="can_open"/> 
                 </ControlMap>
             </Img>
           
