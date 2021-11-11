@@ -33,6 +33,7 @@ const Header = styled.span`
     font-size: 5rem;
     line-height: 0.8;
     color: white;
+    padding-top: 5rem;
 
     @media ${props => props.theme.mobile} {
       display: flex;
