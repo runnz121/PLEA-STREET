@@ -21,10 +21,10 @@ const Wrap = styled.div`
 const ImgCon = styled.div`
     width: 100%;
     height : 100%;
-    font-family: 'NanumBarunGothic';
 `
 
 const Header = styled.span`
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;

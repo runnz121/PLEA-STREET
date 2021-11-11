@@ -4,8 +4,7 @@ import styled from 'styled-components'
 
 const Img = styled.div`
     width : 100%;
-    height : 70%;
-    padding-top:10vh;
+    height : 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +32,6 @@ const ControlMap = styled.div`
     height : 100%;
 
     margin: auto;
-    padding: 1rem;
     &:hover  {
         ${ImgStyle2} {
             display : block;
