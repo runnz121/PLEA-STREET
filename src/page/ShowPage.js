@@ -16,9 +16,8 @@ import { Button, Icon } from 'semantic-ui-react'
 
 const Menu_wrapper = styled.div`
     width : 100%;
-    height : 6vh;
-    padding-top: 1.5vh;
-    margin-bottom: 1.5vh;
+    height : 8vh;
+    /* margin-bottom: 1.4vh; */
     /* border : 1px solid red; */
     /* display: grid;
     grid-template-columns: 0.3fr 0.05fr 0.5fr 1fr 0.7fr; */
@@ -39,12 +38,14 @@ const Menu_wrapper = styled.div`
 `
 
 const Div_area = styled.div`
-    /* padding-top : 1.3vh; */
     margin: auto;
-    /* border: 2px solid black; */
-    height : 8vh;
+    height : 100%;
     width : 100%;
     z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: 'NanumBarunGothic';
 `
 
