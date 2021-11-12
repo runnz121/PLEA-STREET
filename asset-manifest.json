@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/PLEA-STREET/static/css/main.278c129e.chunk.css",
-    "main.js": "/PLEA-STREET/static/js/main.b7b81308.chunk.js",
-    "main.js.map": "/PLEA-STREET/static/js/main.b7b81308.chunk.js.map",
+    "main.js": "/PLEA-STREET/static/js/main.1b13542b.chunk.js",
+    "main.js.map": "/PLEA-STREET/static/js/main.1b13542b.chunk.js.map",
     "runtime-main.js": "/PLEA-STREET/static/js/runtime-main.9c164ca7.js",
     "runtime-main.js.map": "/PLEA-STREET/static/js/runtime-main.9c164ca7.js.map",
     "static/css/2.e9d41cdf.chunk.css": "/PLEA-STREET/static/css/2.e9d41cdf.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.e9d41cdf.chunk.css",
     "static/js/2.8eac8487.chunk.js",
     "static/css/main.278c129e.chunk.css",
-    "static/js/main.b7b81308.chunk.js"
+    "static/js/main.1b13542b.chunk.js"
   ]
 }
