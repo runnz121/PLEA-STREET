@@ -12,6 +12,4 @@ public class RequestSignInDto {
 	private String userId;
 
 	private String userPwd;
-
-
 }

@@ -4,10 +4,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.plestreet.community.domain.User;
 import com.plestreet.community.dto.RequestSignInDto;
 import com.plestreet.community.dto.SignUpDto;
+import com.plestreet.community.exception.UserAlreadyExistException;
 import com.plestreet.community.repository.UserRepo;
 import com.plestreet.community.security.TokenProvider;
 
@@ -17,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 
 	private final UserRepo userRepo;
@@ -33,15 +36,20 @@ public class UserService {
 		return tokenProvider.createToken(String.valueOf(requestSignInDto.getUserId()));
 	}
 
-	//
+	//회원가입
 	public void handleSignUp(SignUpDto signUpDto) {
+		userExistCheck(signUpDto.getUserId());
 		userRepo.save(
-			User.createUser(
-				signUpDto.getUserId(),
-				passwordEncoder.encode(signUpDto.getUserPwd()),
-				signUpDto.getUserName(),
-				signUpDto.getUserPhone()
-			)
-		);
+			User.builder()
+				.userId(signUpDto.getUserId())
+				.userPwd(passwordEncoder.encode(signUpDto.getUserPwd()))
+				.userName(signUpDto.getUserName())
+				.userPhone(signUpDto.getUserPhone())
+				.build()
+			);
+	}
+
+	public void userExistCheck(String toCheckUserId){
+		if(userRepo.findByUserId(toCheckUserId).isPresent()) throw new UserAlreadyExistException("동일아이디가 존재합니다");
 	}
 }

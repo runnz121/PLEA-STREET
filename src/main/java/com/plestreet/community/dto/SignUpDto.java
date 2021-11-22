@@ -1,5 +1,6 @@
 package com.plestreet.community.dto;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import lombok.Setter;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SignUpDto {
 
 	private String userId;

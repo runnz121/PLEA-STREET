@@ -1,7 +1,11 @@
 package com.plestreet.community.security.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,8 +17,14 @@ import com.plestreet.community.service.CustomUserDetailService;
 
 import lombok.RequiredArgsConstructor;
 
+
 @EnableWebSecurity
 @RequiredArgsConstructor
+@EnableGlobalMethodSecurity(
+	securedEnabled = true,
+	jsr250Enabled = true,
+	prePostEnabled = true
+)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
@@ -30,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(customUserDetailService);
 	}
+
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -51,9 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						"/**/*.css",
 						"/**/*.js").permitAll()
 				.antMatchers("/PLEA-STREET/user/**").permitAll()
-				.anyRequest().authenticated()
-			.and()
-				.addFilterBefore(tokenAuthenticationFilter(),
-				UsernamePasswordAuthenticationFilter.class);
+				.anyRequest().authenticated();
+
+		http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 }

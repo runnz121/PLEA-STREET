@@ -44,12 +44,12 @@ public class UserControllerTest {
 	@PersistenceContext
 	EntityManager em;
 
-	@BeforeEach
-	public void beforeEach() {
-		userService.handleSignUp(new SignUpDto("test", "123","123","123"));
-		User user = User.createUser("aaa","aaa","aaa","aaa");
-		em.persist(user);
-	}
+	// @BeforeEach
+	// public void beforeEach() {
+	// 	userService.handleSignUp(new SignUpDto("test", "123","123","123"));
+	// 	User user = User.createUser("aaa","aaa","aaa","aaa");
+	// 	em.persist(user);
+	// }
 
 	@Test
 	public void registerTest() throws Exception {
