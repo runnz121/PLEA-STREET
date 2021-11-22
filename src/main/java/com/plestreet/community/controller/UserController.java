@@ -32,7 +32,7 @@ public class UserController {
 	}
 
 	//로그인 처리
-	@GetMapping("/signin")
+	@PostMapping("/signin")
 	public ResponseEntity<?> SignIn(@RequestBody RequestSignInDto requestSignInDto) {
 		String token = userService.handleLogin(requestSignInDto);
 		log.info(token);
