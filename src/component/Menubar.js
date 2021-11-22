@@ -20,7 +20,6 @@ const TopBtnWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  cursor: pointer;
 `
 const MenuBtn = styled.div`
   width: 5em;
@@ -96,7 +95,7 @@ function Menubar() {
             <span>위치검색</span>
           </MenuBtn>
         </Link>
-        <Link to='/PLEA-STREET/' style={{ color: 'black' }}>
+        <Link to='/PLEA-STREET/cleanTest' style={{ color: 'black' }}>
           <MenuBtn>
             <span>검사</span>
           </MenuBtn>
