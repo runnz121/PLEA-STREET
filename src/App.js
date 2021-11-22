@@ -4,6 +4,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import LandingPage from "./page/Landing.js"
 import ShowPage from "./page/ShowPage.js"
+import Community from './page/CommunityPage.js';
+import SignUpPage from './page/SignUpPage.js';
+import SignInPage from './page/SignInPage.js'
+
+
 import './App.css'
 
 //test
@@ -23,7 +28,9 @@ function App() {
             <Route exact path = "/PLEA-STREET/test2" component={TestPage2}/>
             <Route exact path = "/PLEA-STREET/mapSearch" component={ShowPage}/>
             <Route exact path = "/PLEA-STREET/cleanTest" component={TestPage2}/>
-            <Route exact path = "/PLEA-STREET/community" component={TestPage2}/>
+            <Route exact path = "/PLEA-STREET/community" component={Community}/>
+            <Route exact path = "/PLEA-STREET/SignUp" component={SignUpPage}/>
+            <Route exact path = "/PLEA-STREET/SignIn" component={SignInPage}/>
             <Route exact path = "/PLEA-STREET/education" component={TestPage2}/>
           </Switch>
       </BrowserRouter>
