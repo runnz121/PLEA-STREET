@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 
 	//querydsl 추가
-	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+//	id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
 }
 
 group = 'com.ple-street'
@@ -26,8 +26,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	//querydsl
-	implementation 'com.querydsl:querydsl-jpa'
-	implementation 'com.querydsl:querydsl-apt'
+//	implementation 'com.querydsl:querydsl-jpa'
+//	implementation 'com.querydsl:querydsl-apt'
 
 	//aws s3
 //	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.1.RELEASE'
@@ -53,22 +53,22 @@ test {
 }
 
 //querydsl
-def querydslDir = "$buildDir/generated/querydsl"
-querydsl {
-	library = "com.querydsl:querydsl-apt"
-	jpa = true
-	querydslSourcesDir = querydslDir
-}
-sourceSets {
-	main.java.srcDir querydslDir
-}
-configurations {
-	querydsl.extendsFrom compileClasspath
-}
-compileQuerydsl {
-	options.annotationProcessorPath = configurations.querydsl
-}
-
-
-
-compileQuerydsl.doFirst { if(file(querydslDir).exists() ) delete(file(querydslDir)) }
+//def querydslDir = "$buildDir/generated/querydsl"
+//querydsl {
+//	library = "com.querydsl:querydsl-apt"
+//	jpa = true
+//	querydslSourcesDir = querydslDir
+//}
+//sourceSets {
+//	main.java.srcDir querydslDir
+//}
+//configurations {
+//	querydsl.extendsFrom compileClasspath
+//}
+//compileQuerydsl {
+//	options.annotationProcessorPath = configurations.querydsl
+//}
+//
+//
+//
+//compileQuerydsl.doFirst { if(file(querydslDir).exists() ) delete(file(querydslDir)) }

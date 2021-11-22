@@ -11,16 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.plestreet.community.dto.SignUpDto;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="usertable")
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+@Table(name="user")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class User {
 
 	@Id
@@ -42,13 +45,11 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Board> boards = new ArrayList<>();
 
-
-	public static User createUser(String userId, String userPwd, String userName, String userPhone){
-		User user = new User();
-		user.userId = userId;
-		user.userPwd = userPwd;
-		user.userName = userName;
-		user.userPhone = userPhone;
-		return user;
+	@Builder
+	public User(String userId, String userPwd, String userName, String userPhone) {
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.userPhone = userPhone;
 	}
 }
