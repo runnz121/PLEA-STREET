@@ -11,6 +11,7 @@ const Wrap = styled.div`
     max-width: 640px;
     margin: 0px auto;
     padding-bottom: 0px;
+    height: 100vh;
 `
 
 const ImgCon = styled.div`

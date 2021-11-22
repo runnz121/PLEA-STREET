@@ -4,10 +4,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import LandingPage from "./page/Landing.js"
 import ShowPage from "./page/ShowPage.js"
+
 import Community from './page/CommunityPage.js';
 import SignUpPage from './page/SignUpPage.js';
 import SignInPage from './page/SignInPage.js'
 
+
+import TestStartPage from './component/TestStartPage.js';
 
 import './App.css'
 
@@ -31,6 +34,7 @@ function App() {
             <Route exact path = "/PLEA-STREET/community" component={Community}/>
             <Route exact path = "/PLEA-STREET/SignUp" component={SignUpPage}/>
             <Route exact path = "/PLEA-STREET/SignIn" component={SignInPage}/>
+
             <Route exact path = "/PLEA-STREET/education" component={TestPage2}/>
           </Switch>
       </BrowserRouter>
