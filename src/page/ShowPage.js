@@ -3,7 +3,7 @@ import ContainerMap from "../component/Map.js"
 import Container from '../component/Contanier.js';
 import styled from "styled-components"
 import {useLocation} from "react-router-dom"
-
+import Menubar from '../component/Menubar.js';
 
 //버튼 차례데로 현재 로케, 필터링 구, 목록
 import FilterBtn from "../component/D_filter.js"
@@ -191,6 +191,7 @@ useEffect(() => {
 
     return (
         <Container>
+          <Menubar />
             <Menu_wrapper>
                 <Div_area>
                     <Button fluid color='blue' onClick = {setCurrent}>
