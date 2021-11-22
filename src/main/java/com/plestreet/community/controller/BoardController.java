@@ -32,13 +32,13 @@ public class BoardController {
 	//글 작성하기
 	@PostMapping
 	public ResponseEntity<?> createPost(@RequestBody BoardCreateDto boardCreateDto){
-		Long boardId = boardService.createBoard(boardCreateDto);
+		String boardId = boardService.createBoard(boardCreateDto);
 		return new ResponseEntity<>(boardId, HttpStatus.CREATED);
 	}
 
 	//글 삭제하기
 	@DeleteMapping
-	public ResponseEntity<?> deletePost(@RequestParam("boardId") Long boardId){
+	public ResponseEntity<?> deletePost(@RequestParam("boardId") String boardId){
 		boardService.deleteBoard(boardId);
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}

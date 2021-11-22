@@ -27,7 +27,6 @@ import lombok.ToString;
 @Getter
 @Table(name="board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@SQLDelete(sql = "UPDATE board SET delete_state = true WHERE userPkId = ?")
 @ToString(exclude = {"user"})
 public class Board {
 
@@ -36,7 +35,7 @@ public class Board {
 	private Long boardPkId;
 
 	@Column(nullable = false)
-	private Long boardId;
+	private String boardId;
 
 	@Lob
 	@Column(nullable = false)
@@ -44,7 +43,7 @@ public class Board {
 
 	@Lob
 	@Column(nullable = false)
-	private String content;
+	private String boardContent;
 
 	@Lob
 	private Blob boardImage;
@@ -53,30 +52,31 @@ public class Board {
 	@JoinColumn(name = "userPkId")
 	private User user;
 
-	@Column(nullable = false)
-	@Enumerated(EnumType.STRING)
-	private State state;
+	// @Column(nullable = false)
+	// @Enumerated(EnumType.STRING)
+	// private State state;
 
 
 	@Builder
-	public Board(Long boardId, String boardTitle, String content, Blob boardImage, User user) {
-		this.boardTitle = boardTitle;
-		this.content = content;
-		this.boardImage = boardImage;
-		this.user = user;
-	}
-
-	public void createBoard(Long boardId, String boardTitle, String content, Blob boardImage, User user){
+	public Board(String boardId, String boardTitle, String boardContent, Blob boardImage, User user) {
 		this.boardId = boardId;
 		this.boardTitle = boardTitle;
-		this.content = content;
+		this.boardContent = boardContent;
 		this.boardImage = boardImage;
 		this.user = user;
 	}
 
-	public void setState(State state){
-		this.state = state;
+	public void createBoard(String boardId, String boardTitle, String boardContent, Blob boardImage, User user){
+		this.boardId = boardId;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardImage = boardImage;
+		this.user = user;
 	}
+
+	// public void setState(State state){
+	// 	this.state = state;
+	// }
 
 	public void setUser(User user) {
 		this.user = user;

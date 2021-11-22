@@ -2,10 +2,12 @@ package com.plestreet.community.service;
 
 import java.util.UUID;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.plestreet.community.domain.Board;
+import com.plestreet.community.domain.User;
 import com.plestreet.community.dto.BoardCreateDto;
 import com.plestreet.community.exception.BoardNotFoundException;
 import com.plestreet.community.repository.BoardRepo;
@@ -25,29 +27,28 @@ public class BoardService {
 	private final UserRepo userRepo;
 	private final TokenProvider tokenProvider;
 
-	public Long createBoard(BoardCreateDto boardCreateDto){
-		Long userId = userRepo.findByUserId(tokenProvider.getUserIdFromToken(boardCreateDto.getToken())).orElseThrow()
-			.getUserPkId();
-		Long getBoardId = generateBoardId(userId);
+	public String createBoard(BoardCreateDto boardCreateDto){
+		User user = userRepo.findByUserId(tokenProvider.getUserIdFromToken(boardCreateDto.getToken())).orElseThrow(() -> new UsernameNotFoundException("(게시글생성 해당 유저가 없습니다"));
+		String getBoardId = generateBoardId();
 		boardRepo.save(
 			Board.builder()
 				.boardId(getBoardId)
 				.boardTitle(boardCreateDto.getTitle())
-				.boardTitle(boardCreateDto.getContent())
+				.boardContent(boardCreateDto.getContent())
+				.user(user)
 				.build()
 		);
 		return getBoardId;
 	}
 
-	public void deleteBoard(Long boardId){
-		Board board = boardRepo.findById(boardId).orElseThrow(() -> new BoardNotFoundException("선택된 게시글이 없습니다"));
+	public void deleteBoard(String boardId){
+		Board board = boardRepo.findByboardId(boardId).orElseThrow(() -> new BoardNotFoundException("선택된 게시글이 없습니다"));
 		if(board.getBoardId() == null)
 			throw new BoardNotFoundException("선택된 게시글의 번호가 없습니다");
 		boardRepo.delete(board);
 	}
 
-	public Long generateBoardId(Long userId){
-		Long randomId = Long.parseLong(UUID.randomUUID().toString());
-		return randomId + userId;
+	public String generateBoardId(){
+		return UUID.randomUUID().toString();
 	}
 }
