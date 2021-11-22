@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'NanumBarunGothic';
-  src: url('./styles/fonts/NanumBarunGothic.woff');
+  font-family: "NanumBarunGothic";
+  src: url('./styles/fonts/NanumBarunGothic.woff') format("woff");
 }
 
 @font-face {
