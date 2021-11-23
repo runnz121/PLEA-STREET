@@ -4,8 +4,6 @@ import Btn from "../component/B_GetCurrentNext"
 import styled from 'styled-components'
 import { useHistory } from 'react-router'
 
-
-
 const Wrap = styled.div`
     width : 100%;
     height : 100%;
@@ -23,8 +21,6 @@ const Header = styled.span`
     text-align: right;
     font-size: 50px;
 `
-
-
 
 function Landing(props) {
     const history = useHistory();
