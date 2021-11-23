@@ -8,6 +8,7 @@ const Wrap = styled.div`
   max-width: 640px;
   margin: 0px auto;
   padding-bottom: 0px;
+  
 `
 const TopMenu = styled.div`
   display: flex;
@@ -67,15 +68,13 @@ function Menubar() {
     <Wrap>
       <TopBtnWrapper>
         <TopBtn>
-          <Link to='/PLEA-STREET/'>
-            <Icon name='arrow left' style={
-              { display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center', 
-                color: '#34558b', 
-                width: '100%', 
-                height: '100%'  }} />
-          </Link>
+          <Icon name='arrow left' style={
+            { display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center', 
+              color: '#34558b', 
+              width: '100%', 
+              height: '100%'  }} />
         </TopBtn>
         <TopBtn>
           <Link to='/PLEA-STREET/'>
