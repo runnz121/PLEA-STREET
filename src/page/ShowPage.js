@@ -1,8 +1,8 @@
-import React,{ useEffect, useState} from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import ContainerMap from "../component/Map.js"
 import Container from '../component/Contanier.js';
 import styled from "styled-components"
-import {useLocation} from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
 
 //버튼 차례데로 현재 로케, 필터링 구, 목록
@@ -49,99 +49,110 @@ const Div_area = styled.div`
     font-family: 'NanumBarunGothic';
 `
 
-let prevGu;
 let map;
-let {kakao} = window;
+let prevGu;
+let { kakao } = window;
 var infowindow = new kakao.maps.InfoWindow({
     //content: 
-    removable : true
+    removable: true
 });
+
 function ShowPage() {
 
 
     const getLocation = useLocation()
     let [location, setLocation] = useState({
-        latitude : 0,
-        longitude : 0   
-})
+        latitude: 0,
+        longitude: 0
+    })
 
 
-    const[gu, setGu] = useState("")
+    const [gu, setGu] = useState("")
     console.log("바뀐구", gu)
 
     const [all, setAll] = useState("")
     console.log("all", all);
 
-
-//최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
-useEffect(() => {
-    setLocation(getLocation.state)
-
-    let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
-        level: 7 // 지도의 확대 레벨
-    }; 
-
     
-    map = new kakao.maps.Map(mapContainer, mapOption); 
+    //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
+    function createMap(location) {
+        setLocation(getLocation.state)
 
-    //현재 위치 마커 표시
-    const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
-    let currentMarker = new kakao.maps.Marker({
-        map: map,
-        position: current
-    })
+        let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
+                level: 7 // 지도의 확대 레벨
+            };
+        map = new kakao.maps.Map(mapContainer, mapOption);
 
-
-    // 마커 클러스터러를 생성합니다 
-    var clusterer = new kakao.maps.MarkerClusterer({
-        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
-        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 6 // 클러스터 할 최소 지도 레벨 
-    });
-
-    let markers = data.map((i) => {
-        //console.log(i.위도)
-        return new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(i.위도, i.경도)
-        })
-    })
-    clusterer.addMarkers(markers);
-
-},[location])
-
-useEffect(() => {
-    if (prevGu !== gu && prevGu !== undefined) { 
-    // 주소-좌표 변환 객체 || 구(드롭다운메뉴 내에서)가 바뀔 때마다 위치 변경.
-    var geocoder = new kakao.maps.services.Geocoder();
-    // 주소로 좌표를 검색합니다
-    geocoder.addressSearch(`${gu}`, function(result, status) {
-        // 정상적으로 검색이 완료됐으면 
-        if (status === kakao.maps.services.Status.OK) {
-            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-            // 결과값으로 받은 위치를 마커로 표시합니다
-            var marker = new kakao.maps.Marker({
-                map: map,
-                position: coords
-            });
-            // 인포윈도우로 장소에 대한 설명을 표시합니다
-
-            infowindow.close();
-            infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${gu}</div>`);
-            infowindow.open(map, marker);
-            map.setCenter(coords);
-        }
-    });
     }
-    prevGu = gu; 
-},[gu])
 
-useEffect(() => {
+    useEffect(() => {
+        setLocation(getLocation.state)
+
+        let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
+                level: 7 // 지도의 확대 레벨
+            };
+        map = new kakao.maps.Map(mapContainer, mapOption);
+
+        //현재 위치 마커 표시
+        const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
+        let currentMarker = new kakao.maps.Marker({
+            map: map,
+            position: current
+        })
+        //map.setCenter(current);
+
+        // 마커 클러스터러를 생성합니다 
+        var clusterer = new kakao.maps.MarkerClusterer({
+            map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+            minLevel: 6 // 클러스터 할 최소 지도 레벨 
+        });
+
+        let markers = data.map((i) => {
+            //console.log(i.위도)
+            return new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(i.위도, i.경도)
+            })
+        })
+        clusterer.addMarkers(markers);
+
+    }, [location])
+
+    useEffect(() => {
+        if (prevGu !== gu && prevGu !== undefined) {
+            // 주소-좌표 변환 객체 || 구(드롭다운메뉴 내에서)가 바뀔 때마다 위치 변경.
+            var geocoder = new kakao.maps.services.Geocoder();
+            // 주소로 좌표를 검색합니다
+            geocoder.addressSearch(`${gu}`, function (result, status) {
+                // 정상적으로 검색이 완료됐으면 
+                if (status === kakao.maps.services.Status.OK) {
+                    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                    // 결과값으로 받은 위치를 마커로 표시합니다
+                    var marker = new kakao.maps.Marker({
+                        map: map,
+                        position: coords
+                    });
+                    // 인포윈도우로 장소에 대한 설명을 표시합니다
+
+                    infowindow.close();
+                    infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${gu}</div>`);
+                    infowindow.open(map, marker);
+                    map.setCenter(coords);
+                }
+            });
+        }
+        prevGu = gu;
+    }, [gu])
+
+    useEffect(() => {
         // 주소-좌표 변환 객체 || 구(드롭다운메뉴 내에서)가 바뀔 때마다 위치 변경.
         var geocoder = new kakao.maps.services.Geocoder();
         // 주소로 좌표를 검색합니다
-        geocoder.addressSearch(`${all}`, function(result, status) {
+        geocoder.addressSearch(`${all}`, function (result, status) {
             // 정상적으로 검색이 완료됐으면 
             if (status === kakao.maps.services.Status.OK) {
                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -151,41 +162,44 @@ useEffect(() => {
                     position: coords
                 });
                 // 인포윈도우로 장소에 대한 설명을 표시합니다
-    
+
                 infowindow.close();
-                infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${all}</div>`);
+                infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
+                        ${all}
+                        <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${all},${clicked.lat},${clicked.lot}/from/현재위치,${global.lat},${global.long}'">길찾기</button>
+                    </div>`);
                 infowindow.open(map, marker);
                 map.setCenter(coords);
             }
         });
 
-},[all])
+    }, [all])
 
-     
+
     //현재 위치 조회 버튼
     const setCurrent = () => {
-         navigator.geolocation.getCurrentPosition((position) => {
+        navigator.geolocation.getCurrentPosition((position) => {
             setLocation(position.coords.latitude, position.coords.longitude)
         })
-        console.log("onclick")
+        console.log("click 현재 위치 조회")
     }
 
-    
+
 
     //구 변경값을 state로 전달 
     const handleGu = (data) => {
-        if (gu !== data){
+        if (gu !== data) {
             setGu(data)
         }
-        console.log("showpage",data)
+        console.log("showpage", data)
     }
 
     const handleAll = (data) => {
-      if (all !== data){
-          setAll(data)
-      }
-      console.log("showpage",data)
-  }
+        if (all !== data) {
+            setAll(data)
+        }
+        console.log("showpage", data)
+    }
 
 
 
@@ -195,26 +209,26 @@ useEffect(() => {
         <Container>
             <Menu_wrapper>
                 <Div_area>
-                    <Button fluid color='blue' onClick = {setCurrent}>
-                    <Icon name='location arrow' />
-                    <span>현위치</span>
+                    <Button fluid color='blue' onClick={setCurrent}>
+                        <Icon name='location arrow' />
+                        <span>현위치</span>
                     </Button>
                 </Div_area>
 
                 {/* <Div_area /> */}
 
                 <Div_area>
-                    <FilterBtn setting = {handleGu}/>
+                    <FilterBtn setting={handleGu} />
                 </Div_area>
 
                 {/* <Div_area /> */}
 
                 <Div_area>
-                    <ListBtn setting = {handleAll}/>
+                    <ListBtn setting={handleAll} />
                 </Div_area>
             </Menu_wrapper>
-        {/* {location.longitude >=1 ? <ContainerMap id = 'map'/> : null} */}
-            <ContainerMap id = 'map'/>
+            {/* {location.longitude >=1 ? <ContainerMap id = 'map'/> : null} */}
+            <ContainerMap id='map' />
         </Container>
 
     )
