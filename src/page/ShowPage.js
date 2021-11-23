@@ -76,7 +76,7 @@ function ShowPage() {
 //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
 useEffect(()=> {
     setLocation(getLocation.state)
-
+  
 
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
