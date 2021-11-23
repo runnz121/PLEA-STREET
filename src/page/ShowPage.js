@@ -166,7 +166,7 @@ function ShowPage() {
                 infowindow.close();
                 infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
                         ${all}
-                        <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${all},${clicked.lat},${clicked.lot}/from/현재위치,${global.lat},${global.long}'">길찾기</button>
+                        <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${all},${result[0].y},${result[0].x}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button>
                     </div>`);
                 infowindow.open(map, marker);
                 map.setCenter(coords);
