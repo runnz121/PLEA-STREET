@@ -3,19 +3,15 @@ import MainImage from '../component/Img_container'
 import Btn from "../component/B_GetCurrentNext"
 import styled from 'styled-components'
 import { useHistory } from 'react-router'
+import Menubar from '../component/Menubar'
 
 
 
 const Wrap = styled.div`
-    width : 100%;
-    height : 100vh;
-    display : flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    padding: 3rem;
-    background-color: #34558b;
+    max-width: 640px;
+    margin: 0px auto;
+    padding-bottom: 0px;
+    height: 100vh;
 `
 
 const ImgCon = styled.div`
@@ -32,7 +28,7 @@ const Header = styled.span`
     font-weight: bold;
     font-size: 5rem;
     line-height: 0.8;
-    color: white;
+    color: black;
     padding-top: 5rem;
 
     @media ${props => props.theme.mobile} {
@@ -93,6 +89,7 @@ function Landing(props) {
 
     return (
         <Wrap>
+          <Menubar />
           <Header>
             <Span>PLEA</Span>
             <Span>-</Span>

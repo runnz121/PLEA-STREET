@@ -2,7 +2,9 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import ContainerMap from "../component/Map.js"
 import Container from '../component/Contanier.js';
 import styled from "styled-components"
+
 import { useLocation } from "react-router-dom"
+import Menubar from '../component/Menubar.js';
 
 
 //버튼 차례데로 현재 로케, 필터링 구, 목록
@@ -78,13 +80,13 @@ function ShowPage() {
     function createMap(location) {
         setLocation(getLocation.state)
 
+
         let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
                 center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
                 level: 7 // 지도의 확대 레벨
             };
         map = new kakao.maps.Map(mapContainer, mapOption);
-
     }
 
     useEffect(() => {
@@ -207,6 +209,7 @@ function ShowPage() {
 
     return (
         <Container>
+          <Menubar />
             <Menu_wrapper>
                 <Div_area>
                     <Button fluid color='blue' onClick={setCurrent}>
