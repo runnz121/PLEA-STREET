@@ -74,25 +74,17 @@ function ShowPage() {
 
 
 //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
-useEffect(()=> {
+useEffect(() => {
     setLocation(getLocation.state)
-
 
     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
-        level: 5 // 지도의 확대 레벨
+        level: 7 // 지도의 확대 레벨
     }; 
 
+    
     map = new kakao.maps.Map(mapContainer, mapOption); 
-    let bounds = new kakao.maps.LatLngBounds();
-
-    const displayMarker = (place) => {
-        let marker = new kakao.maps.Marker({
-                map: map,
-                position: new kakao.maps.LatLng(parseFloat(place.위도), parseFloat(place.경도)) 
-        });
-    }
 
     //현재 위치 마커 표시
     const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
@@ -101,11 +93,21 @@ useEffect(()=> {
         position: current
     })
 
-    //전체 데이커 마커 표시
-    for(let i = 0; i < data.length; i++){
-        displayMarker(data[i]);
-        bounds.extend(new kakao.maps.LatLng(data[i].위도, data[i].경도))
-    }
+
+    // 마커 클러스터러를 생성합니다 
+    var clusterer = new kakao.maps.MarkerClusterer({
+        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+        minLevel: 6 // 클러스터 할 최소 지도 레벨 
+    });
+
+    let markers = data.map((i) => {
+        //console.log(i.위도)
+        return new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(i.위도, i.경도)
+        })
+    })
+    clusterer.addMarkers(markers);
 
 },[location])
 
