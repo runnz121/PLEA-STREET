@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from "styled-components"
 import {Icon} from 'semantic-ui-react'
 import { useHistory, Link } from "react-router-dom";
@@ -63,6 +63,14 @@ function Menubar() {
     console.log(history)
   },[])
 
+  const [Clatitude, setCLatitude] = useState()
+  const [Clongitude, setCLongitude] = useState()
+
+  navigator.geolocation.getCurrentPosition((position) => {
+    setCLatitude(position.coords.latitude);
+    setCLongitude(position.coords.longitude);
+  })
+
   return (
     <Wrap>
       <TopBtnWrapper>
@@ -88,7 +96,13 @@ function Menubar() {
         </TopBtn>
       </TopBtnWrapper>
       <TopMenu>
-        <Link to='/PLEA-STREET/mapSearch' style={{ color: 'black' }}>
+        <Link to={{
+            pathname: "/PLEA-STREET/mapSearch",
+            state: {
+              latitude: Clatitude,
+              longitude: Clongitude
+            }
+        }} style={{ color: 'black' }} >
           <MenuBtn>
             <span>위치검색</span>
           </MenuBtn>
