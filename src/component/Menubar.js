@@ -8,7 +8,6 @@ const Wrap = styled.div`
   max-width: 640px;
   margin: 0px auto;
   padding-bottom: 0px;
-  
 `
 const TopMenu = styled.div`
   display: flex;
@@ -99,7 +98,7 @@ function Menubar() {
             <span>검사</span>
           </MenuBtn>
         </Link>
-        <Link to='/PLEA-STREET/' style={{ color: 'black' }}>
+        <Link to='/PLEA-STREET/community' style={{ color: 'black' }}>
           <MenuBtn>
             <span>커뮤니티</span>
           </MenuBtn>

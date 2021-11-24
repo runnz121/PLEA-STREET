@@ -8,6 +8,7 @@ import ShowPage from "./page/ShowPage.js"
 import Community from './page/CommunityPage.js';
 import SignUpPage from './page/SignUpPage.js';
 import SignInPage from './page/SignInPage.js'
+import PostWrite from './page/PostWrite.js';
 
 
 import TestStartPage from './component/TestStartPage.js';
@@ -39,8 +40,9 @@ function App() {
 
             <Route exact path = "/PLEA-STREET/cleanTest" component={TestPage2}/>
             <Route exact path = "/PLEA-STREET/community" component={Community}/>
-            <Route exact path = "/PLEA-STREET/SignUp" component={SignUpPage}/>
-            <Route exact path = "/PLEA-STREET/SignIn" component={SignInPage}/>
+            <Route exact path = "/PLEA-STREET/signUp" component={SignUpPage}/>
+            <Route exact path = "/PLEA-STREET/signIn" component={SignInPage}/>
+            <Route exact path = "/PLEA-STREET/postwrite" component={PostWrite}/>
 
 
             <Route exact path = "/PLEA-STREET/cleanTest" component={TestStartPage}/>

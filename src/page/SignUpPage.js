@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
+import { useHistory } from 'react-router'
 
 const Container = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ const Btn = styled.button`
     const [userPwd, setUserPwd] = useState("")
     const [userPhone, setUserPhone] = useState("")
     const [userName, setUserName] = useState("")
+    const history = useHistory();
 
 
     const onHandlerId = (e) => {
@@ -59,7 +61,9 @@ const Btn = styled.button`
         JSON.stringify(body), {
             headers: { "Content-Type": `application/json` },
             })
-        .then((response) => console.log(response.data));
+        .then((response) => history.push({
+            pathname:"/PLEA-STREET/signin"
+        }));
     }
 
 
