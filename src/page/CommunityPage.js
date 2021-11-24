@@ -11,13 +11,11 @@ const Wrapper = styled.div`
     margin: 0px auto;
     padding-bottom: 0px;
     height: 78vh;
-    
 `
 
 const PostListWrap = styled.div`
     max-width : 640px;
     height: 70vh;
-
 `
 
 const Btn = styled.button`
