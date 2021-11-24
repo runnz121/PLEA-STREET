@@ -1,153 +1,52 @@
 [
 	{
 		"id": 1,
-		"option": "EI",
 		"question": "달걀 껍질은 음식물쓰레기다.",
-		"answers": [
-			{
-				"type": "E",
-				"content": "O"
-			},
-			{
-				"type": "I",
-				"content": "X"
-			}
-		]
+		"answer": "X"
 	},
 	{
 		"id": 2,
-		"option": "EI",
 		"question": "음식물쓰레기는 사료나 퇴비로 재활용된다.",
-		"answers": [
-			{
-				"type": "E",
-
-				"content": "O"
-			},
-			{
-				"type": "I",
-				"content": "X"
-			}
-		]
+		"answer": "O"
 	},
 	{
 		"id": 3,
-		"option": "EI",
-		"question": "즉석 밥 용기는 일반쓰레기도 배출하면 된다.",
-		"answers": [
-			{
-				"type": "E",
-				"content": "O"
-			},
-			{
-				"type": "I",
-				"content": "X"
-			}
-		]
+		"question": "즉석 밥 용기는 일반쓰레기로 배출하면 된다.",
+		"answer": "O"
 	},
 	{
 		"id": 4,
-		"option": "SN",
 		"question": "영수증은 종이로 분리배출 해야 한다.",
-		"answers": [
-			{
-				"type": "S",
-				"content": "O"
-			},
-			{
-				"type": "N",
-				"content": "X"
-			}
-		]
+		"answer": "X"
 	},
 	{
 		"id": 5,
-		"which": "SN",
 		"question": "알루미늄 캡이나 호일은 캔으로 분리배출 해야 한다.",
-		"answers": [
-			{
-				"type": "S",
-				"content": "O"
-			},
-			{
-				"type": "N",
-				"content": "X"
-			}
-		]
+		"answer": "X"
 	},
 	{
 		"id": 6,
-		"which": "SN",
 		"question": "떡볶이 플라스틱 용기는 깨끗이 씻으면 재활용이 가능하다.",
-		"answers": [
-			{
-				"type": "S",
-				"content": "O"
-			},
-			{
-				"type": "N",
-				"content": "X"
-			}
-		]
+		"answer": "X"
 	},
 	{
 		"id": 7,
-		"option": "TF",
 		"question": "비닐 아이스 팩은 그대로 버려야 한다.",
-		"answers": [
-			{
-				"type": "T",
-				"content": "O"
-			},
-			{
-				"type": "F",
-				"content": "X"
-			}
-		]
+		"answer": "O"
 	},
 	{
 		"id": 8,
-		"option": "TF",
 		"question": "에어 캡은 비닐로 분리배출 해야 한다.",
-		"answers": [
-			{
-				"type": "T",
-				"content": "O"
-			},
-			{
-				"type": "F",
-				"content": "X"
-			}
-		]
+		"answer": "O"
 	},
 	{
 		"id": 9,
-		"option": "TF",
 		"question": "치킨뼈는 일반쓰레기다.",
-		"answers": [
-			{
-				"type": "T",
-				"content": "O"
-			},
-			{
-				"type": "F",
-				"content": "X"
-			}
-		]
+		"answer": "X"
 	},
 	{
 		"id": 10,
-		"option": "JP",
 		"question": "실리콘 폰 케이스는 플라스틱으로 분리배출이 가능하다.",
-		"answers": [
-			{
-				"type": "J",
-				"content": "O"
-			},
-			{
-				"type": "P",
-				"content": "X"
-			}
-		]
+		"answer": "X"
 	}
 ]

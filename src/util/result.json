@@ -1,167 +1,145 @@
 {
-	"INTJ": {
-		"id": "INTJ",
-		"subhead": "아는 만큼 보인다! 여행모범생인 당신",
-		"subject": "전 세계가 원하던 도시 이스탄불, 터키",
-
-		"nickname": "과학자형",
-		"img": "https://cdn.pixabay.com/photo/2019/03/08/19/52/galata-4043037_960_720.jpg",
-		"description": [
-			{
-				"des": "계획적이고 분석력이 대개 분석력이 높은 편이에요"
-			},
-			{
-				"des": "1분 1초까지 철저하게 계획하는 것을 좋아해요"
-			},
-			{
-				"des": "개인주의적인 성향이 강해 타인에게 감정을 잘 드러내지 않는 편이에요"
-			},
-			{
-				"des": "마음을 연 상대에게도 무뚝뚝한 듯 보이지만 쑥스러워 티 내지 않아요"
-			},
-			{
-				"des": "실용주의적이라 여행지에서 쓸데없는 소비는 하지 않는 편이에요"
-			},
-			{
-				"des": "여행 중에도 종종 혼자만의 시간이 필요한 타입이에요"
-			}
-		],
-		"duo": [
-			{
-				"img": "https://i.pinimg.com/564x/d5/fe/5c/d5fe5cd2078347a27be35c88cf242ec2.jpg",
-				"subhead": "ENTP",
-				"des": "열정의 도시 마드리드, 스페인"
-			}
-		],
-		"counter": [
-			{
-				"img": "https://i.pinimg.com/564x/93/26/c5/9326c5020322d5e9113501391fda04ee.jpg",
-				"subhead": "ESFP",
-				"des": " 호수의 도시 루가노, 스위스"
-			}
-		]
+	"0": {
+		"id": "어린이",
+		"subhead": [
+      {
+        "head": "당신은 환경에 대해 관심을 가지기 시작한 "
+      },
+      {
+        "head": "입니다!"
+      }
+    ],
+		"subject": "앞으로 알아가 보도록 해요!",
+		"img": "img/resultImage/baby.jpg"
 	},
-	"INTP": {
-		"id": "INTP",
-		"subhead": "혼자라서 즐거워~ 자유가 최고야! 라는 당신",
-		"subject": "세계에서 별 보기 가장 좋은 곳 아타카마 사막, 칠레",
-		"nickname": "아이디어뱅크형",
-		"img": "https://cdn.pixabay.com/photo/2021/01/25/13/45/valle-de-la-luna-5948365_960_720.jpg",
-		"description": [
-			{
-				"des": "MBTI 같은 자아 분석을 좋아하는 타입이에요!"
-			},
-			{
-				"des": "내향적인 성향이 강해 여행 중에도 사람에게 관심을 가지는 일이 드물어요"
-			},
-			{
-				"des": "여행 중에 혼자만의 시간이 매우 중요한 타입이에요"
-			},
-			{
-				"des": "가끔씩은 즉흥적인 행동을 하고 싶어질 때가 있어요"
-			},
-			{
-				"des": "여행 중에도 교통수단, 숙소 등 최대한 효율적인 선택을 하는 편이에요"
-			},
-			{
-				"des": "전체 인구의 3.3%, 한국인의 3% 비율로 상당히 적은 유형이에요"
-			}
-		],
-		"duo": [
-			{
-				"img": "https://i.pinimg.com/564x/bb/fb/b9/bbfbb9ed1e78e47dc89100fd20fced5f.jpg",
-				"subhead": "ENTJ",
-				"des": "푸른 왕국 쉐프샤우엔, 모로코"
-			}
-		],
-		"counter": [
-			{
-				"img": "https://i.pinimg.com/564x/4a/50/fe/4a50fe06a53e681dc819ff046c98e4e6.jpg",
-				"subhead": "ESFJ ",
-				"des": "빛의 도시 파리, 프랑스"
-			}
-		]
+  "1": {
+		"id": "어린이",
+		"subhead": [
+      {
+        "head": "당신은 환경에 대해 관심을 가지기 시작한 "
+      },
+      {
+        "head": "입니다!"
+      }
+    ],
+		"subject": "앞으로 알아가 보도록 해요!",
+		"img": "img/resultImage/baby.jpg"
 	},
-	"INFJ": {
-		"id": "INFJ",
-		"subhead": "여행만큼 좋은 힐링이 있을까? 라는 당신",
-		"subject": "알프스의 나라 체르마트, 스위스",
-		"nickname": "예언가형",
-		"img": "https://i.pinimg.com/564x/25/3b/d8/253bd8da8ee271e1b8b0c7e57f17b96a.jpg",
-		"description": [
-			{
-				"des": "여행 중 상대편을 잘 맞춰주지만, 속에서 들끓는 불만을 표출하진 않아요!"
-			},
-			{
-				"des": "그렇지만 가끔 조심스럽게 할 말을 다 하는 경우도 가끔은 있어요"
-			},
-			{
-				"des": "상대방을 배려하는 척하며 본인이 원하는 방향으로 잘 유도한답니다"
-			},
-			{
-				"des": "함께 여행한 뒤 자신과 별로 맞지 않았다면 조용히 손절하는 타입!"
-			},
-			{
-				"des": "인내심과 배려심이 많고 알고 보면 따뜻한 사람이에요"
-			},
-			{
-				"des": "여행지에 대해서 호불호가 크게 나뉘는 타입이에요"
-			}
-		],
-		"duo": [
-			{
-				"img": "https://i.pinimg.com/564x/e9/7a/73/e97a73cf39c6af24dbe8c96b89fc8251.jpg",
-				"subhead": "ENFP",
-				"des": "잠들지 않는 섬 이비자, 스페인"
-			}
-		],
-		"counter": [
-			{
-				"img": "https://i.pinimg.com/564x/b2/f6/6c/b2f66c6580649d8e0220e9b6160e528f.jpg",
-				"subhead": "ESTP",
-				"des": "지구의 천장 포카라, 네팔"
-			}
-		]
+	"2": {
+		"id": "어린이",
+		"subhead": [
+      {
+        "head": "당신은 환경에 대해 관심을 가지기 시작한 "
+      },
+      {
+        "head": "입니다!"
+      }
+    ],
+		"subject": "앞으로 알아가 보도록 해요!",
+		"img": "img/resultImage/baby.jpg"
 	},
-	"INFP": {
-		"id": "INFP",
-		"subhead": "영화나 드라마에서 나오는 장소의 주인공인 당신 ",
-		"subject": "나만 알고 싶은 소도시 과나후아토, 멕시코",
-		"nickname": "열정적인 중재자",
-		"img": "https://i.pinimg.com/564x/e4/80/f5/e480f54e812e0b9d6f9b13df98f3624d.jpg",
-		"description": [
-			{
-				"des": "말 그대로 가성비 러버! 효율성을 사랑하는 타입이에요"
-			},
-			{
-				"des": "남의 눈치를 많이 보지만 눈치가 빠르고 공감력이 뛰어난 편이에요"
-			},
-			{
-				"des": "여행이 싫지는 않지만 귀찮아서 못가는 유형이에요"
-			},
-			{
-				"des": "여행 중에 문화 체험,유적지 문화재 관람,자연환경 감상을 좋아할 확률이 높아요!"
-			},
-			{
-				"des": "여행 중 일기를 적거나 사진을 찍어서 기록하고 추억을 남기는 것을 좋아해요!"
-			},
-			{
-				"des": "집돌이,집순이 성향이 강해 여행지에선 숙소가 중요한 타입이에요"
-			}
-		],
-		"duo": [
-			{
-				"img": "https://i.pinimg.com/564x/63/28/df/6328dfcb31c1dc4cc5f1796f9525dfe9.jpg",
-				"subhead": "ENFJ",
-				"des": "스머프의 고향 알베로벨로, 이탈리아"
-			}
-		],
-		"counter": [
-			{
-				"img": "https://i.pinimg.com/564x/4a/50/fe/4a50fe06a53e681dc819ff046c98e4e6.jpg",
-				"subhead": "ESFJ",
-				"des": "빛의 도시 파리, 프랑스"
-			}
-		]
+	"3": {
+		"id": "학생",
+		"subhead": [
+      {
+        "head": "당신은 환경에 대해 공부 중인 "
+      },
+      {
+        "head": "입니다!"
+      }
+    ],
+		"subject": "계속해서 공부하도록 할까요?",
+		"img": "img/resultImage/student.jpg"
+	},
+	"4": {
+		"id": "학생",
+		"subhead": [
+      {
+        "head": "당신은 환경에 대해 공부 중인 "
+      },
+      {
+        "head": "입니다!"
+      }
+    ],
+		"subject": "계속해서 공부하도록 할까요?",
+		"img": "img/resultImage/student.jpg"
+	},
+  "5": {
+		"id": "학생",
+		"subhead": [
+      {
+        "head": "당신은 환경에 대해 공부 중인 "
+      },
+      {
+        "head": "입니다!"
+      }
+    ],
+		"subject": "계속해서 공부하도록 할까요?",
+		"img": "img/resultImage/student.jpg"
+	},
+  "6": {
+		"id": "청년",
+		"subhead": [
+      {
+        "head": "자부심을 가지셔도 됩니다! 당신은 재활용계의 "
+      },
+      {
+        "head": "!"
+      }
+    ],
+		"subject": "주변에도 널리 퍼뜨려 주세요!",
+		"img": "img/resultImage/adult.jpg"
+	},
+  "7": {
+		"id": "청년",
+		"subhead": [
+      {
+        "head": "자부심을 가지셔도 됩니다! 당신은 재활용계의 "
+      },
+      {
+        "head": "!"
+      }
+    ],
+		"subject": "주변에도 널리 퍼뜨려 주세요!",
+		"img": "img/resultImage/adult.jpg"
+	},
+  "8": {
+		"id": "청년",
+		"subhead": [
+      {
+        "head": "자부심을 가지셔도 됩니다! 당신은 재활용계의 "
+      },
+      {
+        "head": "!"
+      }
+    ],
+		"subject": "주변에도 널리 퍼뜨려 주세요!",
+		"img": "img/resultImage/adult.jpg"
+	},
+  "9": {
+		"id": "히어로",
+		"subhead": [
+      {
+        "head": "당신은 진정한 환경지킴이! 지구의 "
+      },
+      {
+        "head": "시군요!"
+      }
+    ],
+		"subject": "앞으로도 쭉 지금같이 노력해주세요!",
+		"img": "img/resultImage/hero.jpg"
+	},
+  "10": {
+		"id": "히어로",
+		"subhead": [
+      {
+        "head": "당신은 진정한 환경지킴이! 지구의 "
+      },
+      {
+        "head": "시군요!"
+      }
+    ],
+		"subject": "앞으로도 쭉 지금같이 노력해주세요!",
+		"img": "img/resultImage/hero.jpg"
 	}
 }

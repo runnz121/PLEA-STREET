@@ -38,7 +38,6 @@ function App() {
             <Route exact path = "/PLEA-STREET/test2" component={TestPage2}/>
             <Route exact path = "/PLEA-STREET/mapSearch" component={ShowPage}/>
 
-            <Route exact path = "/PLEA-STREET/cleanTest" component={TestPage2}/>
             <Route exact path = "/PLEA-STREET/community" component={Community}/>
             <Route exact path = "/PLEA-STREET/signUp" component={SignUpPage}/>
             <Route exact path = "/PLEA-STREET/signIn" component={SignInPage}/>
@@ -47,7 +46,7 @@ function App() {
 
             <Route exact path = "/PLEA-STREET/cleanTest" component={TestStartPage}/>
             <Route exact path = "/PLEA-STREET/options" component={TestOptions}/>
-            <Route exact path = "/PLEA-STREET/result/:countryName" component={TestResult}/>
+            <Route exact path = "/PLEA-STREET/result/:score" component={TestResult}/>
             <Route exact path = "/PLEA-STREET/community" component={TestPage2}/>
 
             <Route exact path = "/PLEA-STREET/education" component={TestPage2}/>
