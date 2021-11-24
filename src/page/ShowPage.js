@@ -15,7 +15,6 @@ import ListBtn from "../component/B_list.js"
 import data from "../util/loca"
 import { Button, Icon } from 'semantic-ui-react'
 
-
 const Menu_wrapper = styled.div`
     width : 100%;
     height : 8vh;
@@ -117,12 +116,18 @@ function ShowPage() {
             minLevel: 6 // 클러스터 할 최소 지도 레벨 
         });
 
+        
+        let trashIcon = new kakao.maps.MarkerImage('img/markerImage/trashMarker.png', new kakao.maps.Size(50, 50), {
+            shape: 'poly',
+            coords: '25,45,12,24,12,16,18,8,32,8,38,16,38,24',
+        })
         let trashMarker_list = data.map((i) => {
             //console.log(i.위도)
             return new kakao.maps.Marker({
                 position: new kakao.maps.LatLng(i.위도, i.경도),
                 clickable: true,
-                title: `${i.자치구명} ${i.설치위치}`
+                title: `${i.자치구명} ${i.설치위치}`,
+                image: trashIcon
             })
         })
         clusterer.addMarkers(trashMarker_list);
