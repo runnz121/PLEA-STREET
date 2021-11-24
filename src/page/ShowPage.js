@@ -56,7 +56,8 @@ let prevGu;
 let { kakao } = window;
 var infowindow = new kakao.maps.InfoWindow({
     //content: 
-    removable: true
+    removable: true,
+    zIndex: 5,
 });
 
 function ShowPage() {
@@ -103,6 +104,8 @@ function ShowPage() {
         const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
         let currentMarker = new kakao.maps.Marker({
             map: map,
+            title: '현재 위치',
+            clickable: true,
             position: current
         })
         //map.setCenter(current);
@@ -114,13 +117,25 @@ function ShowPage() {
             minLevel: 6 // 클러스터 할 최소 지도 레벨 
         });
 
-        let markers = data.map((i) => {
+        let trashMarker_list = data.map((i) => {
             //console.log(i.위도)
             return new kakao.maps.Marker({
-                position: new kakao.maps.LatLng(i.위도, i.경도)
+                position: new kakao.maps.LatLng(i.위도, i.경도),
+                clickable: true,
+                title: `${i.자치구명} ${i.설치위치}`
             })
         })
-        clusterer.addMarkers(markers);
+        clusterer.addMarkers(trashMarker_list);
+
+        trashMarker_list = trashMarker_list.map((marker) => {
+            kakao.maps.event.addListener(marker, 'click', () => {
+                infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
+                    ${marker.getTitle()}
+                <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button></div>`);
+                infowindow.open(map, marker);
+                map.setCenter(marker.getPosition());
+            })
+        })
 
     }, [location])
 
@@ -133,13 +148,14 @@ function ShowPage() {
                 // 정상적으로 검색이 완료됐으면 
                 if (status === kakao.maps.services.Status.OK) {
                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
                     // 결과값으로 받은 위치를 마커로 표시합니다
                     var marker = new kakao.maps.Marker({
                         map: map,
                         position: coords
                     });
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
 
+                    // 인포윈도우로 장소에 대한 설명을 표시합니다
                     infowindow.close();
                     infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${gu}</div>`);
                     infowindow.open(map, marker);
