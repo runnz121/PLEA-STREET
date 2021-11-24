@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.SQLDelete;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -48,6 +50,7 @@ public class Board {
 	@Lob
 	private Blob boardImage;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userPkId")
 	private User user;
@@ -58,7 +61,8 @@ public class Board {
 
 
 	@Builder
-	public Board(String boardId, String boardTitle, String boardContent, Blob boardImage, User user) {
+	public Board(Long boardPkId, String boardId, String boardTitle, String boardContent, Blob boardImage, User user) {
+		this.boardPkId = boardPkId;
 		this.boardId = boardId;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
@@ -74,12 +78,9 @@ public class Board {
 		this.user = user;
 	}
 
-	// public void setState(State state){
-	// 	this.state = state;
-	// }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+	// public void setUser(User user) {
+	// 	this.user = user;
+	// }
 
 }

@@ -2,6 +2,8 @@ package com.plestreet.community.service;
 
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.plestreet.community.domain.Board;
 import com.plestreet.community.domain.User;
 import com.plestreet.community.dto.BoardCreateDto;
+import com.plestreet.community.dto.BoardResponseDto;
 import com.plestreet.community.exception.BoardNotFoundException;
 import com.plestreet.community.repository.BoardRepo;
 import com.plestreet.community.repository.UserRepo;
@@ -28,7 +31,8 @@ public class BoardService {
 	private final TokenProvider tokenProvider;
 
 	public String createBoard(BoardCreateDto boardCreateDto){
-		User user = userRepo.findByUserId(tokenProvider.getUserIdFromToken(boardCreateDto.getToken())).orElseThrow(() -> new UsernameNotFoundException("(게시글생성 해당 유저가 없습니다"));
+		User user = userRepo.findByUserId(tokenProvider.getUserIdFromToken(boardCreateDto.getToken()))
+			.orElseThrow(() -> new UsernameNotFoundException("(게시글생성 해당 유저가 없습니다"));
 		String getBoardId = generateBoardId();
 		boardRepo.save(
 			Board.builder()
@@ -42,7 +46,8 @@ public class BoardService {
 	}
 
 	public void deleteBoard(String boardId){
-		Board board = boardRepo.findByboardId(boardId).orElseThrow(() -> new BoardNotFoundException("선택된 게시글이 없습니다"));
+		Board board = boardRepo.findByboardId(boardId)
+			.orElseThrow(() -> new BoardNotFoundException("선택된 게시글이 없습니다"));
 		if(board.getBoardId() == null)
 			throw new BoardNotFoundException("선택된 게시글의 번호가 없습니다");
 		boardRepo.delete(board);
@@ -50,5 +55,20 @@ public class BoardService {
 
 	public String generateBoardId(){
 		return UUID.randomUUID().toString();
+	}
+
+
+	public Page<Board> getPostList(Pageable pageable) {
+		return boardRepo.findAll(pageable);
+	}
+
+	public BoardResponseDto selectedPost(String boardId) {
+		Board board = boardRepo.findByboardId(boardId)
+			.orElseThrow(() -> new BoardNotFoundException("선택된 게시글이 없습니다"));
+		return BoardResponseDto.builder()
+				.title(board.getBoardTitle())
+				.content(board.getBoardContent())
+				.boardId(board.getBoardId())
+				.build();
 	}
 }
