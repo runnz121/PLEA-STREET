@@ -14,6 +14,7 @@ import ListBtn from "../component/B_list.js"
 //local data
 import data from "../util/loca"
 import { Button, Icon } from 'semantic-ui-react'
+import { resolvePlugin } from '@babel/core';
 
 const Menu_wrapper = styled.div`
     width : 100%;
@@ -59,15 +60,16 @@ var infowindow = new kakao.maps.InfoWindow({
     zIndex: 5,
 });
 
+let currentMarker;
+
 function ShowPage() {
 
-
     const getLocation = useLocation()
+    
     let [location, setLocation] = useState({
         latitude: 0,
         longitude: 0
-    })
-
+    });
 
     const [gu, setGu] = useState("")
     console.log("바뀐구", gu)
@@ -75,39 +77,68 @@ function ShowPage() {
     const [all, setAll] = useState("")
     console.log("all", all);
 
-    
-    //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
-    function createMap(location) {
-        setLocation(getLocation.state)
 
+    //동기적 처리 필요..?
+    // const geo = () => {
+    //     navigator.geolocation.getCurrentPosition((position) => {
+    //         setLocation({latitude: position.coords.latitude, longitude: position.coords.longitude})
+    //         console.log('navigator에서 현재위치 받아오기 : ', position.coords.latitude, position.coords.longitude)
+    //     }, (err) => {console.log(err)}, {maximumAge:100000, timeout:1000, enableHighAccuracy:true})
+    // }
 
-        let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = {
-                center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
-                level: 7 // 지도의 확대 레벨
-            };
-        map = new kakao.maps.Map(mapContainer, mapOption);
-    }
+    let lat, lon;
+    let geo = new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            lat =  position.coords.latitude;
+            lon =  position.coords.longitude;
+            resolve({lat, lon});       
+        }, (err) => {console.log(err)}, {maximumAge:100000, timeout:1000, enableHighAccuracy:true})
+    })
+
 
     useEffect(() => {
-        setLocation(getLocation.state)
+        console.log("deps[] 렌더링");
+        
+        //if (!getLocation.state.latitude || !getLocation.state.longitude) {
+            //useLocation state가 이전 page에서 안 넘어왔을 때(undefined)
+            geo.then((pos) => {
+                setLocation({latitude: pos.lat, longitude: pos.lon});
+                console.log('navigator에서 현재위치 받아오기 : ', pos.lat, pos.lon);
 
-        let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                //현재 위치 마커 표시
+                const current = new kakao.maps.LatLng(pos.lat, pos.lon);
+                currentMarker = new kakao.maps.Marker({
+                    map: map,
+                    title: '현재 위치',
+                    clickable: true,
+                    position: current
+                })
+            });
+        // } else {
+        //     setLocation({latitude: getLocation.state.latitude, longitude: getLocation.state.longitude});
+        //     console.log('getLocation에서 받아오기 : ', getLocation.state.latitude, getLocation.state.longitude);
+            
+        //     //현재 위치 마커 표시
+        //     const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
+        //     currentMarker = new kakao.maps.Marker({
+        //         map: map,
+        //         title: '현재 위치',
+        //         clickable: true,
+        //         position: current
+        //     })
+        // }
+        console.log('location : ', location.latitude, location.longitude);
+
+        
+        // 지도를 표시할 div 
+        let mapContainer = document.getElementById('map'), 
             mapOption = {
                 center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
                 level: 7 // 지도의 확대 레벨
             };
         map = new kakao.maps.Map(mapContainer, mapOption);
+        //map.relayout(); //map 크기 변경 시 layout 다시 잡아주는.
 
-        //현재 위치 마커 표시
-        const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
-        let currentMarker = new kakao.maps.Marker({
-            map: map,
-            title: '현재 위치',
-            clickable: true,
-            position: current
-        })
-        //map.setCenter(current);
 
         // 마커 클러스터러를 생성합니다 
         var clusterer = new kakao.maps.MarkerClusterer({
@@ -116,7 +147,7 @@ function ShowPage() {
             minLevel: 6 // 클러스터 할 최소 지도 레벨 
         });
 
-        
+
         let trashIcon = new kakao.maps.MarkerImage('img/markerImage/trashMarker.png', new kakao.maps.Size(50, 50), {
             shape: 'poly',
             coords: '25,45,12,24,12,16,18,8,32,8,38,16,38,24',
@@ -135,16 +166,26 @@ function ShowPage() {
         trashMarker_list = trashMarker_list.map((marker) => {
             kakao.maps.event.addListener(marker, 'click', () => {
                 infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
-                    ${marker.getTitle()}
-                <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button></div>`);
+                            ${marker.getTitle()}
+                        <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button></div>`);
                 infowindow.open(map, marker);
                 map.setCenter(marker.getPosition());
             })
         })
 
+    },[])
+
+    useEffect(() => {
+        console.log("deps[location] 렌더링");
+
+        //현재 위치 마커 표시
+        const current = new kakao.maps.LatLng(location.latitude, location.longitude);
+        map.setCenter(current);
+
     }, [location])
 
     useEffect(() => {
+        console.log("deps[gu] 렌더링");
         if (prevGu !== gu && prevGu !== undefined) {
             // 주소-좌표 변환 객체 || 구(드롭다운메뉴 내에서)가 바뀔 때마다 위치 변경.
             var geocoder = new kakao.maps.services.Geocoder();
@@ -172,6 +213,8 @@ function ShowPage() {
     }, [gu])
 
     useEffect(() => {
+        console.log("deps[all] 렌더링");
+
         // 주소-좌표 변환 객체 || 구(드롭다운메뉴 내에서)가 바뀔 때마다 위치 변경.
         var geocoder = new kakao.maps.services.Geocoder();
         // 주소로 좌표를 검색합니다
@@ -200,11 +243,25 @@ function ShowPage() {
 
 
     //현재 위치 조회 버튼
-    const setCurrent = () => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            setLocation(position.coords.latitude, position.coords.longitude)
-        })
-        console.log("click 현재 위치 조회")
+    function setCurrent() {
+
+        // let a = navigator.geolocation.watchPosition((position) => {
+        //     console.log('ss')
+        //     setLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
+        //     console.log(position.coords.latitude, position.coords.longitude)
+        // })
+        // console.log(a)
+        // //navigator.geolocation.clearWatch(a);
+
+
+
+        //geo();
+        geo.then((pos) => {
+            setLocation({latitude: pos.lat, longitude: pos.lon});
+            console.log('navigator에서 현재위치 받아오기 : ', pos.lat, pos.lon)
+        });
+
+        console.log("click 현재 위치 조회");
     }
 
 
