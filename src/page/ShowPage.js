@@ -65,7 +65,7 @@ let currentMarker;
 function ShowPage() {
 
     const getLocation = useLocation()
-    
+
     let [location, setLocation] = useState({
         latitude: 0,
         longitude: 0
@@ -77,67 +77,43 @@ function ShowPage() {
     const [all, setAll] = useState("")
     console.log("all", all);
 
-
-    //동기적 처리 필요..?
-    // const geo = () => {
-    //     navigator.geolocation.getCurrentPosition((position) => {
-    //         setLocation({latitude: position.coords.latitude, longitude: position.coords.longitude})
-    //         console.log('navigator에서 현재위치 받아오기 : ', position.coords.latitude, position.coords.longitude)
-    //     }, (err) => {console.log(err)}, {maximumAge:100000, timeout:1000, enableHighAccuracy:true})
-    // }
-
     let lat, lon;
     let geo = new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((position) => {
-            lat =  position.coords.latitude;
-            lon =  position.coords.longitude;
-            resolve({lat, lon});       
-        }, (err) => {console.log(err)}, {maximumAge:100000, timeout:1000, enableHighAccuracy:true})
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            resolve({ lat, lon });
+        }, (err) => { console.log(err) }, { maximumAge: 100000, timeout: 1000, enableHighAccuracy: true })
     })
 
 
     useEffect(() => {
         console.log("deps[] 렌더링");
-        
-        //if (!getLocation.state.latitude || !getLocation.state.longitude) {
-            //useLocation state가 이전 page에서 안 넘어왔을 때(undefined)
-            geo.then((pos) => {
-                setLocation({latitude: pos.lat, longitude: pos.lon});
-                console.log('navigator에서 현재위치 받아오기 : ', pos.lat, pos.lon);
 
-                //현재 위치 마커 표시
-                const current = new kakao.maps.LatLng(pos.lat, pos.lon);
-                currentMarker = new kakao.maps.Marker({
-                    map: map,
-                    title: '현재 위치',
-                    clickable: true,
-                    position: current
-                })
-            });
-        // } else {
-        //     setLocation({latitude: getLocation.state.latitude, longitude: getLocation.state.longitude});
-        //     console.log('getLocation에서 받아오기 : ', getLocation.state.latitude, getLocation.state.longitude);
-            
-        //     //현재 위치 마커 표시
-        //     const current = new kakao.maps.LatLng(getLocation.state.latitude, getLocation.state.longitude);
-        //     currentMarker = new kakao.maps.Marker({
-        //         map: map,
-        //         title: '현재 위치',
-        //         clickable: true,
-        //         position: current
-        //     })
-        // }
+        geo.then((pos) => {
+            setLocation({ latitude: pos.lat, longitude: pos.lon });
+            console.log('navigator에서 현재위치 받아오기 : ', pos.lat, pos.lon);
+
+            //현재 위치 마커 표시
+            const current = new kakao.maps.LatLng(pos.lat, pos.lon);
+            currentMarker = new kakao.maps.Marker({
+                map: map,
+                title: '현재 위치',
+                clickable: true,
+                position: current
+            })
+        });
+
         console.log('location : ', location.latitude, location.longitude);
 
-        
+
         // 지도를 표시할 div 
-        let mapContainer = document.getElementById('map'), 
+        let mapContainer = document.getElementById('map'),
             mapOption = {
                 center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
                 level: 7 // 지도의 확대 레벨
             };
         map = new kakao.maps.Map(mapContainer, mapOption);
-        //map.relayout(); //map 크기 변경 시 layout 다시 잡아주는.
 
 
         // 마커 클러스터러를 생성합니다 
@@ -173,19 +149,22 @@ function ShowPage() {
             })
         })
 
-    },[])
+    }, [])
+
 
     useEffect(() => {
         console.log("deps[location] 렌더링");
 
-        //현재 위치 마커 표시
+        //사용자 현재 위치로 화면 이동
         const current = new kakao.maps.LatLng(location.latitude, location.longitude);
         map.setCenter(current);
 
     }, [location])
 
+
     useEffect(() => {
         console.log("deps[gu] 렌더링");
+
         if (prevGu !== gu && prevGu !== undefined) {
             // 주소-좌표 변환 객체 || 구(드롭다운메뉴 내에서)가 바뀔 때마다 위치 변경.
             var geocoder = new kakao.maps.services.Geocoder();
@@ -210,7 +189,9 @@ function ShowPage() {
             });
         }
         prevGu = gu;
+
     }, [gu])
+
 
     useEffect(() => {
         console.log("deps[all] 렌더링");
@@ -244,26 +225,13 @@ function ShowPage() {
 
     //현재 위치 조회 버튼
     function setCurrent() {
-
-        // let a = navigator.geolocation.watchPosition((position) => {
-        //     console.log('ss')
-        //     setLocation({latitude: position.coords.latitude, longitude: position.coords.longitude});
-        //     console.log(position.coords.latitude, position.coords.longitude)
-        // })
-        // console.log(a)
-        // //navigator.geolocation.clearWatch(a);
-
-
-
-        //geo();
         geo.then((pos) => {
-            setLocation({latitude: pos.lat, longitude: pos.lon});
+            setLocation({ latitude: pos.lat, longitude: pos.lon });
             console.log('navigator에서 현재위치 받아오기 : ', pos.lat, pos.lon)
         });
 
         console.log("click 현재 위치 조회");
     }
-
 
 
     //구 변경값을 state로 전달 
@@ -283,11 +251,9 @@ function ShowPage() {
 
 
 
-
-
     return (
         <Container>
-          <Menubar />
+            <Menubar />
             <Menu_wrapper>
                 <Div_area>
                     <Button fluid color='blue' onClick={setCurrent}>
@@ -296,19 +262,15 @@ function ShowPage() {
                     </Button>
                 </Div_area>
 
-                {/* <Div_area /> */}
-
                 <Div_area>
                     <FilterBtn setting={handleGu} />
                 </Div_area>
-
-                {/* <Div_area /> */}
 
                 <Div_area>
                     <ListBtn setting={handleAll} />
                 </Div_area>
             </Menu_wrapper>
-            {/* {location.longitude >=1 ? <ContainerMap id = 'map'/> : null} */}
+
             <ContainerMap id='map' />
         </Container>
 
