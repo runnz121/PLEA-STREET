@@ -77,6 +77,7 @@ function ShowPage() {
     const [all, setAll] = useState("")
     console.log("all", all);
 
+<<<<<<< Updated upstream
     let lat, lon;
     let geo = new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -87,6 +88,23 @@ function ShowPage() {
     })
 
 
+=======
+    
+    //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
+    // function createMap(location) {
+    //     setLocation(getLocation.state)
+
+
+    //     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    //         mapOption = {
+    //             center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
+    //             level: 7 // 지도의 확대 레벨
+    //         };
+    //     map = new kakao.maps.Map(mapContainer, mapOption);
+    // }
+
+  
+>>>>>>> Stashed changes
     useEffect(() => {
         console.log("deps[] 렌더링");
 
@@ -114,6 +132,7 @@ function ShowPage() {
                 level: 7 // 지도의 확대 레벨
             };
         map = new kakao.maps.Map(mapContainer, mapOption);
+      
 
 
         // 마커 클러스터러를 생성합니다 
