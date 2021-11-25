@@ -5,6 +5,7 @@ import { Image } from 'semantic-ui-react';
 
 import Result from '../util/result.json';
 import Menubar from './Menubar';
+import KakaoShare from './KakaoShare';
 // import KakaoBtn from '../shareSNS/kakaoShareButton';
 // import FacebookBtn from '../shareSNS/facebookShareButton';
 // import TwitterBtn from '../shareSNS/twitterShareButton';
@@ -56,6 +57,7 @@ const TestResult = ({ match }) => {
                 <button>다시하기</button>
               </Link> 
               <button>카카오톡 공유하기</button>
+              <KakaoShare />
               <CopyToClipboard text={url}>
                 <button onClick={copyAlert}>
                   링크 복사
