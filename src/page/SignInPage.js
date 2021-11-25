@@ -38,6 +38,8 @@ function SignInPage() {
 
     console.log(userId, userPwd)
 
+    //로그인 요청 핸들러
+    //인자값으로 id, password 받음
     const handleSubmit = (e) => {
         e.preventDefault();
         let body = {
@@ -49,7 +51,7 @@ function SignInPage() {
         JSON.stringify(body), {
             headers: { "Content-Type": `application/json` },
             })
-        //.then((response) => console.log(response.data.accessToken))
+      
         .then(response => {
             const token = response.data.accessToken;
             console.log(token)

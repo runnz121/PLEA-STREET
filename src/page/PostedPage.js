@@ -51,15 +51,17 @@ function PostedPage() {
     console.log("check",getLocation.state.boardId)
     console.log("postid",postId)
 
-    // useEffect(() => {setPostId(getLocation.state.boardId)},[])
+   //게시글 아이디를 state저장
     useEffect(() => {
         setPostId(getLocation.state.boardId)
     }, [postId])
     
+    //저장된 게시글아이디를 바탕으로 백엔드에 요청
     useEffect(() => {
         getData()
     }, [postId])
 
+    //토큰 실어서 백엔드에 요청 보냄
     const getData = () => {
         const URL = `http://localhost:8080/PLEA-STREET/board/find?postId=${postId}`;
         axios.get(URL,  
@@ -72,6 +74,7 @@ function PostedPage() {
             }).then(res => setting(res))
         }
 
+    //갖고온 데이터를 세팅
     const setting= (res) => {
         setTitle(res.data.title)
         setContent(res.data.content)

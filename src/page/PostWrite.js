@@ -54,6 +54,8 @@ function PostWrite() {
     const [content, setContent] = useState("")
     const history = useHistory();
 
+    //게시글 제출 핸들러
+    //토큰, 제목, 내용을 같이 보냄
     const SubmitHandler =(e) =>{
         const accesstoken = localStorage.getItem("accessToken")
         console.log(accesstoken)
