@@ -83,7 +83,7 @@ function ShowPage() {
             lat = position.coords.latitude;
             lon = position.coords.longitude;
             resolve({ lat, lon });
-        }, (err) => { console.log(err) }, { maximumAge: 100000, timeout: 1000, enableHighAccuracy: true })
+        }, (err) => { console.log(err) }, { maximumAge: 100000, timeout: 5000, enableHighAccuracy: true })
     })
 
 
@@ -146,13 +146,7 @@ function ShowPage() {
                 })
             })
         });
-
         console.log('location : ', location.latitude, location.longitude);
-
-
-
-
-
 
     }, [])
 
@@ -188,9 +182,9 @@ function ShowPage() {
                     // 인포윈도우로 장소에 대한 설명을 표시합니다
                     infowindow.close();
                     infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${gu}</div>`);
-                    infowindow.open(map);                    
-                    map.setLevel(8, {animate: {duration: 200}});     
-                    map.setCenter(coords);  
+                    infowindow.open(map);
+                    map.setCenter(coords);                    
+                    map.setLevel(7, {animate: {duration: 200}});     
                 }
             });
         }
