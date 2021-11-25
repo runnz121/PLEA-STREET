@@ -38,7 +38,8 @@ function App() {
             {/* 테스트페이지 */}
             <Route exact path = "/PLEA-STREET/cleanTest" component={TestStartPage}/>
             <Route exact path = "/PLEA-STREET/options" component={TestOptions}/>
-            <Route exact path = "/PLEA-STREET/result/:countryName" component={TestResult}/>
+            <Route exact path = "/PLEA-STREET/result/:score" component={TestResult}/>
+            {/* 교육페이지 */}
           </Switch>
       </BrowserRouter>
     </HelmetProvider>
