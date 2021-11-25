@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import styled from "styled-components"
 import axios from "axios"
+import { useHistory } from 'react-router'
 
 const Container = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ function SignInPage() {
 
     const [userId, setUserId] = useState("")
     const [userPwd, setUserPwd] = useState("")
+    const history = useHistory();
 
 
     const onHandlerId = (e) => {
@@ -36,6 +38,8 @@ function SignInPage() {
 
     console.log(userId, userPwd)
 
+    //로그인 요청 핸들러
+    //인자값으로 id, password 받음
     const handleSubmit = (e) => {
         e.preventDefault();
         let body = {
@@ -47,8 +51,20 @@ function SignInPage() {
         JSON.stringify(body), {
             headers: { "Content-Type": `application/json` },
             })
-        //.then((response) => console.log(response.data.accessToken))
-        .then((response) => localStorage.setItem("accessToken", "Bearer " + response.data.accessToken));
+      
+        .then(response => {
+            const token = response.data.accessToken;
+            console.log(token)
+            if(token.length != null){
+                localStorage.setItem("accessToken", token)
+                alert("어서오세요 환영합니다!")
+                history.push({
+                    pathname: "/PLEA-STREET/community"
+                })
+            }
+        }).catch(error => {
+            alert("없는 사용자 입니다");
+        })
     }
 
     return (

@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
+import { useHistory } from 'react-router'
 
 const Container = styled.div`
   display: flex;
@@ -22,13 +23,13 @@ const Btn = styled.button`
 
  function SignUpPage() {
 
-
     const [userId, setUserId] = useState("")
     const [userPwd, setUserPwd] = useState("")
     const [userPhone, setUserPhone] = useState("")
     const [userName, setUserName] = useState("")
+    const history = useHistory();
 
-
+    //아이디, 패스워드, 전화번호, 이름 값 인자로 받는 헨들러
     const onHandlerId = (e) => {
         setUserId(e.target.value)
     }
@@ -46,6 +47,7 @@ const Btn = styled.button`
     }
 
 
+    //회원가입 요청 헨들러
     const handleSubmit = (e) => {
         e.preventDefault();
         let body = {
@@ -59,7 +61,9 @@ const Btn = styled.button`
         JSON.stringify(body), {
             headers: { "Content-Type": `application/json` },
             })
-        .then((response) => console.log(response.data));
+        .then((response) => history.push({
+            pathname:"/PLEA-STREET/signin"
+        }));
     }
 
 

@@ -5,8 +5,6 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router'
 import Menubar from '../component/Menubar'
 
-
-
 const Wrap = styled.div`
     max-width: 640px;
     margin: 0px auto;
@@ -52,11 +50,7 @@ const Span = styled.span`
       font-weight: bold;
       text-align: center;
     }
-
 `
-
-
-
 
 function Landing(props) {
     const history = useHistory();
