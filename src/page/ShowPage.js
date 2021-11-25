@@ -59,7 +59,7 @@ var infowindow = new kakao.maps.InfoWindow({
     removable: true,
     zIndex: 5,
 });
-
+let trashMarker_list;
 let currentMarker;
 
 function ShowPage() {
@@ -77,7 +77,6 @@ function ShowPage() {
     const [all, setAll] = useState("")
     console.log("all", all);
 
-<<<<<<< Updated upstream
     let lat, lon;
     let geo = new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -88,23 +87,6 @@ function ShowPage() {
     })
 
 
-=======
-    
-    //최초 로딩시 현재 위치 및, 전체 휴지통 위치 마커 표시
-    // function createMap(location) {
-    //     setLocation(getLocation.state)
-
-
-    //     let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    //         mapOption = {
-    //             center: new kakao.maps.LatLng(location.latitude, location.longitude), // 지도의 중심좌표
-    //             level: 7 // 지도의 확대 레벨
-    //         };
-    //     map = new kakao.maps.Map(mapContainer, mapOption);
-    // }
-
-  
->>>>>>> Stashed changes
     useEffect(() => {
         console.log("deps[] 렌더링");
 
@@ -132,7 +114,6 @@ function ShowPage() {
                 level: 7 // 지도의 확대 레벨
             };
         map = new kakao.maps.Map(mapContainer, mapOption);
-      
 
 
         // 마커 클러스터러를 생성합니다 
@@ -147,24 +128,24 @@ function ShowPage() {
             shape: 'poly',
             coords: '25,45,12,24,12,16,18,8,32,8,38,16,38,24',
         })
-        let trashMarker_list = data.map((i) => {
+        trashMarker_list = data.map((i) => {
             //console.log(i.위도)
             return new kakao.maps.Marker({
                 position: new kakao.maps.LatLng(i.위도, i.경도),
                 clickable: true,
-                title: `${i.자치구명} ${i.설치위치}`,
+                title: `${i.자치구명} ${i.도로명} ${i.설치위치}`,
                 image: trashIcon
             })
         })
         clusterer.addMarkers(trashMarker_list);
 
-        trashMarker_list = trashMarker_list.map((marker) => {
+        let trashMarker_event_list = trashMarker_list.map((marker) => {
             kakao.maps.event.addListener(marker, 'click', () => {
                 infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
                             ${marker.getTitle()}
                         <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button></div>`);
                 infowindow.open(map, marker);
-                map.setCenter(marker.getPosition());
+                //map.setCenter(marker.getPosition()); //마커 누르면 그 위치로 맵 중심 이동.
             })
         })
 
@@ -193,17 +174,18 @@ function ShowPage() {
                 if (status === kakao.maps.services.Status.OK) {
                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                        map: map,
-                        position: coords
-                    });
+                    // // 결과값으로 받은 위치를 마커로 표시합니다
+                    // var marker = new kakao.maps.Marker({
+                    //     map: map,
+                    //     position: coords
+                    // });
 
                     // 인포윈도우로 장소에 대한 설명을 표시합니다
                     infowindow.close();
                     infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${gu}</div>`);
-                    infowindow.open(map, marker);
-                    map.setCenter(coords);
+                    infowindow.open(map);                    
+                    map.setLevel(8, {animate: {duration: 200}});     
+                    map.setCenter(coords);  
                 }
             });
         }
@@ -222,20 +204,22 @@ function ShowPage() {
             // 정상적으로 검색이 완료됐으면 
             if (status === kakao.maps.services.Status.OK) {
                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                // 결과값으로 받은 위치를 마커로 표시합니다
-                var marker = new kakao.maps.Marker({
-                    map: map,
-                    position: coords
+                
+                let trashMarkerL = trashMarker_list.filter((marker, i, array) => {
+                    return marker.getTitle() === all;
                 });
-                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                //console.log(trashMarker_list)
+                //console.log(trashMarkerL)
 
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
                 infowindow.close();
                 infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
                         ${all}
                         <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${all},${result[0].y},${result[0].x}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button>
                     </div>`);
-                infowindow.open(map, marker);
+                infowindow.open(map, trashMarkerL[0]);
                 map.setCenter(coords);
+                map.setLevel(5, {animate: {duration: 200}});
             }
         });
 
