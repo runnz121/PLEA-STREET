@@ -70,57 +70,53 @@ const TestOptions = () => {
     const [loading, setLoading] = useState(false);
     const [num, setNum] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(1);
+    const [score, setScore] = useState(0);
     const slideRef = createRef(null);
     const TOTAL_SLIDES = 10;
     const history = useHistory();
-    const [mbti, setMbti] = useState([]);
-
-    const nextSlideFir = () => {
-        setMbti(mbti + Questions[num].answers[0].type);
+    
+    const oClick = (e) => {
         setNum(num + 1);
         setCurrentSlide(currentSlide + 1);
         slideRef.current.style.transform += 'translateX(-100vw)';
+
+        const selectAnswer = e.target.value
+        const answer = JSON.stringify(Questions[num].answer).replaceAll("\"", "")
+
+        if(selectAnswer === answer) {
+          setScore(score => score+1)
+        }
     };
-    const nextSlideSec = () => {
-        setMbti(mbti + Questions[num].answers[1].type);
+    const xClick = (e) => {
         setNum(num + 1);
         setCurrentSlide(currentSlide + 1);
         slideRef.current.style.transform += 'translateX(-100vw)';
+
+        const selectAnswer = e.target.value
+        const answer = JSON.stringify(Questions[num].answer).replaceAll("\"", "")
+
+        if(selectAnswer === answer) {
+          setScore(score => score+1)
+        }
     };
 
-    const mbtiChecker = () => {
+    const resultChecker = () => {
         setLoading(true);
-        let map = {};
-        let result = [];
-        for (let i = 0; i < mbti.length; i++) {
-            if (mbti[i] in map) {
-                map[mbti[i]] += 1;
-            } else {
-                map[mbti[i]] = 1;
-            }
-        }
-        for (let count in map) {
-            if (map[count] >= 2) {
-                result.push(count);
-            }
-        }
 
         setTimeout(() => {
-            const examResult = result.join('');
-            history.push(`/PLEA-STREET/result/${examResult}`);
+            const testResult = score
+            history.push(`/PLEA-STREET/result/${testResult}`);
         }, 3000);
     };
     useEffect(() => {
-        currentSlide > TOTAL_SLIDES && mbtiChecker();
+        currentSlide > TOTAL_SLIDES && resultChecker();
     }, [currentSlide]);
 
     return (
       <>
       <Menubar />
       <Wrap1>
-        
           <Wrap>
-            
             옵션페이지!
             <Content>
               {!loading && (
@@ -142,12 +138,8 @@ const TestOptions = () => {
                                               </h1>
                                             </Top>
                                             <BtnBox>
-                                              <Button onClick={nextSlideFir}>
-                                                {item.answers[0].content}
-                                              </Button>
-                                              <Button onClick={nextSlideSec}>
-                                                {item.answers[1].content}
-                                              </Button>
+                                              <Button onClick={oClick} value='O'>O</Button>
+                                              <Button onClick={xClick} value='X'>X</Button>
                                             </BtnBox>
                                           </Detail>
                                     );

@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
-import Countries from '../util/result.json';
-// import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { Image } from 'semantic-ui-react';
+
+import Result from '../util/result.json';
 import Menubar from './Menubar';
+import KakaoShare from './KakaoShare';
 // import KakaoBtn from '../shareSNS/kakaoShareButton';
 // import FacebookBtn from '../shareSNS/facebookShareButton';
 // import TwitterBtn from '../shareSNS/twitterShareButton';
@@ -15,9 +18,6 @@ const Wrap = styled.div`
 const Content = styled.div`
 
 `
-const Header = styled.div`
-
-`
 const ResultType = styled.div`
 
 `
@@ -27,142 +27,44 @@ const ResultTitle = styled.div`
 
 const TestResult = ({ match }) => {
     const url = window.location.href;
-    const { countryName } = match.params;
-    const nation = Countries[countryName];
+    const { score } = match.params;
+    const result = Result[score];
 
-    if (!nation) {
-        return (
-                <Wrap>
-                  <Menubar />
-                존재하지 않는 결과입니다.
-                </Wrap>
-        );
-    }
+    console.log(match)
+
     const copyAlert = () => {
         alert('링크 복사완료!');
     };
     return (
         <>
-            <Menubar />
-            {/* <div className={styles.wrapper} key={nation.id}> */}
-            <Wrap key={nation.id}>
-              <Content>
-                <Header>
-                  <Link to='/'>
-                    <div>아이콘</div>
-                  </Link>
-                </Header>
-                <div>이미지 자리{nation.img}</div>
-                <ResultType>
-                  <h1>{nation.subject}</h1>
-                  <br />
-                </ResultType>
-                <ResultTitle>
-                  <h2>{nation.id}의 여행 특징은?</h2>
-                </ResultTitle>
-              </Content>
-            </Wrap>
-                {/* <div className={styles.container}>
-                    <div className={styles.header}>
-                        <>
-                            <Link to="/">
-                                <FontAwesomeIcon
-                                    icon={faEarlybirds}
-                                    className={styles.birds}
-                                />
-                            </Link>
-                        </>
-                    </div>
-                    <img
-                        src={nation.img}
-                        alt="img"
-                        className={styles.main__img}
-                    />
-                    <div className={styles.result__type}>
-                        <h1 className={styles.result__city}>
-                            {nation.subject}
-                        </h1>
-                        <br />
-                    </div>
-                    <div className={styles.reust__title}>
-                        <h2>{nation.id}의 여행특징은?</h2>
-                    </div>
-                    <ul className={styles.result__style__wrapper}>
-                        {nation.description.map((item) => {
-                            return (
-                                <li
-                                    className={styles.result__style__detail}
-                                    key={item.des}
-                                >
-                                    {item.des}
-                                </li>
-                            );
-                        })}
-                    </ul>
-                    <div className={styles.result__advice__box}>
-                        <div className={styles.result__advice}>
-                            <a href={`${/result/}${nation.duo[0].subhead}`}>
-                                <img
-                                    src={nation.duo[0].img}
-                                    alt="mbti캐릭터"
-                                    Link="/"
-                                />
-                            </a>
-                            <div>
-                                <h4>함께하면 좋아요!</h4>
-                                <p className={styles.advice__strong}>
-                                    찰떡궁합 그 자체 {nation.duo[0].subhead}
-                                </p>
-                                <p>{nation.duo[0].des}</p>
-                            </div>
-                        </div>
-                        <div className={styles.result__advice}>
-                            <Link
-                                to={`${/result/}${nation.counter[0].subhead}`}
-                            >
-                                <img
-                                    src={nation.counter[0].img}
-                                    alt="mbti캐릭터"
-                                />
-                            </Link>
-
-                            <div>
-                                <h4>가능하면 피하는게 좋겠어요!</h4>
-                                <p className={styles.advice__strong}>
-                                    도망가세요 {nation.counter[0].subhead}
-                                </p>
-                                <p>{nation.counter[0].des}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.shareBox}>
-                        <KakaoBtn />
-                        <FacebookBtn />
-                        <TwitterBtn />
-                    </div>
-                    <div className={styles.button__box}>
-                        <Link to="/" className={styles.button}>
-                            다시하기
-                            <FontAwesomeIcon
-                                icon={faSignOutAlt}
-                                className={styles.icon}
-                            />
-                        </Link>
-                        <CopyToClipboard text={url}>
-                            <button
-                                className={styles.copy__button}
-                                onClick={copyAlert}
-                            >
-                                링크복사
-                                <FontAwesomeIcon
-                                    icon={faCopy}
-                                    className={styles.icon}
-                                />
-                            </button>
-                        </CopyToClipboard>
-                    </div>
-                </div>
-            </div> */}
+          <Menubar />
+          <Wrap key={result.id}>
+            <Content>
+              <div>이미지 자리{result.img}</div>
+              <Image src={result.img} size='small' />
+              <Image src='img/markerImage/trashMarker.png' size='small' />
+              <img src='img/markerImage/trashMarker.png' alt='dgd' width='100px' height='200pxx' />
+              <ResultType>
+                <h1>{result.subject}</h1>
+                <br />
+              </ResultType>
+              <ResultTitle>
+                <h2>{result.subhead[0].head}</h2>
+                <h2>{result.id}</h2>
+                <h2>{result.subhead[1].head}</h2>
+              </ResultTitle>
+              <Link to="/PLEA-STREET/cleanTest">
+                <button>다시하기</button>
+              </Link> 
+              <button>카카오톡 공유하기</button>
+              <KakaoShare />
+              <CopyToClipboard text={url}>
+                <button onClick={copyAlert}>
+                  링크 복사
+                </button>
+              </CopyToClipboard>
+            </Content>
+          </Wrap>
         </>
     );
 };
