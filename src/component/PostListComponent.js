@@ -1,7 +1,8 @@
-import React,{useState, useRef} from 'react'
+import React,{useState, useRef, useEffect} from 'react'
 import useFetch from "./PostComponent"
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
+
 
 const Wrapper = styled.div`
     width : 640px;
@@ -33,9 +34,9 @@ const ListContent = styled.div`
 
 function PostListComponent() {
   const [pageNum, setPageNum] = useState(0);
+  const [boardId1, setBoardId1] = useState();
   const {list, hasMore, isLoading} = useFetch(pageNum);
-  const history = useHistory();
-
+  const history = useHistory();   
 
   const observerRef = useRef();
   const options = {
@@ -43,12 +44,20 @@ function PostListComponent() {
       rootMargin:"10px",
       threshold: 1
   }
+  console.log("boardIdcompoennt ", boardId1)
+  
 
-  const pageHandler = (e) => {
+  const pageHandler = (prop) => {
+      setBoardId1(prop)
+      console.log("prop",prop)
       history.push({
-          pathname: "/PLEA-STREET/postwrite"
+          pathname: "/PLEA-STREET/posted",
+          state: {
+              boardId: prop
+          }
       })
   }
+
 
   const observer = (ele) => {
       if(isLoading) return;
