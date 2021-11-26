@@ -9,6 +9,7 @@ import SignUpPage from './page/SignUpPage.js';
 import SignInPage from './page/SignInPage.js'
 import PostWrite from './page/PostWrite.js';
 import PostedPage from './page/PostedPage.js'
+import RecyclePage from './page/RecyclePage'
 import TestStartPage from './component/TestStartPage.js';
 import TestOptions from './component/TestOptions.js'
 import TestResult from './component/TestResult.js';
@@ -16,10 +17,7 @@ import TestResult from './component/TestResult.js';
 import './App.css'
 
 
-
-
 function App() {
-
 
   return (
     <HelmetProvider>
@@ -40,6 +38,7 @@ function App() {
             <Route exact path = "/PLEA-STREET/options" component={TestOptions}/>
             <Route exact path = "/PLEA-STREET/result/:score" component={TestResult}/>
             {/* 교육페이지 */}
+            <Route exact path = "/PLEA-STREET/recycle" component={RecyclePage}/>
           </Switch>
       </BrowserRouter>
     </HelmetProvider>

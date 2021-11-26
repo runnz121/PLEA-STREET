@@ -38,6 +38,15 @@ const Header = styled.span`
       font-weight: bold;
       text-align: center;
     }
+    @media (max-width: 640px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'BinggraeMelona-Bold';
+        font-weight: bold;
+        text-align: center;
+      }
 `
 
 const Span = styled.span`
@@ -68,6 +77,7 @@ function Landing(props) {
     console.log(Clatitude, Clongitude)
   
     const getLocation = (props) => {
+        //console.log(process.env.PUBLIC_URL)
         if (Clongitude >=1 && Clatitude >=1) {
             history.push({
                 pathname: "/PLEA-STREET/mapSearch",
@@ -89,12 +99,12 @@ function Landing(props) {
             <Span>-</Span>
             <Span>STREET</Span>
           </Header>
-          <ImgCon onClick = {getLocation}>
+          {/* <ImgCon onClick = {getLocation}> */}
             <MainImage />
               {/* <Btn onClick = {getLocation}>
                   <MainImage/>
               </Btn> */}
-          </ImgCon>
+          {/* </ImgCon> */}
         </Wrap>
     )
 }

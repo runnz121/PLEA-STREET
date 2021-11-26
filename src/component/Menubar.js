@@ -117,7 +117,7 @@ function Menubar() {
             <span>커뮤니티</span>
           </MenuBtn>
         </Link>
-        <Link to='/PLEA-STREET/' style={{ color: 'black' }}>
+        <Link to='/PLEA-STREET/recycle' style={{ color: 'black' }}>
           <MenuBtn>
             <span>교육</span>
           </MenuBtn>
