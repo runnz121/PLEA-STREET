@@ -21,7 +21,6 @@ const Top = styled.div`
     justify-content: space-around;
 `
 
-
 const Body = styled.div`
     width: 100%;
     height: 80vh;
@@ -45,7 +44,6 @@ const Content = styled.input`
     height: 500px;
     border: 1px solid green;
 `
-
 
 
 function PostWrite() {
