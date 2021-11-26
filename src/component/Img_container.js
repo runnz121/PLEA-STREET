@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import closeImg from '../img/2.png';
 import openImg from '../img/1.png';
+import { useHistory, Link } from "react-router-dom";
 
 const Img = styled.div`
     width : 100%;
@@ -44,7 +45,7 @@ const ControlMap = styled.div`
         }
     }
 
-    
+    color: black;
     //width: 5em;
     //height: 30px;
     //border-radius: 1em;
@@ -69,34 +70,42 @@ const ImgContainer = styled.div``
 
 
 function MainImage() {
-  
+
     return (
         <ImgContainer>
             <Img>
-                <ControlMap>
-                    <span>위치검색</span>
-                    <ImgStyle1 src = {closeImg} alt ="can_close"/>
-                    <ImgStyle2 src = {openImg} alt ="can_open"/> 
-                </ControlMap>
-                <ControlMap>
-                    <span>검사</span>
-                    <ImgStyle1 src = {closeImg} alt ="can_close"/>
-                    <ImgStyle2 src = {openImg} alt ="can_open"/> 
-                </ControlMap>
+                <Link to='/PLEA-STREET/mapSearch'>
+                    <ControlMap>
+                        <span>위치검색</span>
+                        <ImgStyle1 src={closeImg} alt="can_close" />
+                        <ImgStyle2 src={openImg} alt="can_open" />
+                    </ControlMap>
+                </Link>
+                <Link to='/PLEA-STREET/cleanTest'>
+                    <ControlMap>
+                        <span>검사</span>
+                        <ImgStyle1 src={closeImg} alt="can_close" />
+                        <ImgStyle2 src={openImg} alt="can_open" />
+                    </ControlMap>
+                </Link>
             </Img>
             <Img>
-            <ControlMap>
-                <span>커뮤니티</span>
-                <ImgStyle1 src = {closeImg} alt ="can_close"/>
-                <ImgStyle2 src = {openImg} alt ="can_open"/> 
-            </ControlMap>
-            <ControlMap>
-                <span>교육</span>
-                <ImgStyle1 src = {closeImg} alt ="can_close"/>
-                <ImgStyle2 src = {openImg} alt ="can_open"/> 
-            </ControlMap>
-        </Img>
-    </ImgContainer>
+                <Link to='/PLEA-STREET/community'>
+                    <ControlMap>
+                        <span>커뮤니티</span>
+                        <ImgStyle1 src={closeImg} alt="can_close" />
+                        <ImgStyle2 src={openImg} alt="can_open" />
+                    </ControlMap>
+                </Link>
+                <Link to='/PLEA-STREET/recycle'>
+                    <ControlMap>
+                        <span>교육</span>
+                        <ImgStyle1 src={closeImg} alt="can_close" />
+                        <ImgStyle2 src={openImg} alt="can_open" />
+                    </ControlMap>
+                </Link>
+            </Img>
+        </ImgContainer>
     )
 }
 
