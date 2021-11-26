@@ -99,12 +99,12 @@ function Landing(props) {
             <Span>-</Span>
             <Span>STREET</Span>
           </Header>
-          <ImgCon onClick = {getLocation}>
+          {/* <ImgCon onClick = {getLocation}> */}
             <MainImage />
               {/* <Btn onClick = {getLocation}>
                   <MainImage/>
               </Btn> */}
-          </ImgCon>
+          {/* </ImgCon> */}
         </Wrap>
     )
 }
