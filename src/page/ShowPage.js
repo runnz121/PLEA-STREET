@@ -252,15 +252,55 @@ function ShowPage() {
                     return marker.getTitle() === all;
                 });
                 //console.log(trashMarker_list)
-                //console.log(trashMarkerL)
+                //console.log(trashMarkerL[0])
+
+                let content = `
+                <div style="background: rgb(255, 255, 255); 
+                            border: 1px solid rgb(118, 129, 168);
+                            padding: 5px;
+                            background-color: #FFFFFF;
+                            box-shadow: 0px 1px 2px #888;
+                            border-radius: 10px;
+                            display: inline-flex;
+                            flex-direction: row;
+                            align-items: center;
+                        ">
+                    <div style="
+                        width:150px;
+                        text-align:center;
+                        padding:10px;      
+                    ">
+                        <div style="width:120px; white-space: normal;">${all}</div>
+                        
+                    </div>
+
+                        <a style="width:60px; 
+                                cursor:pointer; 
+                                padding: 5px;
+                                padding-top: 30px;
+                                padding-bottom: 30px;
+                                box-shadow: 0px 1px 2px #888;
+                                border-radius: 10px;
+                                border: 1px solid rgb(118, 129, 168);
+                                background-color: #1678c2; //#9dcef2;
+                                color: #FFFFFF;
+                                text-align: center;
+                                " onclick="location.href='https://map.kakao.com/link/to/${all},${result[0].y},${result[0].x}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</a>
+
+                </div>`;
+
+                customOverlay.setContent(content);
+                customOverlay.setPosition(trashMarkerL[0].getPosition())
+                customOverlay.setMap(map);
+
 
                 // 인포윈도우로 장소에 대한 설명을 표시합니다
-                infowindow.close();
-                infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
-                        ${all}
-                        <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${all},${result[0].y},${result[0].x}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button>
-                    </div>`);
-                infowindow.open(map, trashMarkerL[0]);
+                // infowindow.close();
+                // infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
+                //         ${all}
+                //         <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${all},${result[0].y},${result[0].x}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</button>
+                //     </div>`);
+                // infowindow.open(map, trashMarkerL[0]);
                 map.setCenter(coords);
                 map.setLevel(5, {animate: {duration: 200}});
             }
