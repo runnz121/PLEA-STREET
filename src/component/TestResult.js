@@ -1,11 +1,14 @@
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Image } from 'semantic-ui-react';
+import { Image, Button } from 'semantic-ui-react';
+import { useState } from 'react';
 
 import Result from '../util/result.json';
 import Menubar from './Menubar';
 import KakaoShare from './KakaoShare';
+import TestResultDetail from './TestResultDetail';
+import Image1 from '../img/1.png'
 // import KakaoBtn from '../shareSNS/kakaoShareButton';
 // import FacebookBtn from '../shareSNS/facebookShareButton';
 // import TwitterBtn from '../shareSNS/twitterShareButton';
@@ -24,6 +27,11 @@ const ResultType = styled.div`
 const ResultTitle = styled.div`
 
 `
+const HideDiv = styled.div`
+  ${({ login }) => {
+      return login ? `display: block` : null;
+    }}
+`
 
 const TestResult = ({ match }) => {
     const url = window.location.href;
@@ -35,6 +43,8 @@ const TestResult = ({ match }) => {
     const copyAlert = () => {
         alert('링크 복사완료!');
     };
+
+
     return (
         <>
           <Menubar />
@@ -43,6 +53,7 @@ const TestResult = ({ match }) => {
               <div>이미지 자리{result.img}</div>
               <Image src={result.img} size='small' />
               <Image src='img/markerImage/trashMarker.png' size='small' />
+              <Image src={Image1} size='small' />
               <img src='img/markerImage/trashMarker.png' alt='dgd' width='100px' height='200pxx' />
               <ResultType>
                 <h1>{result.subject}</h1>
@@ -63,6 +74,7 @@ const TestResult = ({ match }) => {
                   링크 복사
                 </button>
               </CopyToClipboard>
+              <TestResultDetail />
             </Content>
           </Wrap>
         </>
