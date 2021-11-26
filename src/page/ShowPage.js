@@ -63,7 +63,7 @@ let customOverlay = new kakao.maps.CustomOverlay({
     //clickable: true,
     zIndex: 5,
     //xAnchor: 0.8,
-    yAnchor: 1.5,
+    yAnchor: 1.4,
 })
 
 let trashMarker_list;
@@ -128,7 +128,7 @@ function ShowPage() {
             });
 
 
-            let trashIcon = new kakao.maps.MarkerImage('img/markerImage/trashMarker.png', new kakao.maps.Size(50, 50), {
+            let trashIcon = new kakao.maps.MarkerImage('img/markerImage/trashMarker3.png', new kakao.maps.Size(50, 50), {
                 shape: 'poly',
                 coords: '25,45,12,24,12,16,18,8,32,8,38,16,38,24',
             })
@@ -153,7 +153,7 @@ function ShowPage() {
                                 box-shadow: 0px 1px 2px #888;
                                 border-radius: 10px;
                                 display: inline-flex;
-                                flex-direction: row;
+                                flex-direction: column;
                                 align-items: center;
                             ">
                         <div style="
@@ -161,23 +161,11 @@ function ShowPage() {
                             text-align:center;
                             padding:10px;      
                         ">
-                            <div style="width:120px; white-space: normal;">${marker.getTitle()}</div>
-                            
+                            <div style="white-space: pre-line; word-break: keep-all;">${marker.getTitle()}</div>
                         </div>
-
-                            <a style="width:60px; 
-                                    cursor:pointer; 
-                                    padding: 5px;
-                                    padding-top: 30px;
-                                    padding-bottom: 30px;
-                                    box-shadow: 0px 1px 2px #888;
-                                    border-radius: 10px;
-                                    border: 1px solid rgb(118, 129, 168);
-                                    background-color: #1678c2; //#9dcef2;
-                                    color: #FFFFFF;
-                                    text-align: center;
-                                    " onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${pos.lat},${pos.lon}'">길찾기</a>
-
+                        <button style="margin-bottom:5px;" class="ui primary button" onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${pos.lat},${pos.lon}'">
+                            길찾기
+                        </button>
                     </div>`;
 
                     customOverlay.setContent(content);
@@ -187,10 +175,21 @@ function ShowPage() {
                     //infowindow.setContent(content);
                     //infowindow.open(map, marker);
                     //map.setCenter(marker.getPosition()); //마커 누르면 그 위치로 맵 중심 이동.
-                })
+                });
             })
         });
         console.log('location : ', location.latitude, location.longitude);
+        
+        let zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+        
+        //일정 이상 지도 확대되면 overlay 지워지도록
+        kakao.maps.event.addListener(map, 'zoom_changed', () => {        
+            let level = map.getLevel();
+            if (level >= 6) {
+                customOverlay.setMap(null);
+            }
+        });
 
     }, [])
 
@@ -262,7 +261,7 @@ function ShowPage() {
                             box-shadow: 0px 1px 2px #888;
                             border-radius: 10px;
                             display: inline-flex;
-                            flex-direction: row;
+                            flex-direction: column;
                             align-items: center;
                         ">
                     <div style="
@@ -270,23 +269,11 @@ function ShowPage() {
                         text-align:center;
                         padding:10px;      
                     ">
-                        <div style="width:120px; white-space: normal;">${all}</div>
-                        
+                        <div style="white-space: pre-line; word-break: keep-all;">${all}</div>
                     </div>
-
-                        <a style="width:60px; 
-                                cursor:pointer; 
-                                padding: 5px;
-                                padding-top: 30px;
-                                padding-bottom: 30px;
-                                box-shadow: 0px 1px 2px #888;
-                                border-radius: 10px;
-                                border: 1px solid rgb(118, 129, 168);
-                                background-color: #1678c2; //#9dcef2;
-                                color: #FFFFFF;
-                                text-align: center;
-                                " onclick="location.href='https://map.kakao.com/link/to/${all},${result[0].y},${result[0].x}/from/현재위치,${location.latitude},${location.longitude}'">길찾기</a>
-
+                    <button style="margin-bottom:5px;" class="ui primary button" onclick="location.href='https://map.kakao.com/link/to/${all},${result[0].y},${result[0].x}/from/현재위치,${location.latitude},${location.longitude}'">
+                        길찾기
+                    </button>
                 </div>`;
 
                 customOverlay.setContent(content);
