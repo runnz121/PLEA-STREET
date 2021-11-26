@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import closeImg from '../img/2.png';
+import openImg from '../img/1.png';
 
 const Img = styled.div`
     width : 100%;
-    height : 60vh;
+    height : 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +27,7 @@ const ImgStyle2 = styled.img`
 `
 
 const ControlMap = styled.div`
+    flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,16 +45,40 @@ const ControlMap = styled.div`
     }
 `
 
+const ImgContainer = styled.div``
+const Text = styled.div`
+    justify-content: center;
+`
+
 function MainImage() {
   
     return (
+        <ImgContainer>
             <Img>
                 <ControlMap>
-                    <ImgStyle1 src = 'img/2.png' alt ="can_close"/>
-                    <ImgStyle2 src = 'img/1.png' alt ="can_open"/> 
+                    <Text>위치검색</Text>
+                    <ImgStyle1 src = {closeImg} alt ="can_close"/>
+                    <ImgStyle2 src = {openImg} alt ="can_open"/> 
+                </ControlMap>
+                <ControlMap>
+                    <Text>검사</Text>
+                    <ImgStyle1 src = {closeImg} alt ="can_close"/>
+                    <ImgStyle2 src = {openImg} alt ="can_open"/> 
                 </ControlMap>
             </Img>
-          
+            <Img>
+            <ControlMap>
+                <Text>커뮤니티</Text>
+                <ImgStyle1 src = {closeImg} alt ="can_close"/>
+                <ImgStyle2 src = {openImg} alt ="can_open"/> 
+            </ControlMap>
+            <ControlMap>
+                <Text>교육</Text>
+                <ImgStyle1 src = {closeImg} alt ="can_close"/>
+                <ImgStyle2 src = {openImg} alt ="can_open"/> 
+            </ControlMap>
+        </Img>
+    </ImgContainer>
     )
 }
 
