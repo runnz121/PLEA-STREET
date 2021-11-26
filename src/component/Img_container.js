@@ -43,12 +43,30 @@ const ControlMap = styled.div`
             display : none;
         }
     }
+
+    
+    //width: 5em;
+    //height: 30px;
+    //border-radius: 1em;
+    //margin: 0.5em;
+    transition: all 0.3s;
+    &:hover{
+      transform: scale(1.08);
+      //background-color: #34558b;
+      color: white;
+    }
+    span{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      font-weight: bold;
+    }
 `
 
 const ImgContainer = styled.div``
-const Text = styled.div`
-    justify-content: center;
-`
+
 
 function MainImage() {
   
@@ -56,24 +74,24 @@ function MainImage() {
         <ImgContainer>
             <Img>
                 <ControlMap>
-                    <Text>위치검색</Text>
+                    <span>위치검색</span>
                     <ImgStyle1 src = {closeImg} alt ="can_close"/>
                     <ImgStyle2 src = {openImg} alt ="can_open"/> 
                 </ControlMap>
                 <ControlMap>
-                    <Text>검사</Text>
+                    <span>검사</span>
                     <ImgStyle1 src = {closeImg} alt ="can_close"/>
                     <ImgStyle2 src = {openImg} alt ="can_open"/> 
                 </ControlMap>
             </Img>
             <Img>
             <ControlMap>
-                <Text>커뮤니티</Text>
+                <span>커뮤니티</span>
                 <ImgStyle1 src = {closeImg} alt ="can_close"/>
                 <ImgStyle2 src = {openImg} alt ="can_open"/> 
             </ControlMap>
             <ControlMap>
-                <Text>교육</Text>
+                <span>교육</span>
                 <ImgStyle1 src = {closeImg} alt ="can_close"/>
                 <ImgStyle2 src = {openImg} alt ="can_open"/> 
             </ControlMap>
