@@ -54,11 +54,18 @@ const Div_area = styled.div`
 let map;
 let prevGu;
 let { kakao } = window;
-var infowindow = new kakao.maps.InfoWindow({
+let infowindow = new kakao.maps.InfoWindow({
     //content: 
     removable: true,
     zIndex: 5,
 });
+let customOverlay = new kakao.maps.CustomOverlay({
+    //clickable: true,
+    zIndex: 5,
+    //xAnchor: 0.8,
+    yAnchor: 1.5,
+})
+
 let trashMarker_list;
 let currentMarker;
 
@@ -138,10 +145,47 @@ function ShowPage() {
 
             let trashMarker_event_list = trashMarker_list.map((marker) => {
                 kakao.maps.event.addListener(marker, 'click', () => {
-                    infowindow.setContent(`<div style="width:150px;text-align:center;padding:10px 15px;">
-                            ${marker.getTitle()}
-                        <button style="margin:10px 0 0 0; padding:5px;" onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${pos.lat},${pos.lon}'">길찾기</button></div>`);
-                    infowindow.open(map, marker);
+                    let content = `
+                    <div style="background: rgb(255, 255, 255); 
+                                border: 1px solid rgb(118, 129, 168);
+                                padding: 5px;
+                                background-color: #FFFFFF;
+                                box-shadow: 0px 1px 2px #888;
+                                border-radius: 10px;
+                                display: inline-flex;
+                                flex-direction: row;
+                                align-items: center;
+                            ">
+                        <div style="
+                            width:150px;
+                            text-align:center;
+                            padding:10px;      
+                        ">
+                            <div style="width:120px; white-space: normal;">${marker.getTitle()}</div>
+                            
+                        </div>
+
+                            <a style="width:60px; 
+                                    cursor:pointer; 
+                                    padding: 5px;
+                                    padding-top: 30px;
+                                    padding-bottom: 30px;
+                                    box-shadow: 0px 1px 2px #888;
+                                    border-radius: 10px;
+                                    border: 1px solid rgb(118, 129, 168);
+                                    background-color: #1678c2; //#9dcef2;
+                                    color: #FFFFFF;
+                                    text-align: center;
+                                    " onclick="location.href='https://map.kakao.com/link/to/${marker.getTitle()},${marker.getPosition().Ma},${marker.getPosition().La}/from/현재위치,${pos.lat},${pos.lon}'">길찾기</a>
+
+                    </div>`;
+
+                    customOverlay.setContent(content);
+                    customOverlay.setPosition(marker.getPosition())
+                    customOverlay.setMap(map);
+
+                    //infowindow.setContent(content);
+                    //infowindow.open(map, marker);
                     //map.setCenter(marker.getPosition()); //마커 누르면 그 위치로 맵 중심 이동.
                 })
             })
@@ -181,8 +225,8 @@ function ShowPage() {
 
                     // 인포윈도우로 장소에 대한 설명을 표시합니다
                     infowindow.close();
-                    infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${gu}</div>`);
-                    infowindow.open(map);
+                    // infowindow.setContent(`<div style="width:150px;text-align:center;padding:6px 0;">${gu}</div>`);
+                    // infowindow.open(map);
                     map.setCenter(coords);                    
                     map.setLevel(7, {animate: {duration: 200}});     
                 }
