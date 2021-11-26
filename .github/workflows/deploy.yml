@@ -54,7 +54,7 @@ jobs:
       # gh-pages로 배포
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
-        env:
+        with:
           PERSONAL_TOKEN: ${{secrets.GIT_TOKEN}}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./build
