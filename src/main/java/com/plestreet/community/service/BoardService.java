@@ -1,6 +1,11 @@
 package com.plestreet.community.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.plestreet.community.domain.Board;
+import com.plestreet.community.domain.Comments;
 import com.plestreet.community.domain.User;
 import com.plestreet.community.dto.BoardCreateDto;
 import com.plestreet.community.dto.BoardResponseDto;
@@ -65,10 +71,14 @@ public class BoardService {
 	public BoardResponseDto selectedPost(String boardId) {
 		Board board = boardRepo.findByboardId(boardId)
 			.orElseThrow(() -> new BoardNotFoundException("선택된 게시글이 없습니다"));
+
+		log.info(String.valueOf(board));
+
 		return BoardResponseDto.builder()
-				.title(board.getBoardTitle())
-				.content(board.getBoardContent())
-				.boardId(board.getBoardId())
-				.build();
+			.title(board.getBoardTitle())
+			.content(board.getBoardContent())
+			.boardId(board.getBoardId())
+			.commentsList(board.getComments())
+			.build();
 	}
 }

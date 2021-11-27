@@ -1,9 +1,5 @@
 package com.plestreet.community.dto;
 
-import java.util.List;
-
-import com.plestreet.community.domain.Comments;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,13 +10,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class BoardResponseDto {
+public class CreateCommentDto {
 
-	private String title;
+	private String username;
+
+	private String password;
 
 	private String content;
 
 	private String boardId;
-
-	private List<Comments> commentsList;
 }
