@@ -78,7 +78,6 @@ public class BoardService {
 			.title(board.getBoardTitle())
 			.content(board.getBoardContent())
 			.boardId(board.getBoardId())
-			.commentsList(board.getComments())
 			.build();
 	}
 }

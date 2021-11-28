@@ -1,6 +1,13 @@
 package com.plestreet.community.domain;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -42,15 +50,20 @@ public class Comments {
 	@Lob
 	private String content;
 
+	@Enumerated(value = EnumType.STRING)
+	private State state;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="boardPkId")
+
+
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="boardId")
 	private Board board;
 
 	@Builder
-	public Comments(String commentId,Long id, String username, String password, String content, Board board){
-		this.commentId = commentId;
+	public Comments(Long id, String commentId, String username, String password, String content, Board board){
 		this.id = id;
+		this.commentId = commentId;
 		this.username = username;
 		this.password = password;
 		this.content = content;

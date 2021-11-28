@@ -34,15 +34,10 @@ public class CommentsController {
 		return new ResponseEntity<>(commentService.createComments(createCommentDto), HttpStatus.CREATED);
 	}
 
-	// //댓글 조회
-	// @GetMapping
-	// public ResponseEntity<?> getComment(@RequestParam("boardId") String boardId){
-	// 	return new ResponseEntity<>(commentService.getComments(boardId),HttpStatus.OK);
-	// }
-
-
-	// //댓글 삭제
-	// @DeleteMapping
-	// public ResponseEntity<?> deleteComment
+	//댓글 조회
+	@GetMapping
+	public ResponseEntity<?> getComment(@RequestParam("boardId") String boardId){
+		return new ResponseEntity<>(commentService.getComments(boardId),HttpStatus.OK);
+	}
 
 }
