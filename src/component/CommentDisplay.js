@@ -11,15 +11,28 @@ const Wrapper = styled.div`
 
 const DisplayName = styled.div`
     font-weight : 400;
+<<<<<<< Updated upstream
     font-size: 1em;
     margin-bottom : 0.6em;
     margin-top: 0.2em;
+=======
+    font-size: 1.4em;
+    margin-bottom : 0.6em;
+    margin-top: 0.2em;
+    padding-left:0.6em;
+>>>>>>> Stashed changes
    
 `
 
 const DisplayContent = styled.div`
+<<<<<<< Updated upstream
     font-size : 1.4em;
     border-bottom: 2px solid rgb(50, 84, 137, 0.1);
+=======
+    font-size : 1em;
+    border-bottom: 2px solid rgb(50, 84, 137, 0.1);
+    padding-left:1em;
+>>>>>>> Stashed changes
 `
 
 function CommentDisplay(props) {

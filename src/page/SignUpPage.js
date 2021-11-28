@@ -2,23 +2,41 @@ import React,{useState} from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
 import { useHistory } from 'react-router'
+import { Button, Input }from 'semantic-ui-react'
 
 const Container = styled.div`
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: solid 1px black;
+  margin : 25%;
 `;
 
-const Input = styled.input`
-    width : 100px;
-    height : 50px;
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height: 30vh;
+    width : 40vh;
+    border: 4px dotted skyblue;
+    border-radius: 20px;
 `
 
-const Btn = styled.button`
-    padding : 20px;
+const ContentWrapperId = styled.div`
+      margin:20px;
+`
+const ContentWrapperPW = styled.div`
+      margin:20px;
+`
+const ContentWrapperPh = styled.div`
+      margin:20px;
+`
+const ContentWrapperNa = styled.div`
+      margin:20px;
+`
+const ContentWrapperBtn = styled.div`
+      margin-left: 25%;
+`
+
+const StyleP = styled.div`
+    width : 2em;
 `
 
  function SignUpPage() {
@@ -69,24 +87,36 @@ const Btn = styled.button`
 
     return (
         <Container>
-        <form onSubmit={handleSubmit}>
-                <label>아이디 입력</label>
-                <Input type="userId" value={userId} onChange={onHandlerId}/>
-                    
-                <label>비밀번호 입력</label>
-                <Input type="userPwd" value={userPwd} onChange={onHandlerPwd}/>
+        <Wrapper>
+            <form onSubmit={handleSubmit}>
+                    <ContentWrapperId>
+                    <label>아이디 입력 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input focus placeholder='ID' type="userId" value={userId} onChange={onHandlerId}/>
+                    </ContentWrapperId>
 
-                <label>핸드폰 번호 입력</label>
-                <Input type="userPhone" value={userPhone} onChange={onHandlerPhone}/>
-     
-                <label>사용자 이름 입력</label>
-                <Input type="userName" value={userName} onChange={onHandlerName}/>
-                 
-                <Btn type="submit">
-                    눌러서 가입하기
-                </Btn>
-        
-            </form>
+                    <ContentWrapperPW>
+                    <label>비밀번호 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input focus placeholder='Password' type="password" value={userPwd} onChange={onHandlerPwd}/>
+                    </ContentWrapperPW>
+                    
+                    <ContentWrapperPh>
+                    <label>핸드폰 번호 입력&nbsp;</label>
+                    <Input focus placeholder='Phone Number' type="userPhone" value={userPhone} onChange={onHandlerPhone}/>
+                    </ContentWrapperPh>
+
+                    <ContentWrapperNa>
+                    <label>사용자 이름 입력&nbsp;</label>
+                    <Input focus placeholder='Name' type="userName" value={userName} onChange={onHandlerName}/>
+                    </ContentWrapperNa>
+
+                    <ContentWrapperBtn>
+                    <Button basic color = 'blue' type="submit">
+                        눌러서 가입하기
+                    </Button>
+                    </ContentWrapperBtn>
+            
+                </form>
+            </Wrapper>
         </Container>
     )
 }

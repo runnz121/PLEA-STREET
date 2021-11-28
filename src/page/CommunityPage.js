@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router'
 import { useEffect } from 'react/cjs/react.development'
 import PostList from "../component/PostListComponent"
+import { Button, Icon } from 'semantic-ui-react'
 
 const Wrapper = styled.div`
     width: 100%;
@@ -18,17 +19,10 @@ const PostListWrap = styled.div`
     height: 70vh;
 `
 
-const Btn = styled.button`
-    width : 150px;
-    height: 50px;
-`
-
 const Top = styled.div`
     width : 100%;
-    height: 10vh;
-    border: 1px solid black;
-    padding-top: 2vh;
- 
+    height: 7vh;
+    padding-top: 1vh;
     display: flex;
     justify-content: space-around;
 `
@@ -36,7 +30,6 @@ const Top = styled.div`
 const Body = styled.div`
     width: 100%;
     height: 80vh;
-    border: 2px solid red;
     overflow-y: scroll;
     overflow-x: hidden;
 `
@@ -46,8 +39,12 @@ function CommunityPage() {
     const history = useHistory();
     const [notlogged, setNotlogged] = useState(true)
 
+    //새로고침 
+    useEffect(()=>{pageReload()},[])
+
     //최초 진입시 토큰 확인
-    useEffect(() => {checkTokenHandler()},[])
+    useEffect(() => {checkTokenHandler()
+    },[])
 
 
     //토큰 유무로 로그인 여부 확인
@@ -55,6 +52,17 @@ function CommunityPage() {
         if(localStorage.getItem("accessToken")){
             setNotlogged(false)
         }
+    }
+
+    //새로고침 컨트롤러
+    const pageReload = () => {
+        const reloadCount = sessionStorage.getItem('reloadCount');
+        if(reloadCount < 2) {
+            sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+            window.location.reload();
+          } else {
+            sessionStorage.removeItem('reloadCount');
+          }
     }
 
     //글작성 핸들러
@@ -90,9 +98,9 @@ function CommunityPage() {
             <MenuBar/>
                 <PostListWrap> 
                 <Top>
-                   {notlogged ? <Btn onClick={SignInHandler}>로그인</Btn> : null }
-                    <Btn onClick={PostHandler}>글작성</Btn>
-                    {notlogged ? <Btn onClick={SignUpHandler}>회원가입</Btn> : null}
+                   {notlogged ? <Button size ='huge' basic color ='blue' onClick={SignInHandler}>로그인</Button> : null }
+                    <Button size ='huge' basic color ='blue' onClick={PostHandler}>글작성</Button>
+                    {notlogged ? <Button size ='huge' basic color ='blue' onClick={SignUpHandler}>회원가입</Button>: null}
                 </Top>
                 <Body>
                     <PostList/>
