@@ -14,6 +14,7 @@ import TestStartPage from './component/TestStartPage.js';
 import TestOptions from './component/TestOptions.js'
 import TestResult from './component/TestResult.js';
 
+
 import './App.css'
 
 
@@ -39,6 +40,7 @@ function App() {
             <Route exact path = "/PLEA-STREET/result/:score" component={TestResult}/>
             {/* 교육페이지 */}
             <Route exact path = "/PLEA-STREET/recycle" component={RecyclePage}/>
+
           </Switch>
       </BrowserRouter>
     </HelmetProvider>

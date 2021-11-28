@@ -2,7 +2,8 @@ import axios from 'axios'
 import React,{useState} from 'react'
 import styled from "styled-components"
 import MenuBar from '../component/Menubar'
-import { useHistory } from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
+import { Button, Input } from 'semantic-ui-react'
 
 const Wrapper = styled.div`
     width: 100%;
@@ -14,9 +15,8 @@ const Wrapper = styled.div`
 
 const Top = styled.div`
     width : 100%;
-    height: 10vh;
-    border: 1px solid black;
-    padding-top: 2vh;
+    height: 7vh;
+    padding-top: 1vh;
     display: flex;
     justify-content: space-around;
 `
@@ -24,25 +24,20 @@ const Top = styled.div`
 const Body = styled.div`
     width: 100%;
     height: 80vh;
-    border: 2px solid red;
     overflow-x: hidden;
     display: inline-block;
 `
-const Btn = styled.button`
-    width : 150px;
-    height: 50px;
+
+const Title = styled.div`
+    width : 100%;
+    border: 2px solid rgb(50, 84, 137, 0.1);
 `
 
-const Title = styled.input`
-    width: 400px;
-    height : 20px;
-    border: 1px solid blue;
-`
-
-const Content = styled.input`
-    width : 400px;
+const Content = styled.textarea`
+    width : 100%;
     height: 500px;
-    border: 1px solid green;
+    padding: 1em;
+    border: 2px solid rgb(50, 84, 137, 0.1);
 `
 
 
@@ -51,6 +46,7 @@ function PostWrite() {
     const [title, setTitle] = useState("")
     const [content, setContent] = useState("")
     const history = useHistory();
+  
 
     //게시글 제출 핸들러
     //토큰, 제목, 내용을 같이 보냄
@@ -70,7 +66,7 @@ function PostWrite() {
             },
         }).then(res=> console.log(res),
             history.push({
-            pathname:"/PLEA-STREET/community"
+            pathname:"/PLEA-STREET/community",
         })).catch(err => {alert("에러발생")})
     }
 
@@ -85,16 +81,19 @@ function PostWrite() {
     return (
         <Wrapper>
             <MenuBar/>
-            <form onSubmit={SubmitHandler}>
-                <Top>
-                    <Btn type="submit">글작성</Btn>
-                </Top>
+            <form onSubmit={SubmitHandler}>     
                 <Body>
-                    <Title onChange={titleHandler}/>
-                    <Content onChange={contentHandler}/>
+                <Top/>
+                <Title >
+                    <Input fluid placeholder="제목" onChange={titleHandler}/>
+                </Title>
+                <Content type="text" onChange={contentHandler}>
+                </Content>
+                <Top>
+                    <Button basic color='blue' type="submit">저장하기</Button>
+                </Top>
                 </Body>
             </form>
-
         </Wrapper>
     )
 }

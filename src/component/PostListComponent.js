@@ -13,7 +13,8 @@ const Content = styled.div`
   padding-left: 1vh;
   height: 200px;
   width : 100%;
-  border : 1px solid black;
+  overflow: hidden;
+  border-bottom: 4px solid rgb(50, 84, 137, 0.1);
   &:hover{
     cursor:pointer;
   }

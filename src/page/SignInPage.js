@@ -2,24 +2,35 @@ import React,{useState} from 'react'
 import styled from "styled-components"
 import axios from "axios"
 import { useHistory } from 'react-router'
+import { Button, Input} from 'semantic-ui-react'
 
 const Container = styled.div`
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: solid 1px black;
+  margin : 25%;
 `;
 
-const Input = styled.input`
-    width : 100px;
-    height : 50px;
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    height: 30vh;
+    width : 40vh;
+    border: 4px dotted skyblue;
+    border-radius: 20px;
 `
 
-const Btn = styled.button`
-    padding : 20px;
+const ContentWrapperId = styled.div`
+      margin:20px;
 `
+const ContentWrapperPW = styled.div`
+      margin:20px;
+`
+const ContentWrapperBtn = styled.div`
+      margin-left: 25%;
+`
+
+
+
 
 function SignInPage() {
 
@@ -69,18 +80,23 @@ function SignInPage() {
 
     return (
         <Container>
-        <form onSubmit={handleSubmit}>
-                <label>아이디 입력</label>
-                <Input type="userId" value={userId} onChange={onHandlerId}/>
-                    
-                <label>비밀번호 입력</label>
-                <Input type="userPwd" value={userPwd} onChange={onHandlerPwd}/>
-                 
-                <Btn type="submit">
-                    눌러서 로그인
-                </Btn>
-        
-            </form>
+            <Wrapper>
+                <form onSubmit={handleSubmit}>
+                <ContentWrapperId>
+                    <label>아이디 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <Input focus placeholder='ID' type="userId" value={userId} onChange={onHandlerId}/>
+                </ContentWrapperId>   
+                <ContentWrapperPW>      
+                    <label>비밀번호 입력&nbsp;&nbsp;</label>
+                    <Input focus placeholder='Password' type="password" value={userPwd} onChange={onHandlerPwd}/>
+                </ContentWrapperPW>
+                <ContentWrapperBtn>  
+                    <Button basic color = 'blue' type="submit">
+                        눌러서 로그인
+                    </Button>
+                </ContentWrapperBtn>
+                </form>
+            </Wrapper>
         </Container>
     )
 }
