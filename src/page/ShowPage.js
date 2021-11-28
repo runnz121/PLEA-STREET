@@ -128,7 +128,7 @@ function ShowPage() {
             });
 
 
-            let trashIcon = new kakao.maps.MarkerImage('img/markerImage/trashMarker3.png', new kakao.maps.Size(50, 50), {
+            let trashIcon = new kakao.maps.MarkerImage('img/markerImage/trashMarker4.png', new kakao.maps.Size(50, 50), {
                 shape: 'poly',
                 coords: '25,45,12,24,12,16,18,8,32,8,38,16,38,24',
             })
