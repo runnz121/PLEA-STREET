@@ -2,51 +2,61 @@
 	{
 		"id": 1,
 		"question": "달걀 껍질은 음식물쓰레기다.",
+    "img": "img/questionImage/egg.jpg",
 		"answer": "X"
 	},
 	{
 		"id": 2,
 		"question": "음식물쓰레기는 사료나 퇴비로 재활용된다.",
+    "img": "img/questionImage/foodTrash.jpg",
 		"answer": "O"
 	},
 	{
 		"id": 3,
 		"question": "즉석 밥 용기는 일반쓰레기로 배출하면 된다.",
+    "img": "img/questionImage/rice.jpeg",
 		"answer": "O"
 	},
 	{
 		"id": 4,
 		"question": "영수증은 종이로 분리배출 해야 한다.",
+    "img": "img/questionImage/receipt.jpg",
 		"answer": "X"
 	},
 	{
 		"id": 5,
 		"question": "알루미늄 캡이나 호일은 캔으로 분리배출 해야 한다.",
+    "img": "img/questionImage/can.jpg",
 		"answer": "X"
 	},
 	{
 		"id": 6,
 		"question": "떡볶이 플라스틱 용기는 깨끗이 씻으면 재활용이 가능하다.",
+    "img": "img/questionImage/yeopgi.jpeg",
 		"answer": "X"
 	},
 	{
 		"id": 7,
 		"question": "비닐 아이스 팩은 그대로 버려야 한다.",
+    "img": "img/questionImage/icepack.jpeg",
 		"answer": "O"
 	},
 	{
 		"id": 8,
-		"question": "에어 캡은 비닐로 분리배출 해야 한다.",
+		"question": "뽁뽁이는 비닐로 분리배출 해야 한다.",
+    "img": "img/questionImage/bubbleWrap.jpg",
 		"answer": "O"
 	},
 	{
 		"id": 9,
 		"question": "치킨뼈는 일반쓰레기다.",
+    "img": "img/questionImage/chickenBone.jpg",
 		"answer": "X"
 	},
 	{
 		"id": 10,
 		"question": "실리콘 폰 케이스는 플라스틱으로 분리배출이 가능하다.",
+    "img": "img/questionImage/silCase.jpg",
 		"answer": "X"
 	}
 ]

@@ -1,17 +1,12 @@
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Image, Button } from 'semantic-ui-react';
-import { useState } from 'react';
+import { Image, Button, Icon } from 'semantic-ui-react';
 
 import Result from '../util/result.json';
 import Menubar from './Menubar';
 import KakaoShare from './KakaoShare';
 import TestResultDetail from './TestResultDetail';
-import Image1 from '../img/1.png'
-// import KakaoBtn from '../shareSNS/kakaoShareButton';
-// import FacebookBtn from '../shareSNS/facebookShareButton';
-// import TwitterBtn from '../shareSNS/twitterShareButton';
 
 const Wrap = styled.div`
   max-width: 640px;
@@ -19,18 +14,41 @@ const Wrap = styled.div`
   padding-bottom: 0px;
 `
 const Content = styled.div`
-
+  padding-top: 4vh;
+`
+const ResultSocre = styled.div`
+  p{
+      font-family: 'TmoneyRoundWindExtraBold';
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin: 0;
+      text-align: center;
+    }
 `
 const ResultType = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  span, p {
+    font-family: 'TmoneyRoundWindRegular';
+    font-size: 1.1rem;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
 
 `
-const ResultTitle = styled.div`
 
-`
-const HideDiv = styled.div`
-  ${({ login }) => {
-      return login ? `display: block` : null;
-    }}
+const LinkWrap = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img{
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+    cursor: pointer;
+  }
 `
 
 const TestResult = ({ match }) => {
@@ -39,6 +57,7 @@ const TestResult = ({ match }) => {
     const result = Result[score];
 
     console.log(match)
+    console.log(result.img)
 
     const copyAlert = () => {
         alert('링크 복사완료!');
@@ -50,31 +69,49 @@ const TestResult = ({ match }) => {
           <Menubar />
           <Wrap key={result.id}>
             <Content>
-              <div>이미지 자리{result.img}</div>
-              <Image src={result.img} size='small' />
-              <Image src='img/markerImage/trashMarker.png' size='small' />
-              <Image src={Image1} size='small' />
-              <img src='img/markerImage/trashMarker.png' alt='dgd' width='100px' height='200pxx' />
+              <ResultSocre>
+              <p>당신의 점수는?</p>
+              <p style={{ 
+                color: '#34558b',
+                fontSize: '2rem'
+               }}>
+                 {score * 10}점!
+              </p>
+              </ResultSocre>
+              {/* 이미지 */}
+              <Image src={result.img} centered style={{ height: '42vh'}} />
               <ResultType>
-                <h1>{result.subject}</h1>
-                <br />
+                <div>
+                  <span>{result.subhead[0].head}</span> {/* 당신은 진정한 환경지킴이! 지구의 */}
+                  <span>{result.id}</span>              {/* 히어로 */}
+                  <span>{result.subhead[1].head}</span> {/* 시군요! */}
+                </div>
+                <p>{result.subject}</p>         {/* 앞으로도 쭉 지금같이 노력해주세요! */}
               </ResultType>
-              <ResultTitle>
-                <h2>{result.subhead[0].head}</h2>
-                <h2>{result.id}</h2>
-                <h2>{result.subhead[1].head}</h2>
-              </ResultTitle>
-              <Link to="/PLEA-STREET/cleanTest">
-                <button>다시하기</button>
-              </Link> 
-              <button>카카오톡 공유하기</button>
-              <KakaoShare />
-              <CopyToClipboard text={url}>
-                <button onClick={copyAlert}>
-                  링크 복사
-                </button>
-              </CopyToClipboard>
-              <TestResultDetail />
+
+              <LinkWrap>
+                {/* 다시하기 */}
+                <Link to="/PLEA-STREET/cleanTest"> 
+                  <Image src='../img/resultImage/reset.png'
+                         style={{
+                           width: '54px',
+                           height: '54px'
+                         }} />
+                </Link> 
+                {/* 카카오톡 공유 */}
+                <KakaoShare />
+                {/* 링크 공유 */}
+                <CopyToClipboard text={url}>
+                  <Image src='../img/resultImage/link.png'
+                         onClick={copyAlert}
+                         style={{
+                           width: '44px',
+                           height: '44px'
+                         }} />
+                </CopyToClipboard>
+              </LinkWrap>
+              {/* 정답 */}        
+              <TestResultDetail score={score} />
             </Content>
           </Wrap>
         </>

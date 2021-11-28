@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Image } from 'semantic-ui-react'
 
 
 const KakaoShare = () => {
@@ -21,9 +22,9 @@ const KakaoShare = () => {
         container: '#kakao-link-btn',
         objectType: 'feed',
         content: {
-          title: '당신의 환경점수는?',
-          description: '#리액트 #카카오 #공유버튼',
-          imageUrl: 'img/1.png', // i.e. process.env.FETCH_URL + '/logo.png'
+          title: '"분리배출 바로알기" OX Quiz',
+          description: '쓰레기 버릴 때 어떻게 버리시나요?',
+          imageUrl: '../img/1.png', // i.e. process.env.FETCH_URL + '/logo.png'
           link: {
             mobileWebUrl: window.location.href,
             webUrl: window.location.href
@@ -45,10 +46,16 @@ const KakaoShare = () => {
   return (
     <div className="kakao-share-button">
       {/* Kakao share button */}
-      <button id="kakao-link-btn">
+      {/* <button id="kakao-link-btn">
         <img src="/icons/kakao.png" alt="kakao-share-icon" />
         ㅏ하하
-      </button>
+      </button> */}
+      <Image src='../img/resultImage/kakao.png' 
+             alt='kakaoIcon' id='kakao-link-btn' 
+             style={{
+               width: '48px',
+               height: '48px'
+             }} />
     </div>
   )
 }
