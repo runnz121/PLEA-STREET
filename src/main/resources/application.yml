@@ -12,6 +12,10 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
     generate-ddl: true
 
 

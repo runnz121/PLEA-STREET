@@ -1,5 +1,6 @@
 package com.plestreet.community.dto;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,5 +21,9 @@ public class GetCommentsDto {
 
 	private String content;
 
+	private String boardId;
+
+
 	//private List<Comments> subcomments;
+
 }

@@ -50,7 +50,7 @@ public class BoardController {
 
 	//게시목록 갖고오기 최신순
 	@GetMapping("/all")
-	public ResponseEntity<?> getPost(@PageableDefault(page = 1, size = 3, sort = "boardPkId", direction = Sort.Direction.DESC) Pageable pageable){
+	public ResponseEntity<?> getPost(@PageableDefault(page = 1, size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 		return new ResponseEntity<>(boardService.getPostList(pageable), HttpStatus.OK);
 	}
 

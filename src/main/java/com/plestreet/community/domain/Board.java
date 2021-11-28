@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +35,7 @@ public class Board {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long boardPkId;
+	private Long id;
 
 	@Column(nullable = false)
 	private String boardId;
@@ -51,16 +52,17 @@ public class Board {
 	private Blob boardImage;
 
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userPkId")
 	private User user;
 
-	// @OneToMany(mappedBy = "board")
-	// private List<Comments> comments = new ArrayList<>();
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Comments> comments = new ArrayList<>();
 
 	@Builder
-	public Board(Long boardPkId, String boardId, String boardTitle, String boardContent, Blob boardImage, User user) {
-		this.boardPkId = boardPkId;
+	public Board(Long id, String boardId, String boardTitle, String boardContent, Blob boardImage, User user) {
+		this.id = id;
 		this.boardId = boardId;
 		this.boardTitle = boardTitle;
 		this.boardContent = boardContent;
