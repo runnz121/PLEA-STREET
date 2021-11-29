@@ -3,13 +3,17 @@ import { useHistory } from 'react-router-dom';
 import Questions from '../util/question.json'
 import styled from 'styled-components';
 import Menubar from './Menubar';
-import { Button, Loader } from 'semantic-ui-react';
+import {  Loader, Image, Button } from 'semantic-ui-react';
+
 
 
 const Wrap1 = styled.div`
   width: 640px;
   margin: 0px auto;
   padding-bottom: 0px; 
+  @media ${props => props.theme.mobile} {
+    width: 100vw;
+  }
 `
 const Wrap = styled.div`
   max-width: 100%;
@@ -23,46 +27,68 @@ const Slider = styled.div`
   width: 1000vw;
 `
 const Detail = styled.div`
-  margin-top: 15vh;
   width: 100vw;
   float: left;
-  background-color: skyblue;
+  /* background-color: skyblue; */
 `
 const Top = styled.div`
-  display: inline-flex;
   width: 640px;
   height: 20vh;
   padding: 2rem;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  display: flex;
   @media ${props => props.theme.mobile} {
     width: 100vw;
   }
 `
 const Counter = styled.div`
-  font-size: 2rem;
-  font-weight: bold;
+  /* font-size: 1.8rem;
+  font-weight: bold; */
+  padding-right: 84%;
+  padding-top: 10px;
 `
-const BtnBox = styled.div`
-  display: inline-flex;
+const QuesDetail = styled.div`
+  h2 {
+    margin-top: 2rem;
+    word-break: keep-all;
+  }
+`
+const ImageDiv = styled.div`
+  width: 640px;
   align-items: center;
   justify-content: center;
-  width: 640px;
-  height: 45vh;
-  margin: 0 auto;
+  flex-direction: column;
+  display: flex;
   @media ${props => props.theme.mobile} {
     width: 100vw;
   }
 `
+const BtnBox = styled.div`
+  width: 640px;
+  height: 20vh;
+  padding-top: 1rem;
+  padding-bottom: 0px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  cursor: pointer;
+  @media ${props => props.theme.mobile} {
+    width: 100vw;
+  }
+  
+`
 const LoadingContainer = styled.div`
   max-width: 640px;
   margin: 0px auto;
-  /* padding-bottom: 0px;
+  padding-bottom: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; */
+  flex-direction: column;
+  height: 80vh;
 `
 
 
@@ -95,6 +121,8 @@ const TestOptions = () => {
         const selectAnswer = e.target.value
         const answer = JSON.stringify(Questions[num].answer).replaceAll("\"", "")
 
+        console.log(answer)
+
         if(selectAnswer === answer) {
           setScore(score => score+1)
         }
@@ -117,7 +145,6 @@ const TestOptions = () => {
       <Menubar />
       <Wrap1>
           <Wrap>
-            옵션페이지!
             <Content>
               {!loading && (
                           <Slider ref={slideRef}>
@@ -126,17 +153,27 @@ const TestOptions = () => {
                                           <Detail key={item.id}>
                                             <Top>
                                               <Counter>
-                                                <span>
+                                                <span style={{ color: '#34558b', 
+                                                               fontWeight: 'bold',
+                                                               fontSize: '3rem',
+                                                                 }}>
                                                   {currentSlide}
                                                 </span>
                                                 <span>
                                                   /{TOTAL_SLIDES}
                                                 </span>
                                               </Counter>
-                                              <h1>
-                                                {item.question}
-                                              </h1>
+                                              <QuesDetail>
+                                                <h2>{item.question}</h2>
+                                              </QuesDetail>
                                             </Top>
+                                            <ImageDiv>
+                                              <Image src={item.img} 
+                                                     centered
+                                                     style={{
+                                                       height: '30vh'
+                                                     }} />
+                                            </ImageDiv>
                                             <BtnBox>
                                               <Button onClick={oClick} value='O'>O</Button>
                                               <Button onClick={xClick} value='X'>X</Button>
@@ -148,9 +185,9 @@ const TestOptions = () => {
               )}
               {loading && (
                   <LoadingContainer>
-                    <div>image</div>
-                    <h2>환경 점수 계산하는 중...</h2>
-                    <Loader active inline  />
+                    <Image src='img/questionImage/searching.png' size='small' />
+                    <h2>쓰래기 분리수거 하는 중...</h2>
+                    <Loader active inline />
                   </LoadingContainer>
               )}
             </Content>
