@@ -53,6 +53,10 @@ test {
 	useJUnitPlatform()
 }
 
+jar {
+	enabled = false
+}
+
 //querydsl
 //def querydslDir = "$buildDir/generated/querydsl"
 //querydsl {
