@@ -71,10 +71,14 @@ function Menubar() {
     setCLongitude(position.coords.longitude);
   })
 
+  const goBack = () => {
+    history.goBack();
+  }
+
   return (
     <Wrap>
       <TopBtnWrapper>
-        <TopBtn>
+        <TopBtn onClick={goBack}>
           <Icon name='arrow left' style={
             { display: 'flex', 
               justifyContent: 'center', 
