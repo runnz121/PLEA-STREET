@@ -39,7 +39,6 @@ const ResultType = styled.div`
   }
 
 `
-
 const LinkWrap = styled.div`
   display: flex;
   justify-content: center;
@@ -48,6 +47,10 @@ const LinkWrap = styled.div`
     margin-left: 1.2rem;
     margin-right: 1.2rem;
     cursor: pointer;
+    transition: all 0.3s;
+    &:hover{
+      transform: scale(1.04);
+    }
   }
 `
 
