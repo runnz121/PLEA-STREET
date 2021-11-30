@@ -21,19 +21,21 @@ const Wrap = styled.div`
   overflow-y: auto;
 `
 const Content = styled.div`
-
+  
 `
 const Slider = styled.div`
   width: 1000vw;
+  transition: all 0.6s;
 `
 const Detail = styled.div`
   width: 100vw;
+  height: 88vh;
   float: left;
   /* background-color: skyblue; */
 `
 const Top = styled.div`
   width: 640px;
-  height: 20vh;
+  height: 30vh;
   padding: 2rem;
   align-items: center;
   justify-content: center;
@@ -46,8 +48,11 @@ const Top = styled.div`
 const Counter = styled.div`
   /* font-size: 1.8rem;
   font-weight: bold; */
-  padding-right: 84%;
+  /* padding-right: 84%; */
   padding-top: 10px;
+  @media ${props => props.theme.mobile} {
+    width: 100vw;
+  }
 `
 const QuesDetail = styled.div`
   h2 {
@@ -67,18 +72,78 @@ const ImageDiv = styled.div`
 `
 const BtnBox = styled.div`
   width: 640px;
-  height: 20vh;
-  padding-top: 1rem;
-  padding-bottom: 0px;
+  height: 26%;
+  padding-top: 3rem;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   display: flex;
   cursor: pointer;
+  div {
+    border-radius: 18%;
+    height: 100%;
+  }
   @media ${props => props.theme.mobile} {
     width: 100vw;
   }
-  
+`
+const OBox = styled.div`
+  transition: all 0.3s;
+  width: 200px;
+  margin: 2rem 2rem 2rem 8rem;
+  &:hover {
+    background-color: #d9e2ff;
+    transform: scale(1.02);
+  }
+  p {
+    border-radius: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #34558b;
+    font-weight: 900;
+    font-size: 5rem;
+    text-align: center;
+    box-shadow: inset 5px 5px 30px rgb(220 203 178 / 40%);
+  }
+  @media ${props => props.theme.tablet} {
+    width: 200px;
+    margin: 2rem 2rem 2rem 8rem;
+  }
+  @media ${props => props.theme.mobile} {
+    margin: 1rem 1rem 2rem 2rem;
+    width: 50%;
+  }
+`
+const XBox = styled.div`
+  transition: all 0.3s;
+  width: 200px;
+  margin: 2rem 8rem 2rem 2rem;
+  &:hover {
+    background-color: #ffd5ca;
+    transform: scale(1.02);
+  }
+  p {
+    border-radius: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #34558b;
+    font-weight: 900;
+    font-size: 5rem;
+    text-align: center;
+    box-shadow: inset 5px 5px 30px rgb(220 203 178 / 40%);
+  }
+  @media ${props => props.theme.tablet} {
+    width: 200px;
+    margin: 2rem 8rem 2rem 2rem;
+  }
+  @media ${props => props.theme.mobile} {
+    margin: 1rem 2rem 2rem 1rem;
+    width: 50%;
+  }
 `
 const LoadingContainer = styled.div`
   max-width: 640px;
@@ -106,7 +171,7 @@ const TestOptions = () => {
         setCurrentSlide(currentSlide + 1);
         slideRef.current.style.transform += 'translateX(-100vw)';
 
-        const selectAnswer = e.target.value
+        const selectAnswer = e.target.id
         const answer = JSON.stringify(Questions[num].answer).replaceAll("\"", "")
 
         if(selectAnswer === answer) {
@@ -118,10 +183,8 @@ const TestOptions = () => {
         setCurrentSlide(currentSlide + 1);
         slideRef.current.style.transform += 'translateX(-100vw)';
 
-        const selectAnswer = e.target.value
+        const selectAnswer = e.target.id
         const answer = JSON.stringify(Questions[num].answer).replaceAll("\"", "")
-
-        console.log(answer)
 
         if(selectAnswer === answer) {
           setScore(score => score+1)
@@ -156,7 +219,8 @@ const TestOptions = () => {
                                                 <span style={{ color: '#34558b', 
                                                                fontWeight: 'bold',
                                                                fontSize: '3rem',
-                                                                 }}>
+                                                               paddingLeft: '2rem'
+                                                              }}>
                                                   {currentSlide}
                                                 </span>
                                                 <span>
@@ -175,8 +239,12 @@ const TestOptions = () => {
                                                      }} />
                                             </ImageDiv>
                                             <BtnBox>
-                                              <Button onClick={oClick} value='O'>O</Button>
-                                              <Button onClick={xClick} value='X'>X</Button>
+                                              <OBox>
+                                                <p onClick={oClick} id='O'>O</p>
+                                              </OBox>
+                                              <XBox>
+                                                <p onClick={xClick} id='X'>X</p>
+                                              </XBox>
                                             </BtnBox>
                                           </Detail>
                                     );
