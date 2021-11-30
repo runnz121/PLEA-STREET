@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import MenuBar from '../component/Menubar'
 import styled from 'styled-components'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import { useEffect } from 'react/cjs/react.development'
 import PostList from "../component/PostListComponent"
 import { Button, Icon } from 'semantic-ui-react'
@@ -37,10 +37,13 @@ const Body = styled.div`
 
 function CommunityPage() {
     const history = useHistory();
+    const getlocation = useLocation();
     const [notlogged, setNotlogged] = useState(true)
+    
+    console.log(getlocation);
 
     //새로고침 
-    useEffect(()=>{pageReload()},[])
+    // useEffect(()=>{pageReload()},[])
 
     //최초 진입시 토큰 확인
     useEffect(() => {checkTokenHandler()
@@ -55,15 +58,15 @@ function CommunityPage() {
     }
 
     //새로고침 컨트롤러
-    const pageReload = () => {
-        const reloadCount = sessionStorage.getItem('reloadCount');
-        if(reloadCount < 2) {
-            sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-            window.location.reload();
-          } else {
-            sessionStorage.removeItem('reloadCount');
-          }
-    }
+    // const pageReload = () => {
+    //     const reloadCount = sessionStorage.getItem('reloadCount');
+    //     if(reloadCount < 2) {
+    //         sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+    //         window.location.reload();
+    //       } else {
+    //         sessionStorage.removeItem('reloadCount');
+    //       }
+    // }
 
     //글작성 핸들러
     const PostHandler = (e) => {

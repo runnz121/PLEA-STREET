@@ -6,6 +6,8 @@ import MenuBar from '../component/Menubar'
 import CommentDisplay from '../component/CommentDisplay'
 import { Button, Input } from 'semantic-ui-react'
 import { NUMBER_BINARY_OPERATORS } from '@babel/types'
+import { BACKEND_URL } from '../util/BackendUrl'
+
 
 const Wrapper = styled.div`
     width: 100%;
@@ -114,7 +116,7 @@ function PostedPage() {
 
     //토큰 실어서 백엔드에 요청 보냄
     const getData = () => {
-        const URL = `http://localhost:8080/PLEA-STREET/board/find?postId=${postId}`;
+        const URL = `${BACKEND_URL}/PLEA-STREET/board/find?postId=${postId}`;
         axios.get(URL,  
             {
                 headers: {
@@ -127,13 +129,13 @@ function PostedPage() {
 
     //뎃글 불러오기 
     const getComment = () => {
-        const URL = `http://localhost:8080/PLEA-STREET/comment?boardId=${postId}`;
+        const URL = `${BACKEND_URL}/PLEA-STREET/comment?boardId=${postId}`;
         axios.get(URL).then(res => setArr(res.data))
     }
     //댓글 생성하기
     const createComment = (e) => {
         e.preventDefault()
-        const URL = `http://localhost:8080/PLEA-STREET/comment`;
+        const URL = `${BACKEND_URL}/PLEA-STREET/comment`;
 
         const date = new Date();
         const strdate = date.toLocaleDateString(

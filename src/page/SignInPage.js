@@ -3,6 +3,8 @@ import styled from "styled-components"
 import axios from "axios"
 import { useHistory } from 'react-router'
 import { Button, Input} from 'semantic-ui-react'
+import { BACKEND_URL } from '../util/BackendUrl'
+
 
 const Container = styled.div`
   margin : 25%;
@@ -58,7 +60,7 @@ function SignInPage() {
             userPwd: userPwd
         }
         axios
-        .post("http://localhost:8080/PLEA-STREET/user/signin", 
+        .post(`${BACKEND_URL}/PLEA-STREET/user/signin`, 
         JSON.stringify(body), {
             headers: { "Content-Type": `application/json` },
             })

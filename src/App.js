@@ -22,7 +22,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <BrowserRouter forceRefresh={true}>
           <Switch>
             {/* 랜딩페이지 */}
             <Route exact path = "/PLEA-STREET/" component={LandingPage}/>
