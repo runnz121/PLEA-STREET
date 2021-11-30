@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import axios from 'axios';
 import { useHistory } from 'react-router'
 import { Button, Input }from 'semantic-ui-react'
+import { BACKEND_URL } from '../util/BackendUrl';
+
 
 const Container = styled.div`
   margin : 25%;
@@ -75,7 +77,7 @@ const StyleP = styled.div`
             userName: userName
         }
         axios
-        .post("http://localhost:8080/PLEA-STREET/user/signup", 
+        .post(`${BACKEND_URL}/PLEA-STREET/user/signup`, 
         JSON.stringify(body), {
             headers: { "Content-Type": `application/json` },
             })

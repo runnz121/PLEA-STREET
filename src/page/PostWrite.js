@@ -4,6 +4,7 @@ import styled from "styled-components"
 import MenuBar from '../component/Menubar'
 import { useHistory} from 'react-router-dom'
 import { Button, Input } from 'semantic-ui-react'
+import { BACKEND_URL } from '../util/BackendUrl'
 
 const Wrapper = styled.div`
     width: 100%;
@@ -58,7 +59,7 @@ function PostWrite() {
             content: content,
             token: localStorage.getItem("accessToken")
         }
-        axios.post("http://localhost:8080/PLEA-STREET/board", JSON.stringify(body),{
+        axios.post(`${BACKEND_URL}/PLEA-STREET/board`, JSON.stringify(body),{
             headers: {
                 "Content-Type":`application/json`,
                 Authorization: "Bearer "+ localStorage.getItem("accessToken"),
@@ -67,6 +68,10 @@ function PostWrite() {
         }).then(res=> console.log(res),
             history.push({
             pathname:"/PLEA-STREET/community",
+            state:{
+                title: title
+            }
+    
         })).catch(err => {alert("에러발생")})
     }
 
