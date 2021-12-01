@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     box-sizing: border-box;
+    min-width: 450px;
   }
 `
 

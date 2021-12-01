@@ -6,6 +6,7 @@ import { useHistory, Link } from "react-router-dom";
 
 const Wrap = styled.div`
   max-width: 640px;
+  min-width: 450px;
   margin: 0px auto;
   padding-bottom: 0px;
 `
