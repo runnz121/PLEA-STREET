@@ -50,6 +50,7 @@ const NameList = styled.div`
     display: flex;
     flex-direction:column;
     height: 78vh;
+    margin-left: 30px;
 `
 
 const NameComponent = styled.div`
@@ -57,6 +58,8 @@ const NameComponent = styled.div`
     margin-top:43px;
     margin-bottom: 7vh;
     text-align:center;
+    white-space: pre-line;
+    word-break: keep-all;
 `
 
 
