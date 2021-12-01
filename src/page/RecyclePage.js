@@ -49,7 +49,6 @@ const ModalList = styled.div`
 const NameList = styled.div`
     display: flex;
     flex-direction:column;
-    width: 400px;
     height: 78vh;
 `
 
