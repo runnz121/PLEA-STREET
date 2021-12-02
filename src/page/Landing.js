@@ -4,6 +4,7 @@ import Btn from "../component/B_GetCurrentNext"
 import styled from 'styled-components'
 import { useHistory } from 'react-router'
 import Menubar from '../component/Menubar'
+import { Image } from 'semantic-ui-react'
 
 const Wrap = styled.div`
     max-width: 640px;
@@ -18,16 +19,16 @@ const ImgCon = styled.div`
 `
 
 const Header = styled.span`
-    height: 40%;
+    height: 18vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'BinggraeMelona-Bold';
     font-weight: bold;
-    font-size: 5rem;
+    font-size: 3rem;
     line-height: 0.8;
     color: black;
-    padding-top: 5rem;
+    padding-top: 1rem;
 
     @media ${props => props.theme.mobile} {
       display: flex;
@@ -95,9 +96,7 @@ function Landing(props) {
         <Wrap>
           <Menubar />
           <Header>
-            <Span>PLEA</Span>
-            <Span>-</Span>
-            <Span>STREET</Span>
+            <Span>PLEA-STREET</Span>
           </Header>
           {/* <ImgCon onClick = {getLocation}> */}
             <MainImage />

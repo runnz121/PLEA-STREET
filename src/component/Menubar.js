@@ -43,6 +43,7 @@ const TopBtn = styled.button`
   border: 0;
   outline: 0;
   transition: all 0.3s;
+  cursor: pointer;
   &:hover{
     transform: scale(1.2);
   }
