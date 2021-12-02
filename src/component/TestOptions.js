@@ -268,7 +268,8 @@ const TestOptions = () => {
               {loading && (
                   <LoadingContainer>
                     {/* 로딩이미지 */}
-                    <Image src='img/questionImage/searching.png' size='small' />
+                    <lottie-player src="img/questionImage/smileBin.json" background="transparent" style={{width: '300px', height: '300px'}} speed="1" loop autoplay>
+                    </lottie-player>
                     <h2>쓰래기 분리수거 하는 중...</h2>
                     <Loader active inline />
                   </LoadingContainer>
