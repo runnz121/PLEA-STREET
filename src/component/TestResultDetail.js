@@ -17,13 +17,20 @@ const Wrap = styled.div`
 `
 const Score = styled.div`
   display: ${props => props.show ? "none" : "block"};
-
+  margin-top: 1rem;
   div{
     font-family: 'TmoneyRoundWindRegular';
     font-size: 1.1em;
     word-break: keep-all;
     line-height: 1.4;
-
+  }
+  h3{
+    background-color: #34558b;
+    color: white;
+    margin: 1rem;
+    padding: 1rem;
+    width: 80%;
+    margin-left: 10%;
   }
 `
 const Answer = styled.div`
@@ -31,10 +38,20 @@ const Answer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: 1px solid black;
+  border: 1px solid #34558b;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 50%;
+  margin-left: 25%;
+  &:hover{
+    background-color: #34558b;
+    color: white;
+    opacity: 0.9;
+  }
   span {
     font-family: 'TmoneyRoundWindRegular';
     font-weight: bold;
+    
   }
   img {
     width: 22px;
@@ -69,8 +86,12 @@ function TestResultDetail( props ) {
               {question.id}. {question.question}
             </div>
             <div>
+              <Image src={'../'+ question.img} size='medium' centered />
+            </div>
+            <div>
               정답 :  {question.answer}
             </div>
+            <span>------------------------------------</span>
           </div>
         ))}
       </Score>
