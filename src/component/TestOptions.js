@@ -267,8 +267,7 @@ const TestOptions = () => {
               )}
               {loading && (
                   <LoadingContainer>
-                    <lottie-player src="img/questionImage/loading.json" background="transparent" style={{width: '40%', height: '30%'}} speed="1" loop autoplay>
-                    </lottie-player>
+                    <Image src='img/questionImage/searching.png' size='small' />
                     <h2>쓰래기 분리수거 하는 중...</h2>
                     <Loader active inline />
                   </LoadingContainer>
