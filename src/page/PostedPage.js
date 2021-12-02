@@ -61,9 +61,30 @@ const BottomLeft = styled.div`
 `
 
 const BottomRight = styled.div`
-    width : 120px;
-    height: 100px;
-    margin : 18px 10px 0px 15px;
+  width : 120px;
+  height: 100px;
+  margin : 18px 10px 0px 15px;
+
+  button{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 1.2rem;
+    border: 1px solid #34558b;
+    color: #34558b;
+    font-size: 1.2rem;
+    width: 90%;
+    height: 100%;
+    font-weight: bold;
+    margin: 1rem;
+    padding: 10px;
+    &:hover{
+      background-color: #34558b;
+      color: white;
+      opacity: 0.9;
+    }
+  }
 `
 
 const BottomMid = styled.textarea`
@@ -211,7 +232,7 @@ function PostedPage() {
                         </BottomLeft>
                     <BottomMid onChange = {setCommentHandler} value={comments} />
                         <BottomRight>
-                            <Button fluid basic color ="blue" type="submit" size="massive"> 제출 </Button>
+                            <button type="submit"> 등록 </button>
                         </BottomRight>
                 </BottomCreate>
                 </form>
