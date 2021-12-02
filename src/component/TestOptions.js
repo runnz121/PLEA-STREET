@@ -14,6 +14,9 @@ const Wrap1 = styled.div`
   @media ${props => props.theme.mobile} {
     width: 100vw;
   }
+  @media ${props => props.theme.tablet} {
+    width: 100vw;
+  }
 `
 const Wrap = styled.div`
   max-width: 100%;
@@ -21,7 +24,8 @@ const Wrap = styled.div`
   overflow-y: auto;
 `
 const Content = styled.div`
-  
+  /* width: 100vw;
+  max-width: 100%; */
 `
 const Slider = styled.div`
   width: 1000vw;
@@ -34,7 +38,8 @@ const Detail = styled.div`
   /* background-color: skyblue; */
 `
 const Top = styled.div`
-  width: 640px;
+  width: 100vw;
+  max-width: 640px;
   height: 30vh;
   padding: 2rem;
   align-items: center;
@@ -61,7 +66,8 @@ const QuesDetail = styled.div`
   }
 `
 const ImageDiv = styled.div`
-  width: 640px;
+  width: 100vw;
+  max-width: 640px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -71,7 +77,8 @@ const ImageDiv = styled.div`
   }
 `
 const BtnBox = styled.div`
-  width: 640px;
+  width: 100vw;
+  max-width: 640px;
   height: 26%;
   padding-top: 3rem;
   align-items: center;
@@ -108,8 +115,8 @@ const OBox = styled.div`
     box-shadow: inset 5px 5px 30px rgb(220 203 178 / 40%);
   }
   @media ${props => props.theme.tablet} {
-    width: 200px;
-    margin: 2rem 2rem 2rem 8rem;
+    width: 50%;
+    margin: 1rem 1rem 1rem 4rem;
   }
   @media ${props => props.theme.mobile} {
     margin: 1rem 1rem 2rem 2rem;
@@ -137,8 +144,8 @@ const XBox = styled.div`
     box-shadow: inset 5px 5px 30px rgb(220 203 178 / 40%);
   }
   @media ${props => props.theme.tablet} {
-    width: 200px;
-    margin: 2rem 8rem 2rem 2rem;
+    width: 50%;
+    margin: 1rem 4rem 1rem 1rem;
   }
   @media ${props => props.theme.mobile} {
     margin: 1rem 2rem 2rem 1rem;
@@ -146,6 +153,7 @@ const XBox = styled.div`
   }
 `
 const LoadingContainer = styled.div`
+  width: 100vw;
   max-width: 640px;
   margin: 0px auto;
   padding-bottom: 0px;
@@ -154,6 +162,12 @@ const LoadingContainer = styled.div`
   align-items: center;
   flex-direction: column;
   height: 80vh;
+  @media ${props => props.theme.tablet} {
+    width: 100%;
+  }
+  @media ${props => props.theme.mobile} {
+    width: 50%;
+  }
 `
 
 
@@ -253,7 +267,8 @@ const TestOptions = () => {
               )}
               {loading && (
                   <LoadingContainer>
-                    <Image src='img/questionImage/searching.png' size='small' />
+                    <lottie-player src="img/questionImage/loading.json" background="transparent" style={{width: '40%', height: '30%'}} speed="1" loop autoplay>
+                    </lottie-player>
                     <h2>쓰래기 분리수거 하는 중...</h2>
                     <Loader active inline />
                   </LoadingContainer>
