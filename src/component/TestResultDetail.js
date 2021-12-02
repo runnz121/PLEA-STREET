@@ -8,7 +8,7 @@ import Question from '../util/question.json';
 const Wrap = styled.div`
   max-width: 640px;
   margin: 0px auto;
-  padding-top: 10px;
+  padding-top: 50px;
   padding-bottom: 10px;
   div{
     padding: 0.4em;
@@ -18,6 +18,7 @@ const Wrap = styled.div`
 const Score = styled.div`
   display: ${props => props.show ? "none" : "block"};
   margin-top: 1rem;
+  transition: all 0.3s;
   div{
     font-family: 'TmoneyRoundWindRegular';
     font-size: 1.1em;
@@ -26,11 +27,13 @@ const Score = styled.div`
   }
   h3{
     background-color: #34558b;
+    opacity: 0.9;
     color: white;
     margin: 1rem;
     padding: 1rem;
-    width: 80%;
-    margin-left: 10%;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 1rem;
   }
 `
 const Answer = styled.div`
@@ -78,7 +81,7 @@ function TestResultDetail( props ) {
       </Answer>
       
       <Score show={toggle} id='toggleDiv' tabIndex='1'>
-
+        
         <h3>OX퀴즈 정답</h3>
         {Question.map((question, index) => (
           <div key={index}>
@@ -94,6 +97,10 @@ function TestResultDetail( props ) {
             <span>------------------------------------</span>
           </div>
         ))}
+        
+        <lottie-player src="../img/resultImage/jump.json" background="transparent" style={{width: '100vw', maxWidth: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center'}} speed="1" loop autoplay>
+        </lottie-player>
+        <h3>올바른 분리배출을 생활화 합시다!</h3>
       </Score>
 
     </Wrap>
