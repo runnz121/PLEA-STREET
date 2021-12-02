@@ -43,7 +43,7 @@ function PostListComponent() {
   const options = {
       root: null,
       rootMargin:"10px",
-      threshold: 1
+      threshold: 0
   }
   console.log("boardIdcompoennt ", boardId1)
   
@@ -92,3 +92,4 @@ function PostListComponent() {
 }
 
 export default PostListComponent
+

@@ -57,6 +57,7 @@ function CommunityPage() {
         }
     }
 
+
     //새로고침 컨트롤러
     // const pageReload = () => {
     //     const reloadCount = sessionStorage.getItem('reloadCount');
