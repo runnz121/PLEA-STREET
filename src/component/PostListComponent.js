@@ -6,30 +6,50 @@ import { useHistory } from 'react-router';
 
 const Wrapper = styled.div`
     width : 640px;
+    background-color: #f2f2f2;
+    padding-top: 1rem;
 `
 
 const Content = styled.div`
-  padding-top: 5vh;
-  padding-left: 1vh;
-  height: 200px;
-  width : 100%;
-  overflow: hidden;
+  padding: 1rem;
+  margin: 1rem;
+  height: 180px;
+  width : 94%;
   border-bottom: 4px solid rgb(50, 84, 137, 0.1);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   &:hover{
-    cursor:pointer;
+    cursor: pointer;
   }
 `;
 
 const Loading = styled.div`
-  fontweight: 600;
+  font-weight: 600;
 `;
 
 const ListTitle = styled.span`
-    font-size : xx-large;
+    font-size : 1.6rem;
+    padding-top: 1rem;
+    font-weight: bold;
+    overflow: hidden;
+    cursor: pointer;
 `
 
 const ListContent = styled.div`
-    padding-top: 5vh;
+    /* padding-top: 5vh; */
+    padding-top: 1.2rem;
+    overflow: hidden;
+    cursor: pointer;
+`
+const ListNum = styled.div`
+  font-size: 1rem;
+`
+const ListWrite = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
 `
 
 
@@ -81,8 +101,13 @@ function PostListComponent() {
                 onClick={() => {
                             pageHandler(post.boardId);
                 }}>
+                    <ListNum>no.{idx+1}</ListNum>
                     <ListTitle>{post.boardTitle}</ListTitle>
                     <ListContent>{post.boardContent}</ListContent>
+                    <ListWrite>
+                      <div>작성자</div>
+                      <div>작성시간</div>
+                    </ListWrite>
                 </Content>
             ))}
             <div ref ={observer}/>

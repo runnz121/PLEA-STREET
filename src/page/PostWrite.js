@@ -15,11 +15,33 @@ const Wrapper = styled.div`
 `
 
 const Top = styled.div`
-    width : 100%;
-    height: 7vh;
-    padding-top: 1vh;
+  width : 100%;
+  height: 7vh;
+  padding-top: 1vh;
+  display: flex;
+  justify-content: space-around;
+
+  button{
+    cursor: pointer;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 1.2rem;
+    border: 1px solid #34558b;
+    color: #34558b;
+    font-size: 1.2rem;
+    width: 20%;
+    height: 80%;
+    font-weight: bold;
+    margin: 1rem;
+    padding: 10px;
+    &:hover{
+      background-color: #34558b;
+      color: white;
+      opacity: 0.9;
+    }
+  }
+
 `
 
 const Body = styled.div`
@@ -39,6 +61,24 @@ const Content = styled.textarea`
     height: 500px;
     padding: 1em;
     border: 2px solid rgb(50, 84, 137, 0.1);
+`
+const Btn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 1.2rem;
+  border: 1px solid #34558b;
+  color: #34558b;
+  font-size: 1.2rem;
+  width: 20%;
+  height: 80%;
+  font-weight: bold;
+  margin: 0;
+  &:hover{
+    background-color: #34558b;
+    color: white;
+    opacity: 0.9;
+  }
 `
 
 
@@ -95,7 +135,7 @@ function PostWrite() {
                 <Content type="text" onChange={contentHandler}>
                 </Content>
                 <Top>
-                    <Button basic color='blue' type="submit">저장하기</Button>
+                    <button type="submit">저장하기</button>
                 </Top>
                 </Body>
             </form>

@@ -33,6 +33,24 @@ const Body = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
 `
+const Btn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 1.2rem;
+  border: 1px solid #34558b;
+  color: #34558b;
+  font-size: 1.2rem;
+  width: 20%;
+  height: 80%;
+  font-weight: bold;
+  margin: 0;
+  &:hover{
+    background-color: #34558b;
+    color: white;
+    opacity: 0.9;
+  }
+`
 
 
 function CommunityPage() {
@@ -102,9 +120,9 @@ function CommunityPage() {
             <MenuBar/>
                 <PostListWrap> 
                 <Top>
-                   {notlogged ? <Button size ='huge' basic color ='blue' onClick={SignInHandler}>로그인</Button> : null }
-                    <Button size ='huge' basic color ='blue' onClick={PostHandler}>글작성</Button>
-                    {notlogged ? <Button size ='huge' basic color ='blue' onClick={SignUpHandler}>회원가입</Button>: null}
+                   {notlogged ? <Btn onClick={SignInHandler}>로그인</Btn> : null }
+                    <Btn onClick={PostHandler}>글작성</Btn>
+                    {notlogged ? <Btn onClick={SignUpHandler}>회원가입</Btn>: null}
                 </Top>
                 <Body>
                     <PostList/>
